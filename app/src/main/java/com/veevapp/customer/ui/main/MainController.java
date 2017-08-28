@@ -22,7 +22,7 @@ import butterknife.BindView;
 
 public class MainController extends HeaderController implements MainContract.View {
 
-    private final String[] pageTitles = {"Profile", "Products", "Special Offer", "Requests"};
+    private final String[] pageTitles = {"Profile", "Special Offers", "My Buy Requests", "Add Request"};
 
     private final int NUMBER_OF_TABS = 4;
 
