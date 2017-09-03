@@ -1,5 +1,7 @@
 package com.veevapp.customer.ui.addbuyrequest;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -41,6 +43,7 @@ public class AddBuyRequestController extends BaseBackStackController implements 
     private List<SubCategory> subCategoryList = new ArrayList<>();
     private ArrayAdapter<String> categoryAdapter;
     private ArrayAdapter<String> subCategoryAdapter;
+    private ProgressDialog progressDialog = null;
 
     public static AddBuyRequestController newInstance() {
         return new AddBuyRequestController();
@@ -48,7 +51,7 @@ public class AddBuyRequestController extends BaseBackStackController implements 
 
     private void initCategories() {
         List<String> list = new ArrayList<>();
-        list.add("دسته بندی ها");
+        list.add("انتخاب دسته");
         categoryAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, list);
         categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         categories.setAdapter(categoryAdapter);
@@ -57,7 +60,9 @@ public class AddBuyRequestController extends BaseBackStackController implements 
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
                 Log.d("TAG ", "onItemSelected" + position);
-                presenter.loadSubCategories(categoryAdapter.getItem(position));
+                if (position > 0) {
+                    presenter.loadSubCategories(categoryAdapter.getItem(position));
+                }
             }
 
             @Override
@@ -69,7 +74,7 @@ public class AddBuyRequestController extends BaseBackStackController implements 
 
     private void initSubCategories() {
         List<String> list = new ArrayList<>();
-        list.add("زیر دسته ها");
+        list.add("انتخاب زیردسته");
         subCategoryAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, list);
         subCategoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         subCategories.setAdapter(subCategoryAdapter);
@@ -111,11 +116,9 @@ public class AddBuyRequestController extends BaseBackStackController implements 
 
     @Override
     public void showCategories(List<Category> categoryList) {
-
-        for (String str : Stream.of(categoryList).map(category -> category.getTitle()).toList()) {
-            Log.d("TAG", "str " + str);
-        }
-
+        Category tempCategory = new Category(null);
+        tempCategory.setTitle("انتخاب دسته");
+        categoryList.add(0, tempCategory);
         categoryAdapter.clear();
         categoryAdapter.addAll(Stream.of(categoryList).map(category -> category.getTitle()).toList());
         categoryAdapter.notifyDataSetChanged();
@@ -123,7 +126,8 @@ public class AddBuyRequestController extends BaseBackStackController implements 
 
     @Override
     public void showSubCategories(List<SubCategory> subCategoryList) {
-        Log.d("TAG", "aebuaeou" + subCategoryList.size());
+        SubCategory tempSubCategory = new SubCategory(null, "انتخاب زیردسته");
+        subCategoryList.add(0, tempSubCategory);
         subCategoryAdapter.clear();
         subCategoryAdapter.addAll(Stream.of(subCategoryList).map(subCategory -> subCategory.getTitle()).toList());
         subCategoryAdapter.notifyDataSetChanged();
@@ -139,6 +143,41 @@ public class AddBuyRequestController extends BaseBackStackController implements 
                 productName.getText().toString().trim()
         ));
 
+        // todo: replace category id and subcategory id
+        // todo: implement category adapter, and subcategory adapter
+
         presenter.onSubmitBuyRequest(buyRequest);
+    }
+
+    @Override
+    public void showProgressBar() {
+        if (progressDialog == null) {
+            progressDialog = new ProgressDialog(getActivity());
+            progressDialog.setMessage(getActivity().getString(R.string.sending));
+        }
+        progressDialog.show();
+    }
+
+    @Override
+    public void hideProgressBar() {
+        progressDialog.cancel();
+    }
+
+    @Override
+    public void showSubmitSuccessMessage() {
+        new AlertDialog
+                .Builder(getActivity())
+                .setTitle("درخواست با موفقیت ثبت شد!")
+                .setMessage("تمام مغازه هایی که محصول شما رو داشته باشن به درخواست شما پاسخ خواهند داد")
+                .setPositiveButton("باشه", (dialogInterface, i) -> {
+                })
+                .show();
+
+        productName.setText("");
+        description.setText("");
+        categories.setSelection(0);
+        subCategories.setSelection(0);
+
+//        GlobalToast.makeToast(getActivity(), getActivity().getString(R.string.sent_successfully), Toast.LENGTH_SHORT);
     }
 }

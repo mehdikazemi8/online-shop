@@ -17,7 +17,7 @@ public interface ApiService {
     @POST("59a5255e100000c40db2acf7")
     Call<BuyRequest> addBuyRequest(@Body BuyRequest buyRequest);
 
-    @GET("599061a01200005100946372")
+    @GET("59abcb26100000f405f9c1c9")
     Call<CategoriesResponse> getCategories();
 
     @GET("599ab5720f00008d04b4e9b0/{categoryID}")

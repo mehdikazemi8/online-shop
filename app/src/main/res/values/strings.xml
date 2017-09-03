@@ -12,4 +12,5 @@
     <string name="submit">ثبت</string>
     <string name="request_product_name">اسم محصولی که مورد نیاز هست</string>
     <string name="description">توضیحات اضافی در مورد محصول</string>
+    <string name="sending">در حال ارسال&#8230;</string>
 </resources>

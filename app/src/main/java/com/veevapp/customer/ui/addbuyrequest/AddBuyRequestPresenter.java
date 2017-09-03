@@ -43,20 +43,35 @@ public class AddBuyRequestPresenter implements AddBuyRequestContract.Presenter {
 
     @Override
     public void onSubmitBuyRequest(BuyRequest request) {
+        addBuyRequestView.showProgressBar();
+
         dataRepository.addBuyRequest(request, new DataSource.AddBuyRequestCallback() {
             @Override
             public void onSuccess(BuyRequest buyRequest) {
+                if (!addBuyRequestView.isActive()) {
+                    return;
+                }
+                addBuyRequestView.hideProgressBar();
+
                 Log.d("TAG", "buy request " + request.serialize());
                 Log.d("TAG", "buy request " + buyRequest.serialize());
+                addBuyRequestView.showSubmitSuccessMessage();
             }
 
             @Override
             public void onFailure() {
-
+                if (!addBuyRequestView.isActive()) {
+                    return;
+                }
+                addBuyRequestView.hideProgressBar();
             }
 
             @Override
             public void onNetworkFailure() {
+                if (!addBuyRequestView.isActive()) {
+                    return;
+                }
+                addBuyRequestView.hideProgressBar();
 
             }
         });

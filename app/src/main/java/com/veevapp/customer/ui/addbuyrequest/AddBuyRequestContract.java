@@ -16,6 +16,11 @@ public class AddBuyRequestContract {
 
         void showSubCategories(List<SubCategory> subCategoryList);
 
+        void showProgressBar();
+
+        void hideProgressBar();
+
+        void showSubmitSuccessMessage();
     }
 
     public interface Presenter extends BasePresenter {

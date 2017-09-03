@@ -6,6 +6,15 @@ public class SubCategory {
     private String photoUrl;
     private boolean selected = false;
 
+    public SubCategory() {
+    }
+
+
+    public SubCategory(String id, String title) {
+        this.id = id;
+        this.title = title;
+    }
+
     public boolean isSelected() {
         return selected;
     }
