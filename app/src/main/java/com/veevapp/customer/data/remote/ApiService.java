@@ -3,6 +3,7 @@ package com.veevapp.customer.data.remote;
 import com.veevapp.customer.data.models.BuyRequest;
 import com.veevapp.customer.data.remote.response.BuyRequestsResponse;
 import com.veevapp.customer.data.remote.response.CategoriesResponse;
+import com.veevapp.customer.data.remote.response.OffersResponse;
 import com.veevapp.customer.data.remote.response.SubCategoriesResponse;
 
 import retrofit2.Call;
@@ -27,4 +28,6 @@ public interface ApiService {
     @GET("59906c611200004800946385")
     Call<BuyRequestsResponse> getBuyRequests();
 
+    @GET("59abf4261000007808f9c202/{buyRequestID}")
+    Call<OffersResponse> getOffersOfOneBuyRequest(@Path("buyRequestID") String buyRequestID);
 }

@@ -8,10 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
+import com.bluelinelabs.conductor.RouterTransaction;
+import com.bluelinelabs.conductor.changehandler.FadeChangeHandler;
 import com.veevapp.customer.R;
 import com.veevapp.customer.controller.base.BaseBackStackController;
 import com.veevapp.customer.data.DataRepository;
 import com.veevapp.customer.data.models.BuyRequest;
+import com.veevapp.customer.ui.offer.OffersController;
 import com.veevapp.customer.util.listener.OnItemSelectedListener;
 
 import java.util.ArrayList;
@@ -32,8 +35,12 @@ public class BuyRequestsController extends BaseBackStackController implements Bu
 
     private OnItemSelectedListener<BuyRequest> onItemSelectedListener = new OnItemSelectedListener<BuyRequest>() {
         @Override
-        public void onSelect(BuyRequest object) {
-
+        public void onSelect(BuyRequest request) {
+            getParentController().getRouter().pushController(
+                    RouterTransaction.with(OffersController.newInstance(request))
+                            .pushChangeHandler(new FadeChangeHandler())
+                            .popChangeHandler(new FadeChangeHandler())
+            );
         }
 
         @Override

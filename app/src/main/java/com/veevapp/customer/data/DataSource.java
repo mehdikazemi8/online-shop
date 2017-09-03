@@ -1,6 +1,7 @@
 package com.veevapp.customer.data;
 
 import com.veevapp.customer.data.models.BuyRequest;
+import com.veevapp.customer.data.models.BuyRequestOffer;
 import com.veevapp.customer.data.models.Category;
 import com.veevapp.customer.data.models.SubCategory;
 
@@ -44,6 +45,15 @@ public abstract class DataSource {
         void onNetworkFailure();
     }
 
+    public interface GetOffersCallback {
+
+        void onResponse(List<BuyRequestOffer> offerList);
+
+        void onFailure();
+
+        void onNetworkFailure();
+    }
+
     public abstract void addBuyRequest(BuyRequest request, AddBuyRequestCallback callback);
 
     public abstract void getAllCategories(GetCategoriesCallback callback);
@@ -51,4 +61,6 @@ public abstract class DataSource {
     public abstract void getAllSubCategories(String categoryID, GetSubCategoriesCallback callback);
 
     public abstract void getBuyRequests(GetBuyRequestsCallback callback);
+
+    public abstract void getOffersOfOneBuyRequest(String buyRequestID, GetOffersCallback callback);
 }

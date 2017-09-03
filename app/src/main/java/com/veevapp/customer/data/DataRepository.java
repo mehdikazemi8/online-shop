@@ -57,4 +57,13 @@ public class DataRepository extends DataSource {
             remoteDataSource.getBuyRequests(callback);
         }
     }
+
+    @Override
+    public void getOffersOfOneBuyRequest(String buyRequestID, GetOffersCallback callback) {
+        if(!networkHelper.isNetworkAvailable()) {
+            callback.onNetworkFailure();
+        } else {
+            remoteDataSource.getOffersOfOneBuyRequest(buyRequestID, callback);
+        }
+    }
 }

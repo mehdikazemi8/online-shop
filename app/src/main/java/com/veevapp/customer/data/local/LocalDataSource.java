@@ -24,4 +24,9 @@ public class LocalDataSource extends DataSource {
     public void getBuyRequests(GetBuyRequestsCallback callback) {
 
     }
+
+    @Override
+    public void getOffersOfOneBuyRequest(String buyRequestID, GetOffersCallback callback) {
+
+    }
 }
