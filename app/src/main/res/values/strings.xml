@@ -9,4 +9,7 @@
     <string name="icon.shop">a</string>
     <string name="icon.delete">a</string>
     <string name="icon.back.thin.right">a</string>
+    <string name="submit">ثبت</string>
+    <string name="request_product_name">اسم محصولی که مورد نیاز هست</string>
+    <string name="description">توضیحات اضافی در مورد محصول</string>
 </resources>

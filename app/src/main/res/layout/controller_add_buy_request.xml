@@ -4,9 +4,41 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
+    <Spinner
+        android:id="@+id/categories"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="salam" />
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/space_8" />
+
+    <Spinner
+        android:id="@+id/subcategories"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/space_8" />
+
+    <EditText
+        android:id="@+id/product_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/space_8"
+        android:fontFamily="@font/iransans"
+        android:hint="@string/request_product_name"
+        android:padding="@dimen/space_8" />
+
+    <EditText
+        android:id="@+id/customer_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/space_8"
+        android:fontFamily="@font/iransans"
+        android:hint="@string/description"
+        android:padding="@dimen/space_8" />
+
+    <Button
+        android:id="@+id/button_submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/iransans"
+        android:text="@string/submit" />
+
 </LinearLayout>

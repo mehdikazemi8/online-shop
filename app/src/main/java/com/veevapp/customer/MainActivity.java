@@ -9,7 +9,11 @@ import android.view.ViewGroup;
 import com.bluelinelabs.conductor.Conductor;
 import com.bluelinelabs.conductor.Router;
 import com.bluelinelabs.conductor.RouterTransaction;
+import com.veevapp.customer.data.DataRepository;
+import com.veevapp.customer.data.local.LocalDataSource;
+import com.veevapp.customer.data.remote.RemoteDataSource;
 import com.veevapp.customer.ui.splash.SplashController;
+import com.veevapp.customer.util.NetworkHelper;
 
 import pl.aprilapps.easyphotopicker.EasyImage;
 
@@ -24,11 +28,11 @@ public class MainActivity extends AppCompatActivity {
 
         EasyImage.configuration(this).setImagesFolderName("my_app_images");
 
-//        DataRepository.init(
-//                RemoteDataSource.getInstance(),
-//                new LocalDataSource(),
-//                new NetworkHelper(this)
-//        );
+        DataRepository.init(
+                RemoteDataSource.getInstance(),
+                new LocalDataSource(),
+                new NetworkHelper(this)
+        );
     }
 
 

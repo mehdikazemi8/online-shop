@@ -3,10 +3,16 @@ package com.veevapp.customer.data.remote;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.veevapp.customer.data.DataSource;
+import com.veevapp.customer.data.models.BuyRequest;
+import com.veevapp.customer.data.remote.response.CategoriesResponse;
+import com.veevapp.customer.data.remote.response.SubCategoriesResponse;
 
 import okhttp3.Credentials;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -55,5 +61,63 @@ public class RemoteDataSource extends DataSource {
     }
 
 
+    @Override
+    public void addBuyRequest(BuyRequest request, AddBuyRequestCallback callback) {
+        Call<BuyRequest> call = apiService.addBuyRequest(request);
+        call.enqueue(new Callback<BuyRequest>() {
+            @Override
+            public void onResponse(Call<BuyRequest> call, Response<BuyRequest> response) {
+                if (response.isSuccessful()) {
+                    callback.onSuccess(response.body());
+                } else {
+                    callback.onFailure();
+                }
+            }
 
+            @Override
+            public void onFailure(Call<BuyRequest> call, Throwable t) {
+                callback.onFailure();
+            }
+        });
+    }
+
+    @Override
+    public void getAllCategories(GetCategoriesCallback callback) {
+        Call<CategoriesResponse> call = apiService.getCategories();
+        call.enqueue(new Callback<CategoriesResponse>() {
+            @Override
+            public void onResponse(Call<CategoriesResponse> call, Response<CategoriesResponse> response) {
+                if (response.isSuccessful()) {
+                    callback.onSuccess(response.body().getCategories());
+                } else {
+                    callback.onFailure();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CategoriesResponse> call, Throwable t) {
+                callback.onFailure();
+            }
+        });
+    }
+
+    @Override
+    public void getAllSubCategories(String categoryID, GetSubCategoriesCallback callback) {
+        Call<SubCategoriesResponse> call = apiService.getAllSubCategories(categoryID);
+        call.enqueue(new Callback<SubCategoriesResponse>() {
+            @Override
+            public void onResponse(Call<SubCategoriesResponse> call, Response<SubCategoriesResponse> response) {
+                if (response.isSuccessful()) {
+                    callback.onSuccess(response.body().getSubCategories());
+                } else {
+                    callback.onFailure();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<SubCategoriesResponse> call, Throwable t) {
+                callback.onFailure();
+            }
+        });
+    }
 }

@@ -1,8 +1,9 @@
 package com.veevapp.customer.data;
 
+import com.veevapp.customer.data.models.BuyRequest;
 import com.veevapp.customer.util.NetworkHelper;
 
-public class DataRepository {
+public class DataRepository extends DataSource {
     private DataSource remoteDataSource;
     private DataSource localDataSource;
     private NetworkHelper networkHelper;
@@ -22,4 +23,30 @@ public class DataRepository {
     public static synchronized DataRepository getInstance() {
         return dataRepository;
     }
+
+    @Override
+    public void addBuyRequest(BuyRequest request, AddBuyRequestCallback callback) {
+        if (!networkHelper.isNetworkAvailable()) {
+            callback.onNetworkFailure();
+        } else {
+            remoteDataSource.addBuyRequest(request, callback);
+        }
+    }
+
+    public void getAllCategories(DataSource.GetCategoriesCallback callback) {
+        if (!networkHelper.isNetworkAvailable()) {
+            callback.onNetworkFailure();
+        } else {
+            remoteDataSource.getAllCategories(callback);
+        }
+    }
+
+    public void getAllSubCategories(String categoryID, DataSource.GetSubCategoriesCallback callback) {
+        if (!networkHelper.isNetworkAvailable()) {
+            callback.onNetworkFailure();
+        } else {
+            remoteDataSource.getAllSubCategories(categoryID, callback);
+        }
+    }
+
 }
