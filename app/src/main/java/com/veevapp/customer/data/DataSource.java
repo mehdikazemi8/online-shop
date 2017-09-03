@@ -35,10 +35,20 @@ public abstract class DataSource {
         void onNetworkFailure();
     }
 
+    public interface GetBuyRequestsCallback {
+
+        void onResponse(List<BuyRequest> buyRequestList);
+
+        void onFailure();
+
+        void onNetworkFailure();
+    }
+
     public abstract void addBuyRequest(BuyRequest request, AddBuyRequestCallback callback);
 
     public abstract void getAllCategories(GetCategoriesCallback callback);
 
     public abstract void getAllSubCategories(String categoryID, GetSubCategoriesCallback callback);
 
+    public abstract void getBuyRequests(GetBuyRequestsCallback callback);
 }

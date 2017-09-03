@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.veevapp.customer.data.DataSource;
 import com.veevapp.customer.data.models.BuyRequest;
+import com.veevapp.customer.data.remote.response.BuyRequestsResponse;
 import com.veevapp.customer.data.remote.response.CategoriesResponse;
 import com.veevapp.customer.data.remote.response.SubCategoriesResponse;
 
@@ -116,6 +117,26 @@ public class RemoteDataSource extends DataSource {
 
             @Override
             public void onFailure(Call<SubCategoriesResponse> call, Throwable t) {
+                callback.onFailure();
+            }
+        });
+    }
+
+    @Override
+    public void getBuyRequests(GetBuyRequestsCallback callback) {
+        Call<BuyRequestsResponse> call = apiService.getBuyRequests();
+        call.enqueue(new Callback<BuyRequestsResponse>() {
+            @Override
+            public void onResponse(Call<BuyRequestsResponse> call, Response<BuyRequestsResponse> response) {
+                if (response.isSuccessful()) {
+                    callback.onResponse(response.body().getBuyRequests());
+                } else {
+                    callback.onFailure();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BuyRequestsResponse> call, Throwable t) {
                 callback.onFailure();
             }
         });

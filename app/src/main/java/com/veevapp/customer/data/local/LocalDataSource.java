@@ -19,4 +19,9 @@ public class LocalDataSource extends DataSource {
     public void getAllSubCategories(String categoryID, GetSubCategoriesCallback callback) {
 
     }
+
+    @Override
+    public void getBuyRequests(GetBuyRequestsCallback callback) {
+
+    }
 }

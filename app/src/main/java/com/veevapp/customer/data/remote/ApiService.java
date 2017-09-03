@@ -1,6 +1,7 @@
 package com.veevapp.customer.data.remote;
 
 import com.veevapp.customer.data.models.BuyRequest;
+import com.veevapp.customer.data.remote.response.BuyRequestsResponse;
 import com.veevapp.customer.data.remote.response.CategoriesResponse;
 import com.veevapp.customer.data.remote.response.SubCategoriesResponse;
 
@@ -22,4 +23,8 @@ public interface ApiService {
 
     @GET("599ab5720f00008d04b4e9b0/{categoryID}")
     Call<SubCategoriesResponse> getAllSubCategories(@Path("categoryID") String categoryID);
+
+    @GET("59906c611200004800946385")
+    Call<BuyRequestsResponse> getBuyRequests();
+
 }
