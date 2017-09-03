@@ -15,6 +15,8 @@ public class OffersContract {
         void hideLoading();
 
         void showOffers(List<BuyRequestOffer> offerList);
+
+        void showOneOfferUI(BuyRequestOffer offer);
     }
 
     public interface Presenter extends BasePresenter {

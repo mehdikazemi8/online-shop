@@ -56,6 +56,7 @@ public class OffersPresenter implements OffersContract.Presenter {
 
     @Override
     public void onSelectOffer(BuyRequestOffer offer) {
+        offersView.showOneOfferUI(offer);
         Log.d("TAG", "onSelectOffer" + offer.getSuggestedPrice());
     }
 }

@@ -8,11 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
+import com.bluelinelabs.conductor.RouterTransaction;
+import com.bluelinelabs.conductor.changehandler.FadeChangeHandler;
 import com.veevapp.customer.BaseController;
 import com.veevapp.customer.R;
 import com.veevapp.customer.data.DataRepository;
 import com.veevapp.customer.data.models.BuyRequest;
 import com.veevapp.customer.data.models.BuyRequestOffer;
+import com.veevapp.customer.ui.oneoffer.OneOfferController;
 import com.veevapp.customer.util.listener.OnItemSelectedListener;
 
 import java.util.ArrayList;
@@ -88,5 +91,14 @@ public class OffersController extends BaseController implements OffersContract.V
         this.offerList.clear();
         this.offerList.addAll(offerList);
         this.offerViewAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void showOneOfferUI(BuyRequestOffer offer) {
+        getRouter().pushController(
+                RouterTransaction.with(OneOfferController.newInstance(offer))
+                        .pushChangeHandler(new FadeChangeHandler())
+                        .popChangeHandler(new FadeChangeHandler())
+        );
     }
 }

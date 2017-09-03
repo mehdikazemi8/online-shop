@@ -15,6 +15,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class OfferViewAdapter extends RecyclerView.Adapter<OfferViewAdapter.ViewHolder> {
 
@@ -52,6 +53,11 @@ public class OfferViewAdapter extends RecyclerView.Adapter<OfferViewAdapter.View
         TextView suggestedPrice;
         @BindView(R.id.description)
         TextView description;
+
+        @OnClick(R.id.root_view)
+        public void rootViewOnClick() {
+            onItemSelectedListener.onSelect(items.get(getAdapterPosition()));
+        }
 
         public ViewHolder(View itemView) {
             super(itemView);

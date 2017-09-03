@@ -28,6 +28,6 @@ public interface ApiService {
     @GET("59906c611200004800946385")
     Call<BuyRequestsResponse> getBuyRequests();
 
-    @GET("59abf4261000007808f9c202/{buyRequestID}")
+    @GET("59abfbdd1000000b09f9c20e/{buyRequestID}")
     Call<OffersResponse> getOffersOfOneBuyRequest(@Path("buyRequestID") String buyRequestID);
 }

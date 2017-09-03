@@ -5,6 +5,7 @@ public class BuyRequestOffer {
     private String id;
     private Integer suggestedPrice;
     private String description;
+    private Seller seller;
 
     public BuyRequestOffer(String id, Integer suggestedPrice, String description) {
         this.id = id;
@@ -36,4 +37,11 @@ public class BuyRequestOffer {
         this.description = description;
     }
 
+    public Seller getSeller() {
+        return seller;
+    }
+
+    public void setSeller(Seller seller) {
+        this.seller = seller;
+    }
 }
