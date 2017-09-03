@@ -1,16 +1,22 @@
 package com.veevapp.customer.ui.oneoffer;
 
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.veevapp.customer.BaseController;
 import com.veevapp.customer.R;
 import com.veevapp.customer.data.models.BuyRequestOffer;
+import com.veevapp.customer.util.GlobalToast;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 public class OneOfferController extends BaseController implements OneOfferContract.View {
 
@@ -28,6 +34,24 @@ public class OneOfferController extends BaseController implements OneOfferContra
     TextView telegram;
     @BindView(R.id.shop_address)
     TextView shopAddress;
+
+    @OnClick(R.id.telegram)
+    public void telegramOnClick() {
+        try {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("tg://resolve?domain=" + offer.getSeller().getTelegramID().substring(1)));
+            startActivity(intent);
+        } catch (ActivityNotFoundException e) {
+            GlobalToast.makeToast(getActivity(), getActivity().getString(R.string.telegram_not_installed), Toast.LENGTH_SHORT);
+            e.printStackTrace();
+        }
+    }
+
+    @OnClick(R.id.mobile_number)
+    public void mobileNumberOnClick() {
+        Intent intent = new Intent(Intent.ACTION_DIAL);
+        intent.setData(Uri.parse("tel:" + offer.getSeller().getSellerMobileNumber()));
+        startActivity(intent);
+    }
 
     private OneOfferContract.Presenter presenter;
     private BuyRequestOffer offer;
