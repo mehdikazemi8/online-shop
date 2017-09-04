@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.veevapp.customer.BaseController;
 import com.veevapp.customer.R;
+import com.veevapp.customer.data.DataRepository;
 import com.veevapp.customer.data.models.BuyRequestOffer;
 import com.veevapp.customer.util.GlobalToast;
 
@@ -54,7 +55,8 @@ public class OneOfferController extends BaseController implements OneOfferContra
     }
 
     private OneOfferContract.Presenter presenter;
-    private BuyRequestOffer offer;
+    private BuyRequestOffer offer = null;
+    private String offerID = null;
 
     public static OneOfferController newInstance(BuyRequestOffer offer) {
         OneOfferController instance = new OneOfferController();
@@ -62,7 +64,21 @@ public class OneOfferController extends BaseController implements OneOfferContra
         return instance;
     }
 
+    public static OneOfferController newInstance(String offerID) {
+        OneOfferController instance = new OneOfferController();
+        instance.offerID = offerID;
+        return instance;
+    }
+
     private void init() {
+        showOfferData();
+    }
+
+    void showOfferData() {
+        if (offer == null) {
+            return;
+        }
+
         suggestedPrice.setText(String.valueOf(offer.getSuggestedPrice()));
         description.setText(offer.getDescription());
         sellerName.setText(offer.getSeller().getName());
@@ -80,12 +96,18 @@ public class OneOfferController extends BaseController implements OneOfferContra
 
         setActive(true);
 
-        presenter = new OneOfferPresenter(this);
+        presenter = new OneOfferPresenter(DataRepository.getInstance(), this, offerID);
         presenter.start();
     }
 
     @Override
     protected View inflateView(@NonNull LayoutInflater inflater, @NonNull ViewGroup container) {
         return inflater.inflate(R.layout.controller_one_offer, container, false);
+    }
+
+    @Override
+    public void showOffer(BuyRequestOffer offer) {
+        this.offer = offer;
+        init();
     }
 }

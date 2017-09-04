@@ -1,16 +1,20 @@
 package com.veevapp.customer.data.remote;
 
 import com.veevapp.customer.data.models.BuyRequest;
+import com.veevapp.customer.data.models.BuyRequestOffer;
+import com.veevapp.customer.data.remote.request.FCMRequest;
 import com.veevapp.customer.data.remote.response.BuyRequestsResponse;
 import com.veevapp.customer.data.remote.response.CategoriesResponse;
 import com.veevapp.customer.data.remote.response.OffersResponse;
 import com.veevapp.customer.data.remote.response.SubCategoriesResponse;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Url;
 
 public interface ApiService {
     String BASE_URL = "http://www.mocky.io/v2/";
@@ -30,4 +34,15 @@ public interface ApiService {
 
     @GET("59abfbdd1000000b09f9c20e/{buyRequestID}")
     Call<OffersResponse> getOffersOfOneBuyRequest(@Path("buyRequestID") String buyRequestID);
+
+    @POST("599d8cc42500000101d30206")
+    Call<ResponseBody> sendFcmIDToServer(
+            @Body FCMRequest fcmRequest
+    );
+
+    @GET
+    Call<ResponseBody> downloadPhoto(@Url String photoURL);
+
+    @GET("59ad2d2f2d00003a059b7d27/{offerID}")
+    Call<BuyRequestOffer> getSingleOffer(@Path("offerID") String offerID);
 }

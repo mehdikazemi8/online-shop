@@ -60,3 +60,5 @@ dependencies {
     implementation 'com.google.firebase:firebase-messaging:11.2.0'
     implementation 'org.greenrobot:eventbus:3.0.0'
 }
+
+apply plugin: 'com.google.gms.google-services'

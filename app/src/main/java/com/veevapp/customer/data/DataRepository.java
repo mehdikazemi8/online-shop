@@ -51,7 +51,7 @@ public class DataRepository extends DataSource {
 
     @Override
     public void getBuyRequests(GetBuyRequestsCallback callback) {
-        if(!networkHelper.isNetworkAvailable()) {
+        if (!networkHelper.isNetworkAvailable()) {
             callback.onNetworkFailure();
         } else {
             remoteDataSource.getBuyRequests(callback);
@@ -60,10 +60,37 @@ public class DataRepository extends DataSource {
 
     @Override
     public void getOffersOfOneBuyRequest(String buyRequestID, GetOffersCallback callback) {
-        if(!networkHelper.isNetworkAvailable()) {
+        if (!networkHelper.isNetworkAvailable()) {
             callback.onNetworkFailure();
         } else {
             remoteDataSource.getOffersOfOneBuyRequest(buyRequestID, callback);
+        }
+    }
+
+    @Override
+    public void sendFcmIDToServer(String fcmID, DataSource.SendFcmIDCallback callback) {
+        if (!networkHelper.isNetworkAvailable()) {
+            callback.onNetworkFailure();
+        } else {
+            remoteDataSource.sendFcmIDToServer(fcmID, callback);
+        }
+    }
+
+    @Override
+    public void downloadPhoto(String photoURL, DataSource.DownloadPhotoCallback callback) {
+        if (!networkHelper.isNetworkAvailable()) {
+            callback.onNetworkFailure();
+        } else {
+            remoteDataSource.downloadPhoto(photoURL, callback);
+        }
+    }
+
+    @Override
+    public void getSingleOffer(String offerID, GetSingleOfferCallback callback) {
+        if (!networkHelper.isNetworkAvailable()) {
+            callback.onNetworkFailure();
+        } else {
+            remoteDataSource.getSingleOffer(offerID, callback);
         }
     }
 }

@@ -4,6 +4,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.veevapp.customer.data.DataSource;
 import com.veevapp.customer.data.models.BuyRequest;
+import com.veevapp.customer.data.models.BuyRequestOffer;
+import com.veevapp.customer.data.remote.request.FCMRequest;
 import com.veevapp.customer.data.remote.response.BuyRequestsResponse;
 import com.veevapp.customer.data.remote.response.CategoriesResponse;
 import com.veevapp.customer.data.remote.response.OffersResponse;
@@ -12,6 +14,7 @@ import com.veevapp.customer.data.remote.response.SubCategoriesResponse;
 import okhttp3.Credentials;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -158,6 +161,66 @@ public class RemoteDataSource extends DataSource {
 
             @Override
             public void onFailure(Call<OffersResponse> call, Throwable t) {
+                callback.onFailure();
+            }
+        });
+    }
+
+    @Override
+    public void sendFcmIDToServer(String fcmID, SendFcmIDCallback callback) {
+        Call<ResponseBody> call = apiService.sendFcmIDToServer(new FCMRequest(fcmID));
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.isSuccessful()) {
+                    callback.onSuccess();
+                } else {
+                    callback.onFailure();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                callback.onFailure();
+            }
+        });
+    }
+
+    @Override
+    public void downloadPhoto(String photoURL, DownloadPhotoCallback callback) {
+        Call<ResponseBody> call = apiService.downloadPhoto(photoURL);
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.isSuccessful()) {
+                    callback.onResponse(response.body());
+                } else {
+                    callback.onFailure();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                callback.onFailure();
+            }
+        });
+    }
+
+    @Override
+    public void getSingleOffer(String offerID, GetSingleOfferCallback callback) {
+        Call<BuyRequestOffer> call = apiService.getSingleOffer(offerID);
+        call.enqueue(new Callback<BuyRequestOffer>() {
+            @Override
+            public void onResponse(Call<BuyRequestOffer> call, Response<BuyRequestOffer> response) {
+                if (response.isSuccessful()) {
+                    callback.onResponse(response.body());
+                } else {
+                    callback.onFailure();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BuyRequestOffer> call, Throwable t) {
                 callback.onFailure();
             }
         });

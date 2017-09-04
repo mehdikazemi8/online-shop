@@ -29,4 +29,19 @@ public class LocalDataSource extends DataSource {
     public void getOffersOfOneBuyRequest(String buyRequestID, GetOffersCallback callback) {
 
     }
+
+    @Override
+    public void sendFcmIDToServer(String fcmID, SendFcmIDCallback callback) {
+
+    }
+
+    @Override
+    public void downloadPhoto(String photoURL, DownloadPhotoCallback callback) {
+
+    }
+
+    @Override
+    public void getSingleOffer(String offerID, GetSingleOfferCallback callback) {
+
+    }
 }
