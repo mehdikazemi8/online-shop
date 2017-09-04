@@ -19,20 +19,33 @@ public class OneOfferPresenter implements OneOfferContract.Presenter {
     @Override
     public void start() {
         if(offerID != null) {
+            oneOfferView.showLoading();
+
             dataRepository.getSingleOffer(offerID, new DataSource.GetSingleOfferCallback() {
                 @Override
                 public void onResponse(BuyRequestOffer offer) {
+                    if(!oneOfferView.isActive()) {
+                        return;
+                    }
+                    oneOfferView.hideLoading();
+
                     oneOfferView.showOffer(offer);
                 }
 
                 @Override
                 public void onFailure() {
-
+                    if(!oneOfferView.isActive()) {
+                        return;
+                    }
+                    oneOfferView.hideLoading();
                 }
 
                 @Override
                 public void onNetworkFailure() {
-
+                    if(!oneOfferView.isActive()) {
+                        return;
+                    }
+                    oneOfferView.hideLoading();
                 }
             });
         }

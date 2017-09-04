@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +21,9 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 public class OneOfferController extends BaseController implements OneOfferContract.View {
+
+    @BindView(R.id.progress_bar)
+    ProgressBar progressBar;
 
     @BindView(R.id.suggested_price)
     TextView suggestedPrice;
@@ -109,5 +113,15 @@ public class OneOfferController extends BaseController implements OneOfferContra
     public void showOffer(BuyRequestOffer offer) {
         this.offer = offer;
         init();
+    }
+
+    @Override
+    public void showLoading() {
+        progressBar.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideLoading() {
+        progressBar.setVisibility(View.INVISIBLE);
     }
 }

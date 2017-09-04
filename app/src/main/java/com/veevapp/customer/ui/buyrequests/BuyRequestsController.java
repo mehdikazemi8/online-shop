@@ -1,8 +1,10 @@
 package com.veevapp.customer.ui.buyrequests;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +17,8 @@ import com.veevapp.customer.controller.base.BaseBackStackController;
 import com.veevapp.customer.data.DataRepository;
 import com.veevapp.customer.data.models.BuyRequest;
 import com.veevapp.customer.ui.offer.OffersController;
+import com.veevapp.customer.ui.oneoffer.OneOfferController;
+import com.veevapp.customer.util.AppConstants;
 import com.veevapp.customer.util.listener.OnItemSelectedListener;
 
 import java.util.ArrayList;
@@ -64,11 +68,33 @@ public class BuyRequestsController extends BaseBackStackController implements Bu
         super.onViewBound(view);
 
         init();
-
         setActive(true);
+
+        checkNewOffer(getActivity().getIntent());
 
         presenter = new BuyRequestsPresenter(this, DataRepository.getInstance());
         presenter.start();
+    }
+
+    void checkNewOffer(Intent intent) {
+        if (intent == null) {
+            return;
+        }
+
+        try {
+            String buyRequestID = intent.getExtras().getString(AppConstants.BUY_REQUEST_ID);
+            String offerID = intent.getExtras().getString(AppConstants.OFFER_ID);
+
+            Log.d("TAG", "hhh " + buyRequestID + " " + offerID);
+
+            getParentController().getRouter().pushController(
+                    RouterTransaction.with(OneOfferController.newInstance(offerID))
+                            .pushChangeHandler(new FadeChangeHandler())
+                            .popChangeHandler(new FadeChangeHandler())
+            );
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

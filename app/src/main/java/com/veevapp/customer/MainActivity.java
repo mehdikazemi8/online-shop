@@ -48,8 +48,6 @@ public class MainActivity extends AppCompatActivity {
         init();
 
         pushRootController(savedInstanceState);
-
-        checkNewOffer(getIntent());
     }
 
     private void pushRootController(Bundle savedInstanceState) {

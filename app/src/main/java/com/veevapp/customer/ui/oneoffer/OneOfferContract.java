@@ -9,6 +9,10 @@ public class OneOfferContract {
     public interface View extends BaseView<Presenter> {
 
         void showOffer(BuyRequestOffer offer);
+
+        void showLoading();
+
+        void hideLoading();
     }
 
     public interface Presenter extends BasePresenter {
