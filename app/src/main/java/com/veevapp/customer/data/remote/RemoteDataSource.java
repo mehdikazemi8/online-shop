@@ -9,6 +9,7 @@ import com.veevapp.customer.data.remote.request.FCMRequest;
 import com.veevapp.customer.data.remote.response.BuyRequestsResponse;
 import com.veevapp.customer.data.remote.response.CategoriesResponse;
 import com.veevapp.customer.data.remote.response.OffersResponse;
+import com.veevapp.customer.data.remote.response.SpecialOffersResponse;
 import com.veevapp.customer.data.remote.response.SubCategoriesResponse;
 
 import okhttp3.Credentials;
@@ -221,6 +222,26 @@ public class RemoteDataSource extends DataSource {
 
             @Override
             public void onFailure(Call<BuyRequestOffer> call, Throwable t) {
+                callback.onFailure();
+            }
+        });
+    }
+
+    @Override
+    public void getAvailableSpecialOffers(GetAvailableSpecialOffers callback) {
+        Call<SpecialOffersResponse> call = apiService.getAvailableSpecialOffers();
+        call.enqueue(new Callback<SpecialOffersResponse>() {
+            @Override
+            public void onResponse(Call<SpecialOffersResponse> call, Response<SpecialOffersResponse> response) {
+                if (response.isSuccessful()) {
+                    callback.onResponse(response.body().getSpecialOffers());
+                } else {
+                    callback.onFailure();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<SpecialOffersResponse> call, Throwable t) {
                 callback.onFailure();
             }
         });

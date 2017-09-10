@@ -3,6 +3,7 @@ package com.veevapp.customer.data;
 import com.veevapp.customer.data.models.BuyRequest;
 import com.veevapp.customer.data.models.BuyRequestOffer;
 import com.veevapp.customer.data.models.Category;
+import com.veevapp.customer.data.models.SpecialOffer;
 import com.veevapp.customer.data.models.SubCategory;
 
 import java.util.List;
@@ -83,6 +84,16 @@ public abstract class DataSource {
         void onNetworkFailure();
     }
 
+    public interface GetAvailableSpecialOffers {
+
+        void onResponse(List<SpecialOffer> specialOfferList);
+
+        void onFailure();
+
+        void onNetworkFailure();
+    }
+
+
     public abstract void addBuyRequest(BuyRequest request, AddBuyRequestCallback callback);
 
     public abstract void getAllCategories(GetCategoriesCallback callback);
@@ -98,4 +109,6 @@ public abstract class DataSource {
     public abstract void downloadPhoto(String photoURL, DownloadPhotoCallback callback);
 
     public abstract void getSingleOffer(String offerID, GetSingleOfferCallback callback);
+
+    public abstract void getAvailableSpecialOffers(GetAvailableSpecialOffers callback);
 }

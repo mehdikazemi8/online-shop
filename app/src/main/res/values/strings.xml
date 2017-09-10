@@ -14,4 +14,5 @@
     <string name="description">توضیحات اضافی در مورد محصول</string>
     <string name="sending">در حال ارسال&#8230;</string>
     <string name="telegram_not_installed">ظاهرا تلگرام نداری</string>
+    <string name="template_price">قیمت: %s تومان</string>
 </resources>

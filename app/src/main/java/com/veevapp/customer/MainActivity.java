@@ -84,11 +84,13 @@ public class MainActivity extends AppCompatActivity {
 
             Log.d("TAG", "hhh " + buyRequestID + " " + offerID);
 
-            router.pushController(
-                    RouterTransaction.with(OneOfferController.newInstance(offerID))
-                            .pushChangeHandler(new FadeChangeHandler())
-                            .popChangeHandler(new FadeChangeHandler())
-            );
+            if (offerID != null) {
+                router.pushController(
+                        RouterTransaction.with(OneOfferController.newInstance(offerID))
+                                .pushChangeHandler(new FadeChangeHandler())
+                                .popChangeHandler(new FadeChangeHandler())
+                );
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

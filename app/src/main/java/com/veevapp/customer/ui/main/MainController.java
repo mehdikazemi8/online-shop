@@ -18,6 +18,7 @@ import com.veevapp.customer.data.DataRepository;
 import com.veevapp.customer.data.local.PreferenceManager;
 import com.veevapp.customer.ui.addbuyrequest.AddBuyRequestController;
 import com.veevapp.customer.ui.buyrequests.BuyRequestsController;
+import com.veevapp.customer.ui.specialoffers.SpecialOffersController;
 
 import butterknife.BindView;
 
@@ -69,7 +70,7 @@ public class MainController extends HeaderController implements MainContract.Vie
                 break;
 
             case 1:
-                controllers[1] = AddBuyRequestController.newInstance();
+                controllers[1] = SpecialOffersController.newInstance();
                 break;
 
             case 2:

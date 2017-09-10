@@ -87,11 +87,13 @@ public class BuyRequestsController extends BaseBackStackController implements Bu
 
             Log.d("TAG", "hhh " + buyRequestID + " " + offerID);
 
-            getParentController().getRouter().pushController(
-                    RouterTransaction.with(OneOfferController.newInstance(offerID))
-                            .pushChangeHandler(new FadeChangeHandler())
-                            .popChangeHandler(new FadeChangeHandler())
-            );
+            if (offerID != null) {
+                getParentController().getRouter().pushController(
+                        RouterTransaction.with(OneOfferController.newInstance(offerID))
+                                .pushChangeHandler(new FadeChangeHandler())
+                                .popChangeHandler(new FadeChangeHandler())
+                );
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -44,4 +44,9 @@ public class LocalDataSource extends DataSource {
     public void getSingleOffer(String offerID, GetSingleOfferCallback callback) {
 
     }
+
+    @Override
+    public void getAvailableSpecialOffers(GetAvailableSpecialOffers callback) {
+
+    }
 }
