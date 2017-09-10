@@ -11,9 +11,13 @@ public class SpecialOffersContract {
     public interface View extends BaseView<Presenter> {
 
         void showSpecialOffers(List<SpecialOffer> specialOfferList);
+
+        void showSingleSpecialOffer(SpecialOffer specialOffer);
     }
 
     public interface Presenter extends BasePresenter {
+
+        void onSpecialOfferSelected(SpecialOffer specialOffer);
 
     }
 }

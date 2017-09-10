@@ -11,19 +11,23 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.veevapp.customer.R;
 import com.veevapp.customer.data.models.SpecialOffer;
+import com.veevapp.customer.util.listener.OnItemSelectedListener;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class SpecialOfferViewAdapter extends RecyclerView.Adapter<SpecialOfferViewAdapter.ViewHolder> {
 
     private Context context;
     private List<SpecialOffer> items;
+    private OnItemSelectedListener<SpecialOffer> onItemSelectedListener;
 
-    public SpecialOfferViewAdapter(List<SpecialOffer> items) {
+    public SpecialOfferViewAdapter(List<SpecialOffer> items, OnItemSelectedListener<SpecialOffer> onItemSelectedListener) {
         this.items = items;
+        this.onItemSelectedListener = onItemSelectedListener;
     }
 
     @Override
@@ -57,6 +61,11 @@ public class SpecialOfferViewAdapter extends RecyclerView.Adapter<SpecialOfferVi
         TextView price;
         @BindView(R.id.shop_name)
         TextView shopName;
+
+        @OnClick(R.id.root_view)
+        public void rootViewOnClick() {
+            onItemSelectedListener.onSelect(items.get(getAdapterPosition()));
+        }
 
         public ViewHolder(View itemView) {
             super(itemView);

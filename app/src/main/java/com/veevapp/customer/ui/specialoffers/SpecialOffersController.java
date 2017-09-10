@@ -7,10 +7,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bluelinelabs.conductor.RouterTransaction;
+import com.bluelinelabs.conductor.changehandler.FadeChangeHandler;
 import com.veevapp.customer.R;
 import com.veevapp.customer.controller.base.BaseBackStackController;
 import com.veevapp.customer.data.DataRepository;
 import com.veevapp.customer.data.models.SpecialOffer;
+import com.veevapp.customer.ui.singlespecialoffer.SingleSpecialOfferController;
+import com.veevapp.customer.util.listener.OnItemSelectedListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,10 +40,22 @@ public class SpecialOffersController extends BaseBackStackController implements 
     }
 
     private void init() {
-        specialOfferViewAdapter = new SpecialOfferViewAdapter(specialOfferList);
+        specialOfferViewAdapter = new SpecialOfferViewAdapter(specialOfferList, onItemSelectedListener);
         specialOffers.setLayoutManager(new LinearLayoutManager(getActivity()));
         specialOffers.setAdapter(specialOfferViewAdapter);
     }
+
+    private OnItemSelectedListener<SpecialOffer> onItemSelectedListener = new OnItemSelectedListener<SpecialOffer>() {
+        @Override
+        public void onSelect(SpecialOffer specialOffer) {
+            presenter.onSpecialOfferSelected(specialOffer);
+        }
+
+        @Override
+        public void onDeselect(SpecialOffer object) {
+
+        }
+    };
 
     @Override
     protected void onViewBound(@NonNull View view) {
@@ -63,5 +79,14 @@ public class SpecialOffersController extends BaseBackStackController implements 
         this.specialOfferList.clear();
         this.specialOfferList.addAll(specialOfferList);
         this.specialOfferViewAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void showSingleSpecialOffer(SpecialOffer specialOffer) {
+        getParentController().getRouter().pushController(
+                RouterTransaction.with(SingleSpecialOfferController.newInstance(specialOffer))
+                        .pushChangeHandler(new FadeChangeHandler())
+                        .popChangeHandler(new FadeChangeHandler())
+        );
     }
 }

@@ -35,6 +35,10 @@ public class SpecialOffersPresenter implements SpecialOffersContract.Presenter {
 
             }
         });
+    }
 
+    @Override
+    public void onSpecialOfferSelected(SpecialOffer specialOffer) {
+        specialView.showSingleSpecialOffer(specialOffer);
     }
 }
