@@ -4,12 +4,18 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.veevapp.customer.data.models.BaseModel;
+import com.veevapp.customer.data.models.Customer;
+import com.veevapp.customer.data.remote.request.FCMRequest;
+import com.veevapp.customer.data.remote.response.TokenResponse;
 
 import java.lang.reflect.Type;
 
 // todo, for all operations use asynctask
 public class PreferenceManager {
     private enum Key {
+        TOKEN,
+        CUSTOMER_INFO,
+        FCM_ID
     }
 
     public static PreferenceManager getInstance(Context context) {
@@ -87,6 +93,55 @@ public class PreferenceManager {
         editor.remove(key.toString());
         editor.apply();
     }
+
+    //*************************************************************
+
+    public void putTokenResponse(TokenResponse tokenResponse) {
+        put(Key.TOKEN, tokenResponse);
+    }
+
+    public TokenResponse getTokenResponse() {
+        return get(Key.TOKEN, TokenResponse.class);
+    }
+
+    public void removeTokenResponse() {
+        remove(Key.TOKEN);
+    }
+
+    //*************************************************************
+
+    public String getAuthorization() {
+        TokenResponse tokenResponse = getTokenResponse();
+        if (tokenResponse == null) {
+            return null;
+        }
+        return tokenResponse.accessToken();
+    }
+
+    //*************************************************************
+
+    public void putFcmID(FCMRequest fcmRequest) {
+        put(Key.FCM_ID, fcmRequest);
+    }
+
+    public FCMRequest getFcmID() {
+        return get(Key.FCM_ID, FCMRequest.class);
+    }
+
+    //*************************************************************
+
+    public void putCustomerInfo(Customer customer) {
+        put(Key.CUSTOMER_INFO, customer);
+    }
+
+    public void removeCustomerInfo() {
+        remove(Key.CUSTOMER_INFO);
+    }
+
+    public Customer getCustomerInfo() {
+        return get(Key.CUSTOMER_INFO, Customer.class);
+    }
+
 
 }
 

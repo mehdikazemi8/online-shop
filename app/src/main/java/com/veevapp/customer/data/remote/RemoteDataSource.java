@@ -3,8 +3,10 @@ package com.veevapp.customer.data.remote;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.veevapp.customer.data.DataSource;
+import com.veevapp.customer.data.MyAdapterFactory;
 import com.veevapp.customer.data.models.BuyRequest;
 import com.veevapp.customer.data.models.BuyRequestOffer;
+import com.veevapp.customer.data.models.Customer;
 import com.veevapp.customer.data.remote.request.FCMRequest;
 import com.veevapp.customer.data.remote.response.BuyRequestsResponse;
 import com.veevapp.customer.data.remote.response.CategoriesResponse;
@@ -55,6 +57,7 @@ public class RemoteDataSource extends DataSource {
 
         Gson gson = new GsonBuilder()
                 .setLenient()
+                .registerTypeAdapterFactory(MyAdapterFactory.create())
                 .create();
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -169,7 +172,7 @@ public class RemoteDataSource extends DataSource {
 
     @Override
     public void sendFcmIDToServer(String fcmID, SendFcmIDCallback callback) {
-        Call<ResponseBody> call = apiService.sendFcmIDToServer(new FCMRequest(fcmID));
+        Call<ResponseBody> call = apiService.sendFcmIDToServer(FCMRequest.builder().fcmID(fcmID).build());
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -242,6 +245,26 @@ public class RemoteDataSource extends DataSource {
 
             @Override
             public void onFailure(Call<SpecialOffersResponse> call, Throwable t) {
+                callback.onFailure();
+            }
+        });
+    }
+
+    @Override
+    public void getCustomerInfo(GetCustomerInfoCallback callback) {
+        Call<Customer> call = apiService.getCustomerInfo();
+        call.enqueue(new Callback<Customer>() {
+            @Override
+            public void onResponse(Call<Customer> call, Response<Customer> response) {
+                if (response.isSuccessful()) {
+                    callback.onResponse(response.body());
+                } else {
+                    callback.onFailure();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Customer> call, Throwable t) {
                 callback.onFailure();
             }
         });

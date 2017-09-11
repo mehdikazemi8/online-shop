@@ -3,6 +3,7 @@ package com.veevapp.customer.data;
 import com.veevapp.customer.data.models.BuyRequest;
 import com.veevapp.customer.data.models.BuyRequestOffer;
 import com.veevapp.customer.data.models.Category;
+import com.veevapp.customer.data.models.Customer;
 import com.veevapp.customer.data.models.SpecialOffer;
 import com.veevapp.customer.data.models.SubCategory;
 
@@ -93,6 +94,15 @@ public abstract class DataSource {
         void onNetworkFailure();
     }
 
+    public interface GetCustomerInfoCallback {
+
+        void onResponse(Customer customer);
+
+        void onFailure();
+
+        void onNetworkFailure();
+    }
+
 
     public abstract void addBuyRequest(BuyRequest request, AddBuyRequestCallback callback);
 
@@ -111,4 +121,6 @@ public abstract class DataSource {
     public abstract void getSingleOffer(String offerID, GetSingleOfferCallback callback);
 
     public abstract void getAvailableSpecialOffers(GetAvailableSpecialOffers callback);
+
+    public abstract void getCustomerInfo(GetCustomerInfoCallback callback);
 }

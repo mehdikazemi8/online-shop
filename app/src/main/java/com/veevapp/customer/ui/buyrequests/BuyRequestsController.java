@@ -77,7 +77,7 @@ public class BuyRequestsController extends BaseBackStackController implements Bu
     }
 
     void checkNewOffer(Intent intent) {
-        if (intent == null) {
+        if (intent == null || intent.getExtras() == null) {
             return;
         }
 

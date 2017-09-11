@@ -12,7 +12,10 @@ import com.bluelinelabs.conductor.Router;
 import com.bluelinelabs.conductor.RouterTransaction;
 import com.bluelinelabs.conductor.changehandler.FadeChangeHandler;
 import com.veevapp.customer.data.DataRepository;
+import com.veevapp.customer.data.DataSource;
 import com.veevapp.customer.data.local.LocalDataSource;
+import com.veevapp.customer.data.local.PreferenceManager;
+import com.veevapp.customer.data.models.Customer;
 import com.veevapp.customer.data.remote.RemoteDataSource;
 import com.veevapp.customer.ui.oneoffer.OneOfferController;
 import com.veevapp.customer.ui.splash.SplashController;
@@ -39,6 +42,26 @@ public class MainActivity extends AppCompatActivity {
         );
     }
 
+    void testAutoValue() {
+        PreferenceManager.getInstance(this).getCustomerInfo();
+
+        DataRepository.getInstance().getCustomerInfo(new DataSource.GetCustomerInfoCallback() {
+            @Override
+            public void onResponse(Customer customer) {
+                PreferenceManager.getInstance(MainActivity.this).putCustomerInfo(customer);
+            }
+
+            @Override
+            public void onFailure() {
+
+            }
+
+            @Override
+            public void onNetworkFailure() {
+
+            }
+        });
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,6 +69,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         init();
+
+//        testAutoValue();
 
         pushRootController(savedInstanceState);
     }

@@ -1,17 +1,33 @@
 package com.veevapp.customer.data.remote.request;
 
-public class FCMRequest {
-    String fcmID;
+import android.support.annotation.Nullable;
 
-    public FCMRequest(String fcmID) {
-        this.fcmID = fcmID;
+import com.google.auto.value.AutoValue;
+import com.google.gson.Gson;
+import com.google.gson.TypeAdapter;
+import com.veevapp.customer.data.models.BaseModel;
+
+@AutoValue
+public abstract class FCMRequest extends BaseModel {
+    public abstract String fcmID();
+
+    @Nullable
+    public abstract Boolean sendToServer();
+
+    public static Builder builder() {
+        return new AutoValue_FCMRequest.Builder();
     }
 
-    public String getFcmID() {
-        return fcmID;
+    @AutoValue.Builder
+    public abstract static class Builder {
+        public abstract Builder fcmID(String fcmID);
+
+        public abstract Builder sendToServer(Boolean sendToServer);
+
+        public abstract FCMRequest build();
     }
 
-    public void setFcmID(String fcmID) {
-        this.fcmID = fcmID;
+    public static TypeAdapter<FCMRequest> typeAdapter(Gson gson) {
+        return new AutoValue_FCMRequest.GsonTypeAdapter(gson);
     }
 }

@@ -102,4 +102,13 @@ public class DataRepository extends DataSource {
             remoteDataSource.getAvailableSpecialOffers(callback);
         }
     }
+
+    @Override
+    public void getCustomerInfo(GetCustomerInfoCallback callback) {
+        if (!networkHelper.isNetworkAvailable()) {
+            callback.onNetworkFailure();
+        } else {
+            remoteDataSource.getCustomerInfo(callback);
+        }
+    }
 }

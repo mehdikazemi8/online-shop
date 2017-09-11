@@ -2,6 +2,7 @@ package com.veevapp.customer.data.remote;
 
 import com.veevapp.customer.data.models.BuyRequest;
 import com.veevapp.customer.data.models.BuyRequestOffer;
+import com.veevapp.customer.data.models.Customer;
 import com.veevapp.customer.data.remote.request.FCMRequest;
 import com.veevapp.customer.data.remote.response.BuyRequestsResponse;
 import com.veevapp.customer.data.remote.response.CategoriesResponse;
@@ -46,4 +47,7 @@ public interface ApiService {
 
     @GET("59b4eff6250000720548d6b2")
     Call<SpecialOffersResponse> getAvailableSpecialOffers();
+
+    @GET("59b654ad0f000022047123c1")
+    Call<Customer> getCustomerInfo();
 }

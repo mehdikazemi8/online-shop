@@ -49,4 +49,9 @@ public class LocalDataSource extends DataSource {
     public void getAvailableSpecialOffers(GetAvailableSpecialOffers callback) {
 
     }
+
+    @Override
+    public void getCustomerInfo(GetCustomerInfoCallback callback) {
+
+    }
 }
