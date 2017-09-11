@@ -7,12 +7,15 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.bluelinelabs.conductor.RouterTransaction;
+import com.bluelinelabs.conductor.changehandler.FadeChangeHandler;
 import com.bluelinelabs.conductor.changehandler.VerticalChangeHandler;
 import com.veevapp.customer.BaseController;
 import com.veevapp.customer.R;
 import com.veevapp.customer.data.DataRepository;
 import com.veevapp.customer.data.local.PreferenceManager;
+import com.veevapp.customer.ui.entermobile.EnterMobileController;
 import com.veevapp.customer.ui.main.MainController;
+import com.veevapp.customer.ui.register.RegisterController;
 
 import butterknife.BindView;
 
@@ -38,13 +41,13 @@ public class SplashController extends BaseController implements SplashContract.V
 
     @Override
     public void showEnterMobileUI() {
-//        EnterMobileController enterMobileController = new EnterMobileController();
-//        enterMobileController.setTargetController(this);
-//        getRouter().replaceTopController(
-//                RouterTransaction.with(enterMobileController)
-//                        .pushChangeHandler(new FadeChangeHandler())
-//                        .popChangeHandler(new FadeChangeHandler())
-//        );
+        EnterMobileController enterMobileController = new EnterMobileController();
+        enterMobileController.setTargetController(this);
+        getRouter().replaceTopController(
+                RouterTransaction.with(enterMobileController)
+                        .pushChangeHandler(new FadeChangeHandler())
+                        .popChangeHandler(new FadeChangeHandler())
+        );
     }
 
     @Override
@@ -59,6 +62,10 @@ public class SplashController extends BaseController implements SplashContract.V
 
     @Override
     public void showRegisterUI() {
-//        getRouter().setRoot(RouterTransaction.with(RegisterController.newInstance()));
+        getRouter().setRoot(
+                RouterTransaction.with(RegisterController.newInstance())
+                        .pushChangeHandler(new FadeChangeHandler())
+                        .popChangeHandler(new FadeChangeHandler())
+        );
     }
 }

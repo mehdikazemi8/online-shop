@@ -3,12 +3,16 @@ package com.veevapp.customer.data.remote;
 import com.veevapp.customer.data.models.BuyRequest;
 import com.veevapp.customer.data.models.BuyRequestOffer;
 import com.veevapp.customer.data.models.Customer;
+import com.veevapp.customer.data.remote.request.ConfirmationCodeRequest;
 import com.veevapp.customer.data.remote.request.FCMRequest;
+import com.veevapp.customer.data.remote.request.RegisterRequest;
+import com.veevapp.customer.data.remote.request.SubmitMobileRequest;
 import com.veevapp.customer.data.remote.response.BuyRequestsResponse;
 import com.veevapp.customer.data.remote.response.CategoriesResponse;
 import com.veevapp.customer.data.remote.response.OffersResponse;
 import com.veevapp.customer.data.remote.response.SpecialOffersResponse;
 import com.veevapp.customer.data.remote.response.SubCategoriesResponse;
+import com.veevapp.customer.data.remote.response.TokenResponse;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -50,4 +54,16 @@ public interface ApiService {
 
     @GET("59b654ad0f000022047123c1")
     Call<Customer> getCustomerInfo();
+
+    @POST("5991720c100000a300557509")
+//    @POST("seller/submit_confirmation_code/")
+    Call<TokenResponse> submitConfirmationCode(@Body ConfirmationCodeRequest confirmationCodeRequest);
+
+    @POST("59885a932700002401afee85")
+//    @POST("seller/submit_mobile/")
+    Call<ResponseBody> submitMobileNumber(@Body SubmitMobileRequest request);
+
+    @POST("59885cbc2700002401afeeaf")
+//    @POST("seller/register/")
+    Call<ResponseBody> registerCustomer(@Body RegisterRequest registerRequest);
 }

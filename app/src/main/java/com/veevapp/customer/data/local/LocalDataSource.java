@@ -2,6 +2,8 @@ package com.veevapp.customer.data.local;
 
 import com.veevapp.customer.data.DataSource;
 import com.veevapp.customer.data.models.BuyRequest;
+import com.veevapp.customer.data.remote.request.ConfirmationCodeRequest;
+import com.veevapp.customer.data.remote.request.RegisterRequest;
 
 public class LocalDataSource extends DataSource {
 
@@ -52,6 +54,26 @@ public class LocalDataSource extends DataSource {
 
     @Override
     public void getCustomerInfo(GetCustomerInfoCallback callback) {
+
+    }
+
+    @Override
+    public void prepareDataSource() {
+
+    }
+
+    @Override
+    public void submitConfirmationCode(ConfirmationCodeRequest confirmationCodeRequest, ConfirmationCodeCallback callback) {
+
+    }
+
+    @Override
+    public void submitMobileNumber(String mobileNumber, SubmitMobileNumberCallback callback) {
+
+    }
+
+    @Override
+    public void registerCustomer(RegisterRequest registerRequest, RegisterCustomerCallback callback) {
 
     }
 }

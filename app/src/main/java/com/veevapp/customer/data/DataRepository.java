@@ -1,6 +1,8 @@
 package com.veevapp.customer.data;
 
 import com.veevapp.customer.data.models.BuyRequest;
+import com.veevapp.customer.data.remote.request.ConfirmationCodeRequest;
+import com.veevapp.customer.data.remote.request.RegisterRequest;
 import com.veevapp.customer.util.NetworkHelper;
 
 public class DataRepository extends DataSource {
@@ -18,6 +20,11 @@ public class DataRepository extends DataSource {
 
     public static synchronized void init(DataSource remoteDataSource, DataSource localDataSource, NetworkHelper networkHelper) {
         dataRepository = new DataRepository(remoteDataSource, localDataSource, networkHelper);
+    }
+
+    @Override
+    public void prepareDataSource() {
+        remoteDataSource.prepareDataSource();
     }
 
     public static synchronized DataRepository getInstance() {
@@ -109,6 +116,33 @@ public class DataRepository extends DataSource {
             callback.onNetworkFailure();
         } else {
             remoteDataSource.getCustomerInfo(callback);
+        }
+    }
+
+    @Override
+    public void submitConfirmationCode(ConfirmationCodeRequest confirmationCodeRequest, DataSource.ConfirmationCodeCallback callback) {
+        if (!networkHelper.isNetworkAvailable()) {
+            callback.onNetworkFailure();
+        } else {
+            remoteDataSource.submitConfirmationCode(confirmationCodeRequest, callback);
+        }
+    }
+
+    @Override
+    public void submitMobileNumber(String mobileNumber, DataSource.SubmitMobileNumberCallback callback) {
+        if (!networkHelper.isNetworkAvailable()) {
+            callback.onNetworkFailure();
+        } else {
+            remoteDataSource.submitMobileNumber(mobileNumber, callback);
+        }
+    }
+
+    @Override
+    public void registerCustomer(RegisterRequest registerRequest, RegisterCustomerCallback callback) {
+        if(!networkHelper.isNetworkAvailable()) {
+            callback.onNetworkFailure();
+        } else {
+            remoteDataSource.registerCustomer(registerRequest, callback);
         }
     }
 }

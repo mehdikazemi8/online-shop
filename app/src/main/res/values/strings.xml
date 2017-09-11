@@ -9,10 +9,26 @@
     <string name="icon.shop">a</string>
     <string name="icon.delete">a</string>
     <string name="icon.back.thin.right">a</string>
+
     <string name="submit">ثبت</string>
     <string name="request_product_name">اسم محصولی که مورد نیاز هست</string>
     <string name="description">توضیحات اضافی در مورد محصول</string>
     <string name="sending">در حال ارسال&#8230;</string>
     <string name="telegram_not_installed">ظاهرا تلگرام نداری</string>
     <string name="template_price">قیمت: %s تومان</string>
+    <string name="telegram_id">آی دی تلگرام</string>
+    <string name="next_step">مرحله بعد</string>
+    <string name="name">اسم</string>
+    <string name="family">نام خانوادگی</string>
+    <string name="please_enter_confirmation_code">لطفا کد چهار رقمی ارسال شده را وارد کنید</string>
+    <string name="confirmation_code">کد چهار رقمی</string>
+    <string name="send">ارسال</string>
+    <string name="please_enter_mobile">لطفا شماره موبایل خود را وارد کنید</string>
+    <string name="please_wait">لطفا صبر کنید</string>
+    <string name="toast_enter_code">لطفا کد چهار رقمی ارسال شده به موبایل خود را وارد کنید</string>
+    <string name="error_network_failure">دسترسی به اینترنت وجود نداره</string>
+    <string name="error_wrong_code">کد وارد شده غلط است</string>
+    <string name="toast_invalid_mobile_number">شماره تلفن خود را به صورت صحیح وارد کنید</string>
+    <string name="toast_enter_your_mobile_number">شماره تلفن خود را وارد کنید</string>
+
 </resources>

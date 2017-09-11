@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/name"
+        style="@style/register_views"
+        android:text="esm"
+        android:hint="@string/name" />
+
+    <EditText
+        android:id="@+id/family"
+        android:text="famil"
+        style="@style/register_views"
+        android:hint="@string/family" />
+
+    <EditText
+        android:id="@+id/mobile_number"
+        style="@style/register_views"
+        android:enabled="false"
+        android:inputType="phone"
+        android:text="09379706209" />
+
+    <EditText
+        android:id="@+id/telegram_id"
+        style="@style/register_views"
+        android:text="mehdi_k45"
+        android:hint="@string/telegram_id" />
+
+    <Button
+        android:id="@+id/button_next_step"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/next_step" />
+
+</LinearLayout>

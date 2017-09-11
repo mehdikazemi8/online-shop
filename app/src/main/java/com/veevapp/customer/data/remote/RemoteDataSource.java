@@ -7,12 +7,16 @@ import com.veevapp.customer.data.MyAdapterFactory;
 import com.veevapp.customer.data.models.BuyRequest;
 import com.veevapp.customer.data.models.BuyRequestOffer;
 import com.veevapp.customer.data.models.Customer;
+import com.veevapp.customer.data.remote.request.ConfirmationCodeRequest;
 import com.veevapp.customer.data.remote.request.FCMRequest;
+import com.veevapp.customer.data.remote.request.RegisterRequest;
+import com.veevapp.customer.data.remote.request.SubmitMobileRequest;
 import com.veevapp.customer.data.remote.response.BuyRequestsResponse;
 import com.veevapp.customer.data.remote.response.CategoriesResponse;
 import com.veevapp.customer.data.remote.response.OffersResponse;
 import com.veevapp.customer.data.remote.response.SpecialOffersResponse;
 import com.veevapp.customer.data.remote.response.SubCategoriesResponse;
+import com.veevapp.customer.data.remote.response.TokenResponse;
 
 import okhttp3.Credentials;
 import okhttp3.OkHttpClient;
@@ -69,6 +73,10 @@ public class RemoteDataSource extends DataSource {
         apiService = retrofit.create(ApiService.class);
     }
 
+    @Override
+    public void prepareDataSource() {
+        prepare();
+    }
 
     @Override
     public void addBuyRequest(BuyRequest request, AddBuyRequestCallback callback) {
@@ -265,6 +273,71 @@ public class RemoteDataSource extends DataSource {
 
             @Override
             public void onFailure(Call<Customer> call, Throwable t) {
+                callback.onFailure();
+            }
+        });
+    }
+
+    @Override
+    public void submitConfirmationCode(ConfirmationCodeRequest confirmationCodeRequest, ConfirmationCodeCallback callback) {
+        Call<TokenResponse> call = apiService.submitConfirmationCode(confirmationCodeRequest);
+        call.enqueue(new Callback<TokenResponse>() {
+            @Override
+            public void onResponse(Call<TokenResponse> call, Response<TokenResponse> response) {
+                if (response.isSuccessful()) {
+                    callback.onSuccess(response.body());
+                } else {
+                    callback.onFailure();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<TokenResponse> call, Throwable t) {
+                callback.onFailure();
+            }
+        });
+    }
+
+    @Override
+    public void submitMobileNumber(String mobileNumber, SubmitMobileNumberCallback callback) {
+        Call<ResponseBody> call = apiService.submitMobileNumber(new SubmitMobileRequest(mobileNumber));
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                // todo, inja hamishe 201 migiram, hatman mire baraye submit code 4 raghami,
+                // ba'adesh ke code ro ferestad, khodesh getInfo mikone, bar asase field
+
+                if (response.code() == 201 || response.code() == 200) {
+                    callback.onMustLogin();
+                } else if (response.code() == 404) {
+                    callback.onMustRegister();
+                } else {
+                    callback.onFailure();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                callback.onFailure();
+            }
+        });
+    }
+
+    @Override
+    public void registerCustomer(RegisterRequest registerRequest, RegisterCustomerCallback callback) {
+        Call<ResponseBody> call = apiService.registerCustomer(registerRequest);
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.isSuccessful()) {
+                    callback.onSuccess();
+                } else {
+                    callback.onFailure();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
                 callback.onFailure();
             }
         });

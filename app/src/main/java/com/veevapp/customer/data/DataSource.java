@@ -6,6 +6,9 @@ import com.veevapp.customer.data.models.Category;
 import com.veevapp.customer.data.models.Customer;
 import com.veevapp.customer.data.models.SpecialOffer;
 import com.veevapp.customer.data.models.SubCategory;
+import com.veevapp.customer.data.remote.request.ConfirmationCodeRequest;
+import com.veevapp.customer.data.remote.request.RegisterRequest;
+import com.veevapp.customer.data.remote.response.TokenResponse;
 
 import java.util.List;
 
@@ -103,6 +106,36 @@ public abstract class DataSource {
         void onNetworkFailure();
     }
 
+    public interface ConfirmationCodeCallback {
+
+        void onSuccess(TokenResponse tokenResponse);
+
+        void onFailure();
+
+        void onNetworkFailure();
+    }
+
+    public interface SubmitMobileNumberCallback {
+
+        void onMustLogin();
+
+        void onMustRegister();
+
+        void onFailure();
+
+        void onNetworkFailure();
+    }
+
+    public interface RegisterCustomerCallback {
+
+        void onSuccess();
+
+        void onFailure();
+
+        void onNetworkFailure();
+    }
+
+    public abstract void prepareDataSource();
 
     public abstract void addBuyRequest(BuyRequest request, AddBuyRequestCallback callback);
 
@@ -123,4 +156,10 @@ public abstract class DataSource {
     public abstract void getAvailableSpecialOffers(GetAvailableSpecialOffers callback);
 
     public abstract void getCustomerInfo(GetCustomerInfoCallback callback);
+
+    public abstract void submitConfirmationCode(ConfirmationCodeRequest confirmationCodeRequest, ConfirmationCodeCallback callback);
+
+    public abstract void submitMobileNumber(String mobileNumber, SubmitMobileNumberCallback callback);
+
+    public abstract void registerCustomer(RegisterRequest registerRequest, RegisterCustomerCallback callback);
 }

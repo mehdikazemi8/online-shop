@@ -8,6 +8,7 @@ import com.google.gson.TypeAdapter;
 
 @AutoValue
 public abstract class Customer extends BaseModel {
+
     @Nullable
     public abstract String name();
 
@@ -26,6 +27,7 @@ public abstract class Customer extends BaseModel {
 
     @AutoValue.Builder
     public abstract static class Builder {
+
         public abstract Builder name(String name);
 
         public abstract Builder family(String family);
