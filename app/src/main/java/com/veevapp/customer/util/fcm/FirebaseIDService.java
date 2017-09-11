@@ -6,6 +6,8 @@ import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.FirebaseInstanceIdService;
 import com.veevapp.customer.data.DataRepository;
 import com.veevapp.customer.data.DataSource;
+import com.veevapp.customer.data.local.PreferenceManager;
+import com.veevapp.customer.data.remote.request.FCMRequest;
 
 public class FirebaseIDService extends FirebaseInstanceIdService {
     private static final String TAG = "FirebaseIDService";
@@ -31,21 +33,36 @@ public class FirebaseIDService extends FirebaseInstanceIdService {
     private void sendRegistrationToServer(String token) {
         // Add custom implementation, as needed.
 
-        DataRepository.getInstance().sendFcmIDToServer(token, new DataSource.SendFcmIDCallback() {
-            @Override
-            public void onSuccess() {
-                Log.d(TAG, "Refreshed token hhhh: " + token);
+        PreferenceManager preferenceManager = PreferenceManager.getInstance(this);
+        FCMRequest fcmRequest = preferenceManager.getFcmID();
+        if (fcmRequest == null || !token.equals(fcmRequest.fcmID())) { // must send to server
+
+            if (preferenceManager.getTokenResponse() == null) {
+                // save and send later
+                fcmRequest = FCMRequest.builder().fcmID(token).sendToServer(true).build();
+                preferenceManager.putFcmID(fcmRequest);
+            } else {
+                // save and send now
+                fcmRequest = FCMRequest.builder().fcmID(token).sendToServer(false).build();
+                preferenceManager.putFcmID(fcmRequest);
+
+                DataRepository.getInstance().sendFcmIDToServer(token, new DataSource.SendFcmIDCallback() {
+                    @Override
+                    public void onSuccess() {
+                        Log.d(TAG, "Refreshed token hhhh: " + token);
+                    }
+
+                    @Override
+                    public void onFailure() {
+
+                    }
+
+                    @Override
+                    public void onNetworkFailure() {
+
+                    }
+                });
             }
-
-            @Override
-            public void onFailure() {
-
-            }
-
-            @Override
-            public void onNetworkFailure() {
-
-            }
-        });
+        }
     }
 }
