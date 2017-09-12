@@ -18,6 +18,7 @@ import com.veevapp.customer.data.DataRepository;
 import com.veevapp.customer.data.local.PreferenceManager;
 import com.veevapp.customer.ui.addbuyrequest.AddBuyRequestController;
 import com.veevapp.customer.ui.buyrequests.BuyRequestsController;
+import com.veevapp.customer.ui.profile.ProfileController;
 import com.veevapp.customer.ui.specialoffers.SpecialOffersController;
 
 import butterknife.BindView;
@@ -66,7 +67,7 @@ public class MainController extends HeaderController implements MainContract.Vie
     private BaseController getPage(int position) {
         switch (position) {
             case 0:
-                controllers[0] = AddBuyRequestController.newInstance();
+                controllers[0] = ProfileController.newInstance();
                 break;
 
             case 1:
