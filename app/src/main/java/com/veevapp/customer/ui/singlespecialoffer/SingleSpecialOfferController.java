@@ -9,13 +9,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.veevapp.customer.BaseController;
 import com.veevapp.customer.R;
+import com.veevapp.customer.controller.base.HeaderController;
 import com.veevapp.customer.data.models.SpecialOffer;
 
 import butterknife.BindView;
 
-public class SingleSpecialOfferController extends BaseController implements SingleSpecialOfferContract.View {
+public class SingleSpecialOfferController extends HeaderController implements SingleSpecialOfferContract.View {
 
     @BindView(R.id.photo)
     ImageView photo;
@@ -38,6 +38,8 @@ public class SingleSpecialOfferController extends BaseController implements Sing
     }
 
     private void init() {
+
+        headerTitle.setText(getResources().getString(R.string.special_offer));
         price.setText(String.format(getActivity().getString(R.string.template_price), specialOffer.getProduct().getPrice()));
         ViewCompat.setTransitionName(photo, getResources().getString(R.string.transition_special_offer_photo_index, fromPosition));
         productName.setText(specialOffer.getProduct().getName());

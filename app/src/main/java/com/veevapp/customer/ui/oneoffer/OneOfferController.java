@@ -11,8 +11,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.veevapp.customer.BaseController;
 import com.veevapp.customer.R;
+import com.veevapp.customer.controller.base.HeaderController;
 import com.veevapp.customer.data.DataRepository;
 import com.veevapp.customer.data.models.BuyRequestOffer;
 import com.veevapp.customer.util.GlobalToast;
@@ -20,7 +20,7 @@ import com.veevapp.customer.util.GlobalToast;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class OneOfferController extends BaseController implements OneOfferContract.View {
+public class OneOfferController extends HeaderController implements OneOfferContract.View {
 
     @BindView(R.id.progress_bar)
     ProgressBar progressBar;

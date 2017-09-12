@@ -21,9 +21,6 @@ import butterknife.BindView;
 
 public class SplashController extends BaseController implements SplashContract.View {
 
-    @BindView(R.id.text)
-    TextView text;
-
     private SplashContract.Presenter presenter;
 
     @Override

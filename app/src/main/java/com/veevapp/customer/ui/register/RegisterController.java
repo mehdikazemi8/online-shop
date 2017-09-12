@@ -5,13 +5,14 @@ import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.bluelinelabs.conductor.RouterTransaction;
 import com.bluelinelabs.conductor.changehandler.FadeChangeHandler;
-import com.veevapp.customer.BaseController;
 import com.veevapp.customer.R;
+import com.veevapp.customer.controller.base.HeaderController;
 import com.veevapp.customer.data.DataRepository;
 import com.veevapp.customer.data.remote.request.RegisterRequest;
 import com.veevapp.customer.ui.main.MainController;
@@ -19,7 +20,7 @@ import com.veevapp.customer.ui.main.MainController;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class RegisterController extends BaseController implements RegisterContract.View {
+public class RegisterController extends HeaderController implements RegisterContract.View {
 
     private RegisterContract.Presenter presenter;
     private ProgressDialog progressDialog = null;
@@ -81,8 +82,11 @@ public class RegisterController extends BaseController implements RegisterContra
     }
 
     @Override
-    protected void onAttach(@NonNull View view) {
-        super.onAttach(view);
+    protected void onViewBound(@NonNull View view) {
+        super.onViewBound(view);
+
+        headerTitle.setText(getResources().getString(R.string.app_name));
+        headerBackButton.setVisibility(View.INVISIBLE);
 
         setActive(true);
         presenter = new RegisterPresenter(this, DataRepository.getInstance());

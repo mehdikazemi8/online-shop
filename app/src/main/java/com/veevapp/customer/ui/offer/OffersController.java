@@ -10,8 +10,8 @@ import android.widget.ProgressBar;
 
 import com.bluelinelabs.conductor.RouterTransaction;
 import com.bluelinelabs.conductor.changehandler.FadeChangeHandler;
-import com.veevapp.customer.BaseController;
 import com.veevapp.customer.R;
+import com.veevapp.customer.controller.base.HeaderController;
 import com.veevapp.customer.data.DataRepository;
 import com.veevapp.customer.data.models.BuyRequest;
 import com.veevapp.customer.data.models.BuyRequestOffer;
@@ -23,7 +23,7 @@ import java.util.List;
 
 import butterknife.BindView;
 
-public class OffersController extends BaseController implements OffersContract.View {
+public class OffersController extends HeaderController implements OffersContract.View {
 
     @BindView(R.id.progress_bar)
     ProgressBar progressBar;
@@ -62,6 +62,7 @@ public class OffersController extends BaseController implements OffersContract.V
         offerViewAdapter = new OfferViewAdapter(offerList, onItemSelectedListener);
         offers.setLayoutManager(new LinearLayoutManager(getActivity()));
         offers.setAdapter(offerViewAdapter);
+        headerTitle.setText(getResources().getString(R.string.offers));
     }
 
     @Override

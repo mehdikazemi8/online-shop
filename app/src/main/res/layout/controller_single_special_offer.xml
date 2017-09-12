@@ -5,11 +5,14 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
+    <include layout="@layout/template_header" />
+
     <ImageView
         android:id="@+id/photo"
         android:layout_width="300dp"
         android:layout_height="200dp"
         android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/space_8"
         android:scaleType="centerCrop" />
 
     <TextView

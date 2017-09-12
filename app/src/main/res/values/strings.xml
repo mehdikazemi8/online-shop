@@ -32,5 +32,7 @@
     <string name="toast_enter_your_mobile_number">شماره تلفن خود را وارد کنید</string>
 
     <string name="transition_special_offer_photo_index">transition.photo%1$d</string>
+    <string name="special_offer">پیشنهاد ویژه</string>
+    <string name="offers">پیشنهادها برای درخواست شما</string>
 
 </resources>

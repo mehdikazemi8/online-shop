@@ -18,27 +18,20 @@
 
     <EditText
         android:id="@+id/product_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/space_8"
-        android:fontFamily="@font/iransans"
+        style="@style/primary_edittext"
         android:hint="@string/request_product_name"
-        android:padding="@dimen/space_8" />
+        android:imeOptions="actionNext" />
 
     <EditText
         android:id="@+id/customer_description"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/space_8"
-        android:fontFamily="@font/iransans"
+        style="@style/primary_edittext"
         android:hint="@string/description"
-        android:padding="@dimen/space_8" />
+        android:imeOptions="actionDone" />
 
     <Button
         android:id="@+id/button_submit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/iransans"
+        style="@style/primary_button"
+        android:layout_gravity="center_horizontal"
         android:text="@string/submit" />
 
 </LinearLayout>

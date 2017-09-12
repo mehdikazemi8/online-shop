@@ -4,36 +4,40 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <include layout="@layout/template_header" />
+
     <EditText
         android:id="@+id/name"
-        style="@style/register_views"
-        android:text="esm"
-        android:hint="@string/name" />
+        style="@style/primary_edittext"
+        android:hint="@string/name"
+        android:imeOptions="actionNext"
+        android:text="esm" />
 
     <EditText
         android:id="@+id/family"
-        android:text="famil"
-        style="@style/register_views"
-        android:hint="@string/family" />
+        style="@style/primary_edittext"
+        android:hint="@string/family"
+        android:imeOptions="actionDone"
+        android:text="famil" />
 
     <EditText
         android:id="@+id/mobile_number"
-        style="@style/register_views"
+        style="@style/primary_edittext"
         android:enabled="false"
         android:inputType="phone"
         android:text="09379706209" />
 
     <EditText
         android:id="@+id/telegram_id"
-        style="@style/register_views"
+        style="@style/primary_edittext"
+        android:hint="@string/telegram_id"
         android:text="mehdi_k45"
-        android:hint="@string/telegram_id" />
+        android:visibility="invisible" />
 
     <Button
         android:id="@+id/button_next_step"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/primary_button"
         android:layout_gravity="center_horizontal"
-        android:text="@string/next_step" />
+        android:text="@string/submit" />
 
 </LinearLayout>
