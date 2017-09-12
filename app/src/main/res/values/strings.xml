@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Customer</string>
+    <string name="app_name">VeeVapp</string>
 
     <string name="try_again_later">مشکلی پیش اومده، لطفا دوباره امتحان کنید.</string>
 
@@ -30,5 +30,7 @@
     <string name="error_wrong_code">کد وارد شده غلط است</string>
     <string name="toast_invalid_mobile_number">شماره تلفن خود را به صورت صحیح وارد کنید</string>
     <string name="toast_enter_your_mobile_number">شماره تلفن خود را وارد کنید</string>
+
+    <string name="transition_special_offer_photo_index">transition.photo%1$d</string>
 
 </resources>

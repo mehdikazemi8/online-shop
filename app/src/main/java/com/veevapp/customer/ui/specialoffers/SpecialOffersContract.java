@@ -12,12 +12,12 @@ public class SpecialOffersContract {
 
         void showSpecialOffers(List<SpecialOffer> specialOfferList);
 
-        void showSingleSpecialOffer(SpecialOffer specialOffer);
+        void showSingleSpecialOffer(SpecialOffer specialOffer, int fromPosition);
     }
 
     public interface Presenter extends BasePresenter {
 
-        void onSpecialOfferSelected(SpecialOffer specialOffer);
+        void onSpecialOfferSelected(SpecialOffer specialOffer, int fromPosition);
 
     }
 }

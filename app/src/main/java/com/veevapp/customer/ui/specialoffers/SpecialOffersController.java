@@ -8,13 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.bluelinelabs.conductor.RouterTransaction;
-import com.bluelinelabs.conductor.changehandler.FadeChangeHandler;
 import com.veevapp.customer.R;
+import com.veevapp.customer.changehandler.ArcFadeMoveChangeHandlerCompat;
 import com.veevapp.customer.controller.base.BaseBackStackController;
 import com.veevapp.customer.data.DataRepository;
 import com.veevapp.customer.data.models.SpecialOffer;
 import com.veevapp.customer.ui.singlespecialoffer.SingleSpecialOfferController;
-import com.veevapp.customer.util.listener.OnItemSelectedListener;
+import com.veevapp.customer.util.listener.OnItemPositionSelectedListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,15 +45,10 @@ public class SpecialOffersController extends BaseBackStackController implements 
         specialOffers.setAdapter(specialOfferViewAdapter);
     }
 
-    private OnItemSelectedListener<SpecialOffer> onItemSelectedListener = new OnItemSelectedListener<SpecialOffer>() {
+    private OnItemPositionSelectedListener<SpecialOffer> onItemSelectedListener = new OnItemPositionSelectedListener<SpecialOffer>() {
         @Override
-        public void onSelect(SpecialOffer specialOffer) {
-            presenter.onSpecialOfferSelected(specialOffer);
-        }
-
-        @Override
-        public void onDeselect(SpecialOffer object) {
-
+        public void onSelect(SpecialOffer specialOffer, int fromPosition) {
+            presenter.onSpecialOfferSelected(specialOffer, fromPosition);
         }
     };
 
@@ -82,11 +77,18 @@ public class SpecialOffersController extends BaseBackStackController implements 
     }
 
     @Override
-    public void showSingleSpecialOffer(SpecialOffer specialOffer) {
+    public void showSingleSpecialOffer(SpecialOffer specialOffer, int fromPosition) {
+
         getParentController().getRouter().pushController(
-                RouterTransaction.with(SingleSpecialOfferController.newInstance(specialOffer))
-                        .pushChangeHandler(new FadeChangeHandler())
-                        .popChangeHandler(new FadeChangeHandler())
+                RouterTransaction.with(SingleSpecialOfferController.newInstance(specialOffer, fromPosition))
+                        .pushChangeHandler(new ArcFadeMoveChangeHandlerCompat("photo"))
+                        .popChangeHandler(new ArcFadeMoveChangeHandlerCompat("photo"))
         );
+
+//        getParentController().getRouter().pushController(
+//                RouterTransaction.with(SingleSpecialOfferController.newInstance(specialOffer))
+//                        .pushChangeHandler(new FadeChangeHandler())
+//                        .popChangeHandler(new FadeChangeHandler())
+//        );
     }
 }

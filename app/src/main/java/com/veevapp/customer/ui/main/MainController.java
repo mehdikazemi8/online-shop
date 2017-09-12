@@ -6,6 +6,7 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.bluelinelabs.conductor.Router;
 import com.bluelinelabs.conductor.RouterTransaction;
@@ -25,7 +26,7 @@ import butterknife.BindView;
 
 public class MainController extends HeaderController implements MainContract.View {
 
-    private final String[] pageTitles = {"Profile", "Special Offers", "My Buy Requests", "Add Request"};
+    private final String[] pageTitles = {"پروفایل", "پیشنهاد ویژه", "درخواست های من", "ثبت درخواست"};
 
     private final int NUMBER_OF_TABS = 4;
 
@@ -98,9 +99,21 @@ public class MainController extends HeaderController implements MainContract.Vie
         viewPager.setCurrentItem(NUMBER_OF_TABS - 1);
         viewPager.setOffscreenPageLimit(NUMBER_OF_TABS - 1);
 
+        headerTitle.setText(getActivity().getString(R.string.app_name));
+
+        initTabLayout();
+
         setActive(true);
         presenter = new MainPresenter(PreferenceManager.getInstance(getActivity()), DataRepository.getInstance(), this);
         presenter.start();
+    }
+
+    void initTabLayout() {
+        for (int tabIdx = 0; tabIdx < NUMBER_OF_TABS; tabIdx++) {
+            TextView textView = (TextView) LayoutInflater.from(getActivity()).inflate(R.layout.template_tab, null);
+            textView.setText(pageTitles[tabIdx]);
+            tabLayout.getTabAt(tabIdx).setCustomView(textView);
+        }
     }
 
     @Override

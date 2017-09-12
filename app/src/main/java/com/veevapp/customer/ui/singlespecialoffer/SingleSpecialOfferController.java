@@ -1,6 +1,7 @@
 package com.veevapp.customer.ui.singlespecialoffer;
 
 import android.support.annotation.NonNull;
+import android.support.v4.view.ViewCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,16 +27,19 @@ public class SingleSpecialOfferController extends BaseController implements Sing
     TextView shopName;
 
     private SpecialOffer specialOffer;
+    private int fromPosition;
     private SingleSpecialOfferContract.Presenter presenter;
 
-    public static SingleSpecialOfferController newInstance(SpecialOffer specialOffer) {
+    public static SingleSpecialOfferController newInstance(SpecialOffer specialOffer, int fromPosition) {
         SingleSpecialOfferController instance = new SingleSpecialOfferController();
         instance.specialOffer = specialOffer;
+        instance.fromPosition = fromPosition;
         return instance;
     }
 
     private void init() {
         price.setText(String.format(getActivity().getString(R.string.template_price), specialOffer.getProduct().getPrice()));
+        ViewCompat.setTransitionName(photo, getResources().getString(R.string.transition_special_offer_photo_index, fromPosition));
         productName.setText(specialOffer.getProduct().getName());
         shopName.setText(specialOffer.getSeller().getShopName());
         Glide.with(getActivity()).load(specialOffer.getProduct().getPhotoURLs().get(0)).into(photo);
