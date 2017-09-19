@@ -96,6 +96,12 @@ public class PreferenceManager {
 
     //*************************************************************
 
+    public void clear() {
+        editor.clear().apply();
+    }
+
+    //*************************************************************
+
     public void putTokenResponse(TokenResponse tokenResponse) {
         put(Key.TOKEN, tokenResponse);
     }

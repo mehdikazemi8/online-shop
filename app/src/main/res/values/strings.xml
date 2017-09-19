@@ -36,4 +36,6 @@
     <string name="special_offer">پیشنهاد ویژه</string>
     <string name="offers">پیشنهادها برای درخواست شما</string>
 
+    <string name="logout">خروج</string>
+
 </resources>

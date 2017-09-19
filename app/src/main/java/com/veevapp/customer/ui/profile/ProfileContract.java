@@ -7,9 +7,12 @@ public class ProfileContract {
 
     public interface View extends BaseView<Presenter> {
 
+        void showEnterMobileUI();
     }
 
     public interface Presenter extends BasePresenter {
+
+        void logout();
 
     }
 }
