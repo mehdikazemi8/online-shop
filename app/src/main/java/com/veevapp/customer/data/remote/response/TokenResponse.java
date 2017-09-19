@@ -1,5 +1,7 @@
 package com.veevapp.customer.data.remote.response;
 
+import android.support.annotation.Nullable;
+
 import com.google.auto.value.AutoValue;
 import com.google.gson.Gson;
 import com.google.gson.TypeAdapter;
@@ -10,8 +12,10 @@ public abstract class TokenResponse extends BaseModel {
 
     public abstract String accessToken();
 
+    @Nullable
     public abstract String tokenType();
 
+    @Nullable
     public abstract String refreshToken();
 
     public static Builder builder() {

@@ -43,7 +43,7 @@ public class OneOfferController extends HeaderController implements OneOfferCont
     @OnClick(R.id.telegram)
     public void telegramOnClick() {
         try {
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("tg://resolve?domain=" + offer.getSeller().getTelegramID().substring(1)));
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("tg://resolve?domain=" + offer.getSeller().getTelegram()));
             startActivity(intent);
         } catch (ActivityNotFoundException e) {
             GlobalToast.makeToast(getActivity(), getActivity().getString(R.string.telegram_not_installed), Toast.LENGTH_SHORT);
@@ -88,7 +88,7 @@ public class OneOfferController extends HeaderController implements OneOfferCont
         sellerName.setText(offer.getSeller().getName());
         sellerFamily.setText(offer.getSeller().getFamily());
         mobileNumber.setText(offer.getSeller().getSellerMobileNumber());
-        telegram.setText(offer.getSeller().getTelegramID());
+        telegram.setText(offer.getSeller().getTelegram());
         shopAddress.setText(offer.getSeller().getShopAddress());
     }
 

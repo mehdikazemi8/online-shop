@@ -78,7 +78,8 @@ public class ConfirmCodePresenter implements ConfirmCodeContract.Presenter {
         confirmCodeView.showProgressDialog();
 
         dataRepository.submitConfirmationCode(
-                ConfirmationCodeRequest.builder().mobile(mobile).confirmationCode(Integer.parseInt(code)).build(),
+//                ConfirmationCodeRequest.builder().mobile(mobile).confirmationCode(Integer.parseInt(code)).build(),
+                new ConfirmationCodeRequest(mobile, Integer.parseInt(code)),
                 new DataSource.ConfirmationCodeCallback() {
                     @Override
                     public void onSuccess(TokenResponse tokenResponse) {

@@ -7,7 +7,7 @@ public class Product extends BaseModel {
 
     private String id;
     private String categoryID;
-    private String subCategoryID;
+    private String subCategory;
     private String status;
     private String name;
     private String guarantee;
@@ -24,9 +24,9 @@ public class Product extends BaseModel {
         photoURLs.add(base64Photo);
     }
 
-    public Product(String categoryID, String subCategoryID, String name) {
+    public Product(String categoryID, String subCategory, String name) {
         this.categoryID = categoryID;
-        this.subCategoryID = subCategoryID;
+        this.subCategory = subCategory;
         this.name = name;
     }
 
@@ -38,12 +38,12 @@ public class Product extends BaseModel {
         this.categoryID = categoryID;
     }
 
-    public String getSubCategoryID() {
-        return subCategoryID;
+    public String getSubCategory() {
+        return subCategory;
     }
 
-    public void setSubCategoryID(String subCategoryID) {
-        this.subCategoryID = subCategoryID;
+    public void setSubCategory(String subCategory) {
+        this.subCategory = subCategory;
     }
 
     public String getId() {

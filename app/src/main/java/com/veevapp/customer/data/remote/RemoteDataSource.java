@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.veevapp.customer.data.DataSource;
 import com.veevapp.customer.data.MyAdapterFactory;
+import com.veevapp.customer.data.local.PreferenceManager;
 import com.veevapp.customer.data.models.BuyRequest;
 import com.veevapp.customer.data.models.BuyRequestOffer;
 import com.veevapp.customer.data.models.Customer;
@@ -18,7 +19,6 @@ import com.veevapp.customer.data.remote.response.SpecialOffersResponse;
 import com.veevapp.customer.data.remote.response.SubCategoriesResponse;
 import com.veevapp.customer.data.remote.response.TokenResponse;
 
-import okhttp3.Credentials;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.ResponseBody;
@@ -30,28 +30,32 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RemoteDataSource extends DataSource {
 
+    private PreferenceManager preferenceManager;
     private ApiService apiService = null;
     private static RemoteDataSource remoteDataSource = null;
 
-    public static RemoteDataSource getInstance() {
+    public static RemoteDataSource getInstance(PreferenceManager preferenceManager) {
         if (remoteDataSource == null) {
-            remoteDataSource = new RemoteDataSource();
+            remoteDataSource = new RemoteDataSource(preferenceManager);
         }
         return remoteDataSource;
     }
 
-    private RemoteDataSource() {
-        prepare();
+    private RemoteDataSource(PreferenceManager preferenceManager) {
+        prepare(preferenceManager);
     }
 
-    private void prepare() {
+    private void prepare(PreferenceManager preferenceManager) {
+        this.preferenceManager = preferenceManager;
+
         OkHttpClient okHttpClient = new OkHttpClient().newBuilder().addInterceptor(
                 chain -> {
                     Request originalRequest = chain.request();
 
                     Request.Builder builder = originalRequest.newBuilder().header(
-                            "Authorization",
-                            Credentials.basic("aUsername", "aPassword")
+                            "JWT",
+//                            Credentials.basic("aUsername", "aPassword")
+                            preferenceManager.getAuthorization() == null ? "something" : preferenceManager.getAuthorization()
                     );
 
                     Request newRequest = builder.build();
@@ -75,7 +79,7 @@ public class RemoteDataSource extends DataSource {
 
     @Override
     public void prepareDataSource() {
-        prepare();
+        prepare(this.preferenceManager);
     }
 
     @Override

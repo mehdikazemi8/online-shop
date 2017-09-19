@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         EasyImage.configuration(this).setImagesFolderName("my_app_images");
 
         DataRepository.init(
-                RemoteDataSource.getInstance(),
+                RemoteDataSource.getInstance(PreferenceManager.getInstance(this)),
                 new LocalDataSource(),
                 new NetworkHelper(this)
         );

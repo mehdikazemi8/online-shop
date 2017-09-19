@@ -61,7 +61,8 @@ public class AddBuyRequestController extends BaseBackStackController implements 
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
                 Log.d("TAG ", "onItemSelected" + position);
                 if (position > 0) {
-                    presenter.loadSubCategories(categoryAdapter.getItem(position));
+                    // todo, write your own adapter for spinners
+                    presenter.loadSubCategories(getCategoryID(position));
                 }
             }
 
@@ -107,15 +108,18 @@ public class AddBuyRequestController extends BaseBackStackController implements 
     }
 
     private String getCategoryID(int position) {
-        return categoryList.get(position).getId();
+        return categoryList.get(position - 1).getId();
     }
 
     private String getSubCategoryID(int position) {
-        return subCategoryList.get(position).getId();
+        return subCategoryList.get(position - 1).getId();
     }
 
     @Override
     public void showCategories(List<Category> categoryList) {
+        this.categoryList.clear();
+        this.categoryList.addAll(categoryList);
+
         Category tempCategory = new Category(null);
         tempCategory.setTitle("انتخاب دسته");
         categoryList.add(0, tempCategory);
@@ -126,6 +130,9 @@ public class AddBuyRequestController extends BaseBackStackController implements 
 
     @Override
     public void showSubCategories(List<SubCategory> subCategoryList) {
+        this.subCategoryList.clear();
+        this.subCategoryList.addAll(subCategoryList);
+
         SubCategory tempSubCategory = new SubCategory(null, "انتخاب زیردسته");
         subCategoryList.add(0, tempSubCategory);
         subCategoryAdapter.clear();
@@ -136,10 +143,12 @@ public class AddBuyRequestController extends BaseBackStackController implements 
     @OnClick(R.id.button_submit)
     public void submitOnClick() {
         BuyRequest buyRequest = new BuyRequest();
-        buyRequest.setCustomerDescription(description.getText().toString().trim());
+        buyRequest.setDescription(description.getText().toString().trim());
         buyRequest.setProduct(new Product(
-                categoryAdapter.getItem(categories.getSelectedItemPosition()),
-                subCategoryAdapter.getItem(subCategories.getSelectedItemPosition()),
+                // todo
+//                categoryAdapter.getItem(categories.getSelectedItemPosition()),
+                getCategoryID(categories.getSelectedItemPosition()),
+                getSubCategoryID(subCategories.getSelectedItemPosition()),
                 productName.getText().toString().trim()
         ));
 

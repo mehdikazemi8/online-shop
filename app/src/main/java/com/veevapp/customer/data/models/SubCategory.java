@@ -3,7 +3,7 @@ package com.veevapp.customer.data.models;
 public class SubCategory {
     private String id;
     private String title;
-    private String photoUrl;
+    private String photoURL;
     private boolean selected = false;
 
     public SubCategory() {
@@ -39,11 +39,11 @@ public class SubCategory {
         this.title = title;
     }
 
-    public String getPhotoUrl() {
-        return photoUrl;
+    public String getPhotoURL() {
+        return photoURL;
     }
 
-    public void setPhotoUrl(String photoUrl) {
-        this.photoUrl = photoUrl;
+    public void setPhotoURL(String photoURL) {
+        this.photoURL = photoURL;
     }
 }

@@ -32,6 +32,6 @@
         android:id="@+id/button_submit"
         style="@style/primary_button"
         android:layout_gravity="center_horizontal"
-        android:text="@string/submit" />
+        android:text="@string/submit_request" />
 
 </LinearLayout>

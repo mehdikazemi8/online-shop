@@ -3,24 +3,48 @@ package com.veevapp.customer.data.remote.request;
 import com.google.auto.value.AutoValue;
 import com.veevapp.customer.data.models.BaseModel;
 
-@AutoValue
-public abstract class ConfirmationCodeRequest extends BaseModel {
+//@AutoValue
+public class ConfirmationCodeRequest extends BaseModel {
 
-    public abstract String mobile();
+    private String mobile;
+    private Integer confirmationCode;
 
-    public abstract Integer confirmationCode();
-
-    public static Builder builder() {
-        return new AutoValue_ConfirmationCodeRequest.Builder();
+    public ConfirmationCodeRequest(String mobile, Integer confirmationCode) {
+        this.mobile = mobile;
+        this.confirmationCode = confirmationCode;
     }
 
-    @AutoValue.Builder
-    public abstract static class Builder {
-
-        public abstract Builder mobile(String mobile);
-
-        public abstract Builder confirmationCode(Integer confirmationCode);
-
-        public abstract ConfirmationCodeRequest build();
+    public String getMobile() {
+        return mobile;
     }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public Integer getConfirmationCode() {
+        return confirmationCode;
+    }
+
+    public void setConfirmationCode(Integer confirmationCode) {
+        this.confirmationCode = confirmationCode;
+    }
+
+    //    public abstract String mobile();
+//
+//    public abstract Integer confirmationCode();
+//
+//    public static Builder builder() {
+//        return new AutoValue_ConfirmationCodeRequest.Builder();
+//    }
+//
+//    @AutoValue.Builder
+//    public abstract static class Builder {
+//
+//        public abstract Builder mobile(String mobile);
+//
+//        public abstract Builder confirmationCode(Integer confirmationCode);
+//
+//        public abstract ConfirmationCodeRequest build();
+//    }
 }

@@ -39,7 +39,7 @@ public class BuyRequestViewAdapter extends RecyclerView.Adapter<BuyRequestViewAd
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.productName.setText(items.get(position).getProduct().getName());
-        holder.customerDescription.setText(items.get(position).getCustomerDescription());
+        holder.customerDescription.setText(items.get(position).getDescription());
     }
 
     @Override

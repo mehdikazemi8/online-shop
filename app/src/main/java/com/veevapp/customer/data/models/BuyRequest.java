@@ -3,7 +3,7 @@ package com.veevapp.customer.data.models;
 public class BuyRequest extends BaseModel {
 
     private String id;
-    private String customerDescription;
+    private String description;
     private Product product;
 
     public String getId() {
@@ -14,12 +14,12 @@ public class BuyRequest extends BaseModel {
         this.id = id;
     }
 
-    public String getCustomerDescription() {
-        return customerDescription;
+    public String getDescription() {
+        return description;
     }
 
-    public void setCustomerDescription(String customerDescription) {
-        this.customerDescription = customerDescription;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Product getProduct() {

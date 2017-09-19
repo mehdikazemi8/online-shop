@@ -1,25 +1,35 @@
 package com.veevapp.customer.data.models;
 
+import java.util.List;
+
 public class Seller extends BaseModel {
     private String id;
 
     private String name;
     private String family;
     private String sellerMobileNumber;
-    private String telegramID;
+    private String telegram;
     private String sellerPhotoUrl;
     private Boolean sentInfo;
 
     private String shopName;
     private String shopPhoneNumber;
     private String shopAddress;
-    private Location location;
+    private List<Double> location;
     private String licencePhotoUrl;
 
     private Double rate;
     private String timeframeHours;
 
     private String categoryID;
+
+    public List<Double> getLocation() {
+        return location;
+    }
+
+    public void setLocation(List<Double> location) {
+        this.location = location;
+    }
 
     public String getCategoryID() {
         return categoryID;
@@ -93,12 +103,12 @@ public class Seller extends BaseModel {
         this.sellerMobileNumber = sellerMobileNumber;
     }
 
-    public String getTelegramID() {
-        return telegramID;
+    public String getTelegram() {
+        return telegram;
     }
 
-    public void setTelegramID(String telegramID) {
-        this.telegramID = telegramID;
+    public void setTelegram(String telegram) {
+        this.telegram = telegram;
     }
 
     public String getShopAddress() {
@@ -107,14 +117,6 @@ public class Seller extends BaseModel {
 
     public void setShopAddress(String shopAddress) {
         this.shopAddress = shopAddress;
-    }
-
-    public Location getLocation() {
-        return location;
-    }
-
-    public void setLocation(Location location) {
-        this.location = location;
     }
 
     public String getSellerPhotoUrl() {
