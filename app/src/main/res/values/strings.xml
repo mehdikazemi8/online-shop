@@ -12,6 +12,7 @@
 
     <string name="submit">ثبت</string>
     <string name="submit_request">ثبت درخواست</string>
+    <string name="submit_first_request">ثبت اولین درخواست</string>
     <string name="request_product_name">اسم محصولی که مورد نیاز هست</string>
     <string name="description">توضیحات اضافی در مورد محصول</string>
     <string name="sending">در حال ارسال&#8230;</string>
@@ -37,5 +38,6 @@
     <string name="offers">پیشنهادها برای درخواست شما</string>
 
     <string name="logout">خروج</string>
+    <string name="no_buy_request_yet">تا کنون درخواستی ثبت نکرده اید</string>
 
 </resources>

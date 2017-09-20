@@ -27,7 +27,11 @@ public class BuyRequestsPresenter implements BuyRequestsContract.Presenter {
                 }
                 buyRequestsView.hideLoading();
 
-                buyRequestsView.showBuyRequests(buyRequestList);
+                if(buyRequestList.size() == 0) {
+                    buyRequestsView.handleEmptyBuyRequestList();
+                } else {
+                    buyRequestsView.showBuyRequests(buyRequestList);
+                }
             }
 
             @Override

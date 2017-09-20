@@ -143,4 +143,12 @@ public class MainController extends HeaderController implements MainContract.Vie
         tabLayout.setupWithViewPager(null);
         super.onDestroyView(view);
     }
+
+    public void changeTab(int idx) {
+        viewPager.setCurrentItem(idx);
+    }
+
+    public int getNUMBER_OF_TABS() {
+        return NUMBER_OF_TABS;
+    }
 }

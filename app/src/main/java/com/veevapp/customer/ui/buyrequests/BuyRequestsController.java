@@ -16,6 +16,7 @@ import com.veevapp.customer.R;
 import com.veevapp.customer.controller.base.BaseBackStackController;
 import com.veevapp.customer.data.DataRepository;
 import com.veevapp.customer.data.models.BuyRequest;
+import com.veevapp.customer.ui.main.MainController;
 import com.veevapp.customer.ui.offer.OffersController;
 import com.veevapp.customer.ui.oneoffer.OneOfferController;
 import com.veevapp.customer.util.AppConstants;
@@ -25,6 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 public class BuyRequestsController extends BaseBackStackController implements BuyRequestsContract.View {
 
@@ -32,6 +34,12 @@ public class BuyRequestsController extends BaseBackStackController implements Bu
     ProgressBar progressBar;
     @BindView(R.id.buy_requests)
     RecyclerView buyRequests;
+
+    @OnClick(R.id.submit_first_buy_request)
+    public void submitFirstBuyRequestOnClick() {
+        // todo, is there a better way to do that?
+        ((MainController) getParentController()).changeTab(((MainController) getParentController()).getNUMBER_OF_TABS() - 1);
+    }
 
     private BuyRequestsPresenter presenter;
     private BuyRequestViewAdapter buyRequestViewAdapter;
@@ -121,8 +129,16 @@ public class BuyRequestsController extends BaseBackStackController implements Bu
 
     @Override
     public void showBuyRequests(List<BuyRequest> buyRequestList) {
+        this.buyRequests.setVisibility(View.VISIBLE);
         this.buyRequestList.clear();
         this.buyRequestList.addAll(buyRequestList);
         this.buyRequestViewAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void handleEmptyBuyRequestList() {
+        buyRequests.setVisibility(View.INVISIBLE);
+
+
     }
 }

@@ -15,6 +15,8 @@ public class BuyRequestsContract {
         void hideLoading();
 
         void showBuyRequests(List<BuyRequest> buyRequestList);
+
+        void handleEmptyBuyRequestList();
     }
 
     public interface Presenter extends BasePresenter {
