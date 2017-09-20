@@ -24,7 +24,7 @@ import retrofit2.http.Path;
 import retrofit2.http.Url;
 
 public interface ApiService {
-//    String BASE_URL = "http://www.mocky.io/v2/";
+    //    String BASE_URL = "http://www.mocky.io/v2/";
     String BASE_URL = "http://136.243.149.242:8090/";
 
     @POST("customer/submit_mobile/")
@@ -46,7 +46,6 @@ public interface ApiService {
     Call<SubCategoriesResponse> getAllSubCategories(@Path("categoryID") String categoryID);
 
 
-
     @POST("buy/")
     Call<BuyRequest> addBuyRequest(@Body BuyRequest buyRequest);
 
@@ -61,15 +60,14 @@ public interface ApiService {
     Call<BuyRequestsResponse> getBuyRequests();
 
 
-
-    @GET("59abfbdd1000000b09f9c20e/{buyRequestID}")
+    @GET("buy/{buyRequestID}/offer/")
     Call<OffersResponse> getOffersOfOneBuyRequest(@Path("buyRequestID") String buyRequestID);
+
 
     @GET
     Call<ResponseBody> downloadPhoto(@Url String photoURL);
 
+
     @GET("59b4eff6250000720548d6b2")
     Call<SpecialOffersResponse> getAvailableSpecialOffers();
-
-
 }

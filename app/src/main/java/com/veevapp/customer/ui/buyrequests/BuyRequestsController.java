@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
 import com.bluelinelabs.conductor.RouterTransaction;
@@ -34,6 +35,8 @@ public class BuyRequestsController extends BaseBackStackController implements Bu
     ProgressBar progressBar;
     @BindView(R.id.buy_requests)
     RecyclerView buyRequests;
+    @BindView(R.id.empty_list_message_container)
+    LinearLayout emptyListMessageContainer;
 
     @OnClick(R.id.submit_first_buy_request)
     public void submitFirstBuyRequestOnClick() {
@@ -129,6 +132,7 @@ public class BuyRequestsController extends BaseBackStackController implements Bu
 
     @Override
     public void showBuyRequests(List<BuyRequest> buyRequestList) {
+        this.emptyListMessageContainer.setVisibility(View.INVISIBLE);
         this.buyRequests.setVisibility(View.VISIBLE);
         this.buyRequestList.clear();
         this.buyRequestList.addAll(buyRequestList);
@@ -138,7 +142,6 @@ public class BuyRequestsController extends BaseBackStackController implements Bu
     @Override
     public void handleEmptyBuyRequestList() {
         buyRequests.setVisibility(View.INVISIBLE);
-
-
+        emptyListMessageContainer.setVisibility(View.VISIBLE);
     }
 }
