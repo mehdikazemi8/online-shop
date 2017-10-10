@@ -22,6 +22,7 @@ import com.veevapp.customer.ui.splash.SplashController;
 import com.veevapp.customer.util.AppConstants;
 import com.veevapp.customer.util.NetworkHelper;
 
+import dagger.android.AndroidInjection;
 import pl.aprilapps.easyphotopicker.EasyImage;
 
 public class MainActivity extends AppCompatActivity {

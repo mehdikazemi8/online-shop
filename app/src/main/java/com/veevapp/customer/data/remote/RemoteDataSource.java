@@ -53,7 +53,7 @@ public class RemoteDataSource extends DataSource {
                     Request originalRequest = chain.request();
 
                     Request.Builder builder = originalRequest.newBuilder().header(
-                            "JWT",
+                            "Authorization",
 //                            Credentials.basic("aUsername", "aPassword")
                             preferenceManager.getAuthorization() == null ? "something" : preferenceManager.getAuthorization()
                     );

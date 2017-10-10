@@ -45,7 +45,6 @@ public interface ApiService {
     @GET("product/category/{categoryID}/subcategory/")
     Call<SubCategoriesResponse> getAllSubCategories(@Path("categoryID") String categoryID);
 
-
     @POST("buy/")
     Call<BuyRequest> addBuyRequest(@Body BuyRequest buyRequest);
 

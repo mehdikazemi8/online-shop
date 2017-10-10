@@ -2,30 +2,28 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorAccentTrans"
     android:clickable="true"
     android:focusable="true"
+    android:gravity="center"
     android:orientation="vertical">
 
-    <TextView
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/space_16"
-        android:gravity="center"
-        android:text="@string/please_enter_confirmation_code" />
+        android:layout_marginBottom="@dimen/space_8"
+        android:layout_marginTop="@dimen/space_8">
 
-    <EditText
-        android:id="@+id/edit_text_code"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:hint="@string/confirmation_code"
-        android:inputType="number"
-        android:text="1234" />
+        <EditText
+            android:id="@+id/edit_text_code"
+            style="@style/edit_text_style"
+            android:hint="@string/please_enter_confirmation_code"
+            android:inputType="numberDecimal" />
+    </android.support.design.widget.TextInputLayout>
 
     <Button
         android:id="@+id/button_confirm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/primary_button"
         android:text="@string/send" />
 
 </LinearLayout>

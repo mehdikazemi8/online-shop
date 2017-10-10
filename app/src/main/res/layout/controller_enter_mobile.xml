@@ -2,24 +2,54 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
+    android:background="@color/colorAccentTrans"
     android:clickable="true"
     android:focusable="true"
+    android:gravity="center"
     android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/edit_text_mobile_number"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:hint="@string/please_enter_mobile"
-        android:inputType="numberDecimal"
-        android:text="09379706209" />
+        android:layout_gravity="center"
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/button_send"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/send" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/logo_size"
+            android:layout_gravity="center_horizontal"
+            android:scaleType="fitCenter"
+            android:src="@drawable/logo" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/iransans"
+            android:gravity="center_horizontal"
+            android:text="VeeVapp"
+            android:textColor="@color/colorAccent"
+            android:visibility="gone" />
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/space_8"
+            android:layout_marginTop="@dimen/space_32">
+
+            <EditText
+                android:id="@+id/edit_text_mobile_number"
+                style="@style/edit_text_style"
+                android:hint="@string/please_enter_mobile"
+                android:inputType="numberDecimal" />
+            <!--android:text="09379706209" -->
+
+        </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:id="@+id/button_send"
+            style="@style/primary_button"
+            android:text="@string/send" />
+
+    </LinearLayout>
 
 </LinearLayout>

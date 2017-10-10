@@ -1,37 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <Spinner
-        android:id="@+id/categories"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/space_8" />
+        android:orientation="vertical">
 
-    <Spinner
-        android:id="@+id/subcategories"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/space_8" />
+        <Spinner
+            android:id="@+id/categories"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/space_8" />
 
-    <EditText
-        android:id="@+id/product_name"
-        style="@style/primary_edittext"
-        android:hint="@string/request_product_name"
-        android:imeOptions="actionNext" />
+        <Spinner
+            android:id="@+id/subcategories"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/space_8" />
 
-    <EditText
-        android:id="@+id/customer_description"
-        style="@style/primary_edittext"
-        android:hint="@string/description"
-        android:imeOptions="actionDone" />
+        <Spinner
+            android:id="@+id/colors"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/space_8" />
 
-    <Button
-        android:id="@+id/button_submit"
-        style="@style/primary_button"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/submit_request" />
+        <Spinner
+            android:id="@+id/count"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/space_8" />
 
-</LinearLayout>
+        <EditText
+            android:id="@+id/product_name"
+            style="@style/primary_edittext"
+            android:hint="@string/request_product_name"
+            android:imeOptions="actionNext" />
+
+        <EditText
+            android:id="@+id/customer_description"
+            style="@style/primary_edittext"
+            android:hint="@string/description"
+            android:imeOptions="actionDone" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/taken_photo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:id="@+id/take_photo_from_product"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:fontFamily="@font/iransans"
+                    android:padding="@dimen/space_16"
+                    android:text="@string/add_product_photo" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:fontFamily="@font/icons"
+                    android:text="@string/icon.plus.circle" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/button_submit"
+            style="@style/primary_button"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/submit_request" />
+
+    </LinearLayout>
+
+</ScrollView>

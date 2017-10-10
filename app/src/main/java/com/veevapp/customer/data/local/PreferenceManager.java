@@ -121,7 +121,7 @@ public class PreferenceManager {
         if (tokenResponse == null) {
             return null;
         }
-        return tokenResponse.accessToken();
+        return "token " + tokenResponse.accessToken();
     }
 
     //*************************************************************

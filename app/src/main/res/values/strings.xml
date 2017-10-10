@@ -5,13 +5,12 @@
 
     <string name="icon.arrow.right">A</string>
     <string name="icon.arrow.left">B</string>
-    <string name="icon.telegram">a</string>
-    <string name="icon.shop">a</string>
-    <string name="icon.delete">a</string>
-    <string name="icon.back.thin.right">a</string>
+    <string name="icon.place">C</string>
+    <string name="icon.plus.circle">D</string>
 
     <string name="submit">ثبت</string>
     <string name="submit_request">ثبت درخواست</string>
+    <string name="write_external_storage">برای ذخیره ی عکس نیاز به این دسترسی هست!</string>
     <string name="submit_first_request">ثبت اولین درخواست</string>
     <string name="request_product_name">اسم محصولی که مورد نیاز هست</string>
     <string name="description">توضیحات اضافی در مورد محصول</string>
@@ -39,5 +38,6 @@
 
     <string name="logout">خروج</string>
     <string name="no_buy_request_yet">تا کنون درخواستی ثبت نکرده اید</string>
+    <string name="add_product_photo">افزودن عکس محصول (اختیاری)</string>
 
 </resources>

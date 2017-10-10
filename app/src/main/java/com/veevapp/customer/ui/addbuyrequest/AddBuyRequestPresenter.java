@@ -1,5 +1,9 @@
 package com.veevapp.customer.ui.addbuyrequest;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.util.Base64;
 import android.util.Log;
 
 import com.veevapp.customer.data.DataRepository;
@@ -8,12 +12,15 @@ import com.veevapp.customer.data.models.BuyRequest;
 import com.veevapp.customer.data.models.Category;
 import com.veevapp.customer.data.models.SubCategory;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.util.List;
 
 public class AddBuyRequestPresenter implements AddBuyRequestContract.Presenter {
 
     private DataRepository dataRepository;
     private AddBuyRequestContract.View addBuyRequestView;
+    private Uri outputUri = null;
 
     public AddBuyRequestPresenter(DataRepository dataRepository, AddBuyRequestContract.View addBuyRequestView) {
         this.dataRepository = dataRepository;
@@ -95,5 +102,24 @@ public class AddBuyRequestPresenter implements AddBuyRequestContract.Presenter {
 
             }
         });
+    }
+
+    @Override
+    public void onPhotoCaptured(File file) {
+        File croppingFile = new File(file.getAbsolutePath() + "-" + 200 + "-" + 200);
+        outputUri = Uri.fromFile(croppingFile);
+        addBuyRequestView.startCropping(Uri.fromFile(file), outputUri);
+    }
+
+    @Override
+    public void handleCroppedImage() {
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        BitmapFactory.decodeFile(outputUri.getPath()).compress(Bitmap.CompressFormat.JPEG, 70, stream);
+        byte[] byteFormat = stream.toByteArray();
+        String photoString = Base64.encodeToString(byteFormat, Base64.NO_WRAP);
+        // todo, add photo somewhere :D
+//        newProduct.addPhoto(photoString);
+
+        addBuyRequestView.showCroppedImage(outputUri, photoString);
     }
 }
