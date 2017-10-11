@@ -54,20 +54,16 @@ public interface ApiService {
     @GET("offer/{offerID}/")
     Call<BuyRequestOffer> getSingleOffer(@Path("offerID") String offerID);
 
+    @GET("customer/buyrequest/")
+    Call<BuyRequestsResponse> getBuyRequests();
 
+    @GET("buy/{buyRequestID}/offer/")
+    Call<OffersResponse> getOffersOfOneBuyRequest(@Path("buyRequestID") String buyRequestID);
 
-
-        @GET("customer/buyrequest/")
-        Call<BuyRequestsResponse> getBuyRequests();
-
-        @GET("buy/{buyRequestID}/offer/")
-        Call<OffersResponse> getOffersOfOneBuyRequest(@Path("buyRequestID") String buyRequestID);
+    @GET("specialOffer/")
+    Call<SpecialOffersResponse> getAvailableSpecialOffers();
 
 
     @GET
     Call<ResponseBody> downloadPhoto(@Url String photoURL);
-
-
-    @GET("59b4eff6250000720548d6b2")
-    Call<SpecialOffersResponse> getAvailableSpecialOffers();
 }

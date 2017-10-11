@@ -41,10 +41,17 @@ public class SpecialOfferViewAdapter extends RecyclerView.Adapter<SpecialOfferVi
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.price.setText(String.format(context.getString(R.string.template_price), items.get(position).getProduct().getPrice()));
+        holder.price.setText(String.format(context.getString(R.string.template_price), items.get(position).getSuggestedPrice() + ""));
         holder.productName.setText(items.get(position).getProduct().getName());
         holder.shopName.setText(items.get(position).getSeller().getShopName());
-        Glide.with(context).load(items.get(position).getProduct().getPhotoURLs().get(0)).into(holder.photo);
+
+        if (items.get(position).getProduct().getPhotoURLs() != null &&
+                items.get(position).getProduct().getPhotoURLs().size() > 0) {
+            holder.photo.setVisibility(View.VISIBLE);
+            Glide.with(context).load(items.get(position).getProduct().getPhotoURLs().get(0)).into(holder.photo);
+        } else {
+            holder.photo.setVisibility(View.GONE);
+        }
 
         ViewCompat.setTransitionName(holder.photo, context.getString(R.string.transition_special_offer_photo_index, position));
     }

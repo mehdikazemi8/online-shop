@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.veevapp.customer.R;
 import com.veevapp.customer.controller.base.HeaderController;
+import com.veevapp.customer.data.models.Product;
 import com.veevapp.customer.data.models.SpecialOffer;
 
 import butterknife.BindView;
@@ -44,7 +45,14 @@ public class SingleSpecialOfferController extends HeaderController implements Si
         ViewCompat.setTransitionName(photo, getResources().getString(R.string.transition_special_offer_photo_index, fromPosition));
         productName.setText(specialOffer.getProduct().getName());
         shopName.setText(specialOffer.getSeller().getShopName());
-        Glide.with(getActivity()).load(specialOffer.getProduct().getPhotoURLs().get(0)).into(photo);
+
+        setPhoto(specialOffer.getProduct());
+    }
+
+    void setPhoto(Product product) {
+        if (product != null && product.getPhotoURLs() != null && product.getPhotoURLs().size() > 0) {
+            Glide.with(getActivity()).load(product.getPhotoURLs().get(0)).into(photo);
+        }
     }
 
     @Override
