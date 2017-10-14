@@ -32,6 +32,8 @@
         android:lines="1"
         android:singleLine="true"
         android:gravity="center"
+        android:fontFamily="@font/iransans"
+        android:textStyle="bold"
         />
 
 </LinearLayout>
