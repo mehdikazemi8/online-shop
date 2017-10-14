@@ -1,31 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.elasoft.teamup.view.widget.app.AppRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:gravity="center"
+    >
 
-    <com.elasoft.teamup.view.widget.app.AppImageView
+    <android.support.v7.widget.AppCompatImageView
         android:id="@+id/iv_image"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="6dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginTop="4dp"
         android:padding="5dp"
+        app:srcCompat="@drawable/ic_playlist_add_black_24dp"
+        android:tint="@color/white"
         />
 
-    <com.elasoft.teamup.view.widget.app.AppTextView
-        android:id="@+id/tv_unreadCount"
-        android:layout_width="22dp"
-        android:layout_height="22dp"
-        android:background="@drawable/unread_count_bg"
-        android:text="12"
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ثبت درخواست"
+        android:textSize="12sp"
         android:textColor="@color/white"
+        android:maxLines="1"
+        android:lines="1"
+        android:singleLine="true"
         android:gravity="center"
-        android:layout_below="@id/tv_timestamp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:textSize="10sp"
-        android:layout_marginBottom="12dp"
-        android:layout_marginRight="8dp"
-        android:visibility="gone"
         />
 
-</com.elasoft.teamup.view.widget.app.AppRelativeLayout>
+</LinearLayout>

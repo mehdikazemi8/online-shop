@@ -6,6 +6,7 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bluelinelabs.conductor.Router;
@@ -22,13 +23,31 @@ import com.veevapp.customer.ui.buyrequests.BuyRequestsController;
 import com.veevapp.customer.ui.profile.ProfileController;
 import com.veevapp.customer.ui.specialoffers.SpecialOffersController;
 
+import butterknife.BindColor;
 import butterknife.BindView;
 
 public class MainController extends HeaderController implements MainContract.View {
 
-    private final String[] pageTitles = {"پروفایل", "پیشنهاد ویژه", "درخواست های من", "ثبت درخواست"};
+    private final String[] pageTitles = {"پروفایل", "پیشنهاد ویژه", "درخواست ها", "ثبت درخواست"};
+    private final int[] pagesImagesRes = {
+            R.drawable.ic_person_outline_black_24dp,
+            R.drawable.ic_star_border_black_24dp,
+            R.drawable.ic_list_black_24dp,
+            R.drawable.ic_playlist_add_black_24dp};
+    private TextView[] footerTexts = new TextView[4];
+    private ImageView[] footerImages = new ImageView[4];
+
+
+    @BindColor(R.color.footer_selected)
+    int footerSelectedColor;
+
+    @BindColor(R.color.footer_unselected)
+    int foolterUnselectedColor;
+
 
     private final int NUMBER_OF_TABS = 4;
+
+
 
     @BindView(R.id.tab_layout)
     TabLayout tabLayout;
@@ -98,6 +117,22 @@ public class MainController extends HeaderController implements MainContract.Vie
         tabLayout.setupWithViewPager(viewPager);
         viewPager.setCurrentItem(NUMBER_OF_TABS - 1);
         viewPager.setOffscreenPageLimit(NUMBER_OF_TABS - 1);
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                refreshFooterSelected();
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
 
         headerTitle.setText(getActivity().getString(R.string.app_name));
 
@@ -109,11 +144,20 @@ public class MainController extends HeaderController implements MainContract.Vie
     }
 
     void initTabLayout() {
-        for (int tabIdx = 0; tabIdx < NUMBER_OF_TABS; tabIdx++) {
+
+        // Iterate over all tabs and set the custom view
+        for (int i = 0; i < NUMBER_OF_TABS; i++) {
+            TabLayout.Tab tab = tabLayout.getTabAt(i);
+            tab.setCustomView(getTabView(i));
+        }
+
+        refreshFooterSelected();
+
+        /*for (int tabIdx = 0; tabIdx < NUMBER_OF_TABS; tabIdx++) {
             TextView textView = (TextView) LayoutInflater.from(getActivity()).inflate(R.layout.template_tab, null);
             textView.setText(pageTitles[tabIdx]);
             tabLayout.getTabAt(tabIdx).setCustomView(textView);
-        }
+        }*/
     }
 
     @Override
@@ -150,5 +194,29 @@ public class MainController extends HeaderController implements MainContract.Vie
 
     public int getNUMBER_OF_TABS() {
         return NUMBER_OF_TABS;
+    }
+
+    public View getTabView(int position) {
+        // Given you have a custom layout in `res/layout/custom_tab.xml` with a TextView and ImageView
+        View v = LayoutInflater.from(getActivity()).inflate(R.layout.main_custom_tab_layout, null);
+        ImageView iv = v.findViewById(R.id.iv_image);
+        TextView tv = v.findViewById(R.id.tv_title);
+        iv.setImageResource(pagesImagesRes[position]);
+        tv.setText(pageTitles[position]);
+
+        footerImages[position] = iv;
+        footerTexts[position] = tv;
+
+        return v;
+    }
+    private void refreshFooterSelected(){
+        int selectedPos = viewPager.getCurrentItem();
+        for(int i=0;i<4;i++){
+            footerImages[i].setColorFilter(foolterUnselectedColor);
+            footerTexts[i].setTextColor(foolterUnselectedColor);
+        }
+
+        footerImages[selectedPos].setColorFilter(footerSelectedColor);
+        footerTexts[selectedPos].setTextColor(footerSelectedColor);
     }
 }
