@@ -1,69 +1,177 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
-    <include layout="@layout/template_header" />
+    <include
+        android:id="@+id/header"
+        layout="@layout/template_header"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header"
+        android:padding="16dp"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:id="@+id/tv_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/price"
+            android:fontFamily="@font/iransans"
+            android:textColor="@color/black"
+            android:gravity="right|center"
+            android:layout_marginBottom="8dp"
+            />
+
+
+        <TextView
+            android:id="@+id/tv_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/desc"
+            android:fontFamily="@font/iransans"
+            android:textColor="@color/black"
+            android:gravity="right|center"
+            android:layout_marginBottom="8dp"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#a9a9a9"
+            android:layout_marginBottom="8dp"
+            />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="@dimen/space_8">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="right|center"
+            android:layout_marginBottom="6dp"
+            >
 
-            <TextView
-                android:id="@+id/suggested_price"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/space_4" />
+                android:orientation="vertical"
+                android:gravity="right"
+                >
 
-            <TextView
-                android:id="@+id/description"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/space_4" />
+                <TextView
+                    android:id="@+id/tv_shopName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="فروشگاه علی"
+                    android:fontFamily="@font/iransans"
+                    />
 
-            <TextView
-                android:id="@+id/seller_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/space_4" />
+                <RatingBar
+                    android:id="@+id/rb_shopRate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    style="@style/Widget.AppCompat.RatingBar.Indicator"
+                    android:layout_marginBottom="4dp"
+                    android:max="5"
+                    />
 
-            <TextView
-                android:id="@+id/seller_family"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/space_4" />
+            </LinearLayout>
 
-            <TextView
-                android:id="@+id/mobile_number"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/space_4" />
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/iv_shopImage"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="4dp"
+                android:background="#f00"
+                />
 
-            <TextView
-                android:id="@+id/telegram"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/space_4" />
-
-            <TextView
-                android:id="@+id/shop_address"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/space_4" />
         </LinearLayout>
 
-        <ProgressBar
-            android:id="@+id/progress_bar"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/tv_sellerName"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:visibility="invisible" />
-    </RelativeLayout>
-</LinearLayout>
+            android:text="@string/seller_name"
+            android:fontFamily="@font/iransans"
+            android:textColor="@color/black"
+            android:gravity="right|center"
+            android:layout_marginBottom="8dp"
+            />
+
+        <TextView
+            android:id="@+id/tv_phoneNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/phone_number"
+            android:fontFamily="@font/iransans"
+            android:textColor="@color/black"
+            android:gravity="right|center"
+            android:layout_marginBottom="8dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="right|center_vertical"
+            >
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/iv_showOnMap"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                app:srcCompat="@drawable/ic_map_black_24dp"
+                android:tint="#2f5cf2"
+                android:padding="4dp"
+                />
+            <TextView
+                android:id="@+id/tv_shopAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/shop_address"
+                android:fontFamily="@font/iransans"
+                android:textColor="@color/black"
+                android:gravity="right|center"
+                />
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/tv_telegram"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/telegram"
+            android:fontFamily="@font/iransans"
+            android:textColor="@color/black"
+            android:gravity="right|center"
+            android:layout_marginBottom="8dp"
+            />
+
+
+    </LinearLayout>
+
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header"
+        />
+
+</android.support.constraint.ConstraintLayout>

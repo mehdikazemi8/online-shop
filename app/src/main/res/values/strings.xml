@@ -39,5 +39,11 @@
     <string name="logout">خروج</string>
     <string name="no_buy_request_yet">تا کنون درخواستی ثبت نکرده اید</string>
     <string name="add_product_photo">افزودن عکس محصول (اختیاری)</string>
+    <string name="price">قیمت</string>
+    <string name="desc">توضیحات</string>
+    <string name="seller_name">نام فروشنده</string>
+    <string name="phone_number">شماره موبایل</string>
+    <string name="shop_address">آدرس فروشگاه</string>
+    <string name="telegram">تلگرام</string>
 
 </resources>

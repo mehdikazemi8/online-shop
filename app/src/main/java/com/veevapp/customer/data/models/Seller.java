@@ -18,7 +18,7 @@ public class Seller extends BaseModel {
     private List<Double> location;
     private String licencePhotoUrl;
 
-    private Double rate;
+    private float rate;
     private String timeframeHours;
 
     private String categoryID;
@@ -79,11 +79,11 @@ public class Seller extends BaseModel {
         this.shopName = shopName;
     }
 
-    public Double getRate() {
+    public float getRate() {
         return rate;
     }
 
-    public void setRate(Double rate) {
+    public void setRate(float rate) {
         this.rate = rate;
     }
 
