@@ -19,9 +19,12 @@ import com.veevapp.customer.data.remote.response.SpecialOffersResponse;
 import com.veevapp.customer.data.remote.response.SubCategoriesResponse;
 import com.veevapp.customer.data.remote.response.TokenResponse;
 
+import java.util.concurrent.TimeUnit;
+
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.ResponseBody;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -48,7 +51,8 @@ public class RemoteDataSource extends DataSource {
     private void prepare(PreferenceManager preferenceManager) {
         this.preferenceManager = preferenceManager;
 
-        OkHttpClient okHttpClient = new OkHttpClient().newBuilder().addInterceptor(
+        OkHttpClient.Builder okhttpBuilder = new OkHttpClient().newBuilder();
+        okhttpBuilder.addInterceptor(
                 chain -> {
                     Request originalRequest = chain.request();
 
@@ -61,7 +65,14 @@ public class RemoteDataSource extends DataSource {
                     Request newRequest = builder.build();
                     return chain.proceed(newRequest);
                 }
-        ).build();
+        );
+
+
+        HttpLoggingInterceptor logger = new HttpLoggingInterceptor();
+        logger.setLevel(HttpLoggingInterceptor.Level.BODY);
+        okhttpBuilder.addInterceptor(logger);
+
+        okhttpBuilder.retryOnConnectionFailure(true).connectTimeout(120L, TimeUnit.SECONDS);
 
         Gson gson = new GsonBuilder()
                 .setLenient()
@@ -70,7 +81,7 @@ public class RemoteDataSource extends DataSource {
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(ApiService.BASE_URL)
-                .client(okHttpClient)
+                .client(okhttpBuilder.build())
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 
