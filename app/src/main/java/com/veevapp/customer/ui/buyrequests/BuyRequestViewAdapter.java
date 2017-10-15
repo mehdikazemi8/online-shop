@@ -38,8 +38,10 @@ public class BuyRequestViewAdapter extends RecyclerView.Adapter<BuyRequestViewAd
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.productName.setText(items.get(position).getProduct().getName());
-        holder.customerDescription.setText(items.get(position).getDescription());
+        BuyRequest br = items.get(position);
+        holder.tvName.setText(br.getProduct().getName());
+        holder.tvDesc.setText(br.getDescription());
+        holder.tvCount.setText(String.valueOf(br.getOfferCount()));
     }
 
     @Override
@@ -49,10 +51,12 @@ public class BuyRequestViewAdapter extends RecyclerView.Adapter<BuyRequestViewAd
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.customer_description)
-        TextView customerDescription;
-        @BindView(R.id.product_name)
-        TextView productName;
+        @BindView(R.id.tv_desc)
+        TextView tvDesc;
+        @BindView(R.id.tv_name)
+        TextView tvName;
+        @BindView(R.id.tv_count)
+        TextView tvCount;
 
         @OnClick(R.id.root_view)
         public void rootViewOnClick() {
