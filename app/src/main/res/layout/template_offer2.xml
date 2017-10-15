@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root_view"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/to_height"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    >
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/iv_shopImage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
+        app:srcCompat="@drawable/loading_circle"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/tv_shopName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@+id/rb_shopRate"
+        app:layout_constraintRight_toLeftOf="@id/iv_shopImage"
+        app:layout_constraintTop_toTopOf="@id/iv_shopImage"
+        app:layout_constraintBottom_toTopOf="@+id/tv_price"
+        android:text="فروشگاه رضا"
+        android:fontFamily="@font/iransans"
+        android:gravity="right|center"
+        android:singleLine="true"
+        android:maxLines="1"
+        android:lines="1"
+        android:textColor="@color/black"
+        app:layout_constraintVertical_chainStyle="packed"
+        android:textSize="14sp"
+        android:layout_marginRight="8dp"
+        />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/tv_price"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="@id/tv_shopName"
+        app:layout_constraintTop_toBottomOf="@id/tv_shopName"
+        app:layout_constraintBottom_toBottomOf="@id/iv_shopImage"
+        android:text="قیمت :‌ ۱۴۰۰ تومان"
+        android:fontFamily="@font/iransans"
+        android:gravity="right|center"
+        android:singleLine="true"
+        android:maxLines="1"
+        android:lines="1"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        />
+
+
+    <android.support.v7.widget.AppCompatRatingBar
+        android:id="@+id/rb_shopRate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Base.Widget.AppCompat.RatingBar.Small"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="12dp"
+        />
+
+</android.support.constraint.ConstraintLayout>

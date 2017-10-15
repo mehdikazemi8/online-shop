@@ -17,6 +17,7 @@ import com.veevapp.customer.data.models.BuyRequest;
 import com.veevapp.customer.data.models.BuyRequestOffer;
 import com.veevapp.customer.ui.oneoffer.OneOfferController;
 import com.veevapp.customer.util.listener.OnItemSelectedListener;
+import com.veevapp.customer.view.decoration.OfferItemDecoration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,6 +63,7 @@ public class OffersController extends HeaderController implements OffersContract
         offerViewAdapter = new OfferViewAdapter(offerList, onItemSelectedListener);
         offers.setLayoutManager(new LinearLayoutManager(getActivity()));
         offers.setAdapter(offerViewAdapter);
+        offers.addItemDecoration(new OfferItemDecoration(getActivity()));
         headerTitle.setText(getResources().getString(R.string.offers));
     }
 
