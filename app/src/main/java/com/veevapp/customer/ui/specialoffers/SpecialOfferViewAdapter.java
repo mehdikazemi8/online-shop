@@ -37,7 +37,7 @@ public class SpecialOfferViewAdapter extends RecyclerView.Adapter<SpecialOfferVi
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         context = parent.getContext();
 
-        View view = LayoutInflater.from(context).inflate(R.layout.template_special_offer2, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.template_special_offer, parent, false);
         return new ViewHolder(view);
     }
 
