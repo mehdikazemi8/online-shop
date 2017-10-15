@@ -132,6 +132,7 @@ public class OneOfferController extends HeaderController implements OneOfferCont
         String shopName = !TextUtils.isEmpty(offer.getSeller().getShopName())?offer.getSeller().getShopName():"-";
         tvShopName.setText(shopName);
 
+
         rbShopRate.setRating(offer.getSeller().getRate());
 
 
@@ -153,7 +154,7 @@ public class OneOfferController extends HeaderController implements OneOfferCont
         tvTelegram.setText(getActivity().getString(R.string.telegram_id) + " : " + telegram);
 
         ImageHandler.getInstance(getActivity())
-                .loadImage(offer.getSeller().getSellerPhotoUrl(),ivShopImage,false,
+                .loadImage(offer.getSeller().getSellerPhotoUrl(),ivShopImage,true,
                         true,true,0);
 
         headerTitle.setText(getActivity().getString(R.string.shop) + " " + offer.getSeller().getShopName());

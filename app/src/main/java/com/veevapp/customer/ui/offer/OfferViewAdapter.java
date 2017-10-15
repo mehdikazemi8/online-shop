@@ -60,9 +60,10 @@ public class OfferViewAdapter extends RecyclerView.Adapter<OfferViewAdapter.View
 
 
         //TODO REMOVE
-        int f = new Random(System.currentTimeMillis()).nextInt() % 5;
-        holder.rbShopRate.setRating(f);
-        holder.rbShopRate.setMax(5);
+        int f = Math.abs(new Random(System.currentTimeMillis()).nextInt() % 5);
+        offer.getSeller().setRate(f);
+
+        holder.rbShopRate.setRating(offer.getSeller().getRate());
     }
 
     @Override

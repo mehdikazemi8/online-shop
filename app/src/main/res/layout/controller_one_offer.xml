@@ -94,8 +94,8 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_gravity="center"
-                android:layout_marginLeft="4dp"
-                app:srcCompat="@drawable/loading"
+                android:layout_marginLeft="8dp"
+                app:srcCompat="@drawable/loading_circle"
                 />
 
         </LinearLayout>
