@@ -95,7 +95,7 @@
                 android:layout_height="60dp"
                 android:layout_gravity="center"
                 android:layout_marginLeft="4dp"
-                android:background="#f00"
+                app:srcCompat="@drawable/loading"
                 />
 
         </LinearLayout>

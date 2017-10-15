@@ -19,6 +19,7 @@ import com.veevapp.customer.controller.base.HeaderController;
 import com.veevapp.customer.data.DataRepository;
 import com.veevapp.customer.data.models.BuyRequestOffer;
 import com.veevapp.customer.util.GlobalToast;
+import com.veevapp.customer.util.imageloader.ImageHandler;
 
 import java.util.List;
 
@@ -35,7 +36,7 @@ public class OneOfferController extends HeaderController implements OneOfferCont
     @BindView(R.id.tv_desc)
     TextView tvDesc;
     @BindView(R.id.iv_shopImage)
-    ImageView shopImage;
+    ImageView ivShopImage;
     @BindView(R.id.tv_shopName)
     TextView tvShopName;
     @BindView(R.id.rb_shopRate)
@@ -50,6 +51,7 @@ public class OneOfferController extends HeaderController implements OneOfferCont
     ImageView ivShowOnMap;
     @BindView(R.id.tv_telegram)
     TextView tvTelegram;
+
 
     @OnClick(R.id.tv_telegram)
     public void telegramOnClick() {
@@ -130,6 +132,10 @@ public class OneOfferController extends HeaderController implements OneOfferCont
 
         String telegram = !TextUtils.isEmpty(offer.getSeller().getTelegram())?offer.getSeller().getTelegram():"-";
         tvTelegram.setText(getActivity().getString(R.string.telegram_id) + " : " + telegram);
+
+        ImageHandler.getInstance(getActivity())
+                .loadImage(offer.getSeller().getSellerPhotoUrl(),ivShopImage,false,
+                        true,true,0);
     }
 
     @Override

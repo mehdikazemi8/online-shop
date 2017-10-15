@@ -12,7 +12,6 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.veevapp.customer.R;
-import com.veevapp.customer.util.GlideApp;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -26,7 +25,7 @@ import jp.wasabeef.glide.transformations.CropCircleTransformation;
  */
 public class ImageHandler {
     private static ImageHandler mInstance;
-    public static ImageHandler getmInstance(Context ctx){
+    public static ImageHandler getInstance(Context ctx){
         if(ctx instanceof Activity) ctx = ctx.getApplicationContext();
         if(mInstance==null)
             mInstance = new ImageHandler(ctx);
@@ -63,7 +62,7 @@ public class ImageHandler {
 
     public void loadImage(String imageUrl, ImageView iv, boolean isCircle,
                           boolean withLoadingPlaceHolder,boolean cache,
-                          @DrawableRes int errorRes){
+                          @DrawableRes int placeHolderCustomRes){
         if(iv==null)return;
 
         if(imageUrl==null) imageUrl = "";
@@ -73,8 +72,8 @@ public class ImageHandler {
             if(!isCircle) {
                 int placeHolderRes = 0;
                 if(withLoadingPlaceHolder){
-                    if(errorRes!=0)
-                        placeHolderRes = errorRes;
+                    if(placeHolderCustomRes!=0)
+                        placeHolderRes = placeHolderCustomRes;
                     else
                         placeHolderRes = R.drawable.loading;
                 }
@@ -91,8 +90,8 @@ public class ImageHandler {
             }else{
                 int placeHolderRes = 0;
                 if(withLoadingPlaceHolder) {
-                    if(errorRes!=0)
-                        placeHolderRes = errorRes;
+                    if(placeHolderCustomRes!=0)
+                        placeHolderRes = placeHolderCustomRes;
                     else
                         placeHolderRes = R.drawable.loading_circle;
                 }
