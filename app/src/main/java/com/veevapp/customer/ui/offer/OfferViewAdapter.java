@@ -16,6 +16,7 @@ import com.veevapp.customer.util.imageloader.ImageHandler;
 import com.veevapp.customer.util.listener.OnItemSelectedListener;
 
 import java.util.List;
+import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -45,10 +46,23 @@ public class OfferViewAdapter extends RecyclerView.Adapter<OfferViewAdapter.View
         BuyRequestOffer offer = items.get(position);
         String shopName = !TextUtils.isEmpty(offer.getSeller().getShopName())?offer.getSeller().getShopName():"-";
         holder.tvShopName.setText(context.getString(R.string.shop) + " " + shopName);
-        holder.tvPrice.setText(context.getString(R.string.price) + " : " + context.getString(R.string.toman));
+        holder.tvPrice.setText(context.getString(R.string.template_price,String.valueOf(offer.getSuggestedPrice())));
         holder.rbShopRate.setRating(offer.getSeller().getRate());
+
+
+        //TODO REMOVE
+        offer.getSeller().setSellerPhotoUrl("http://lorempixel.com/output/people-q-c-480-480-" + (new Random(System.currentTimeMillis()).nextInt()%10) + ".jpg");
+
         ImageHandler.getInstance(context).loadImage(offer.getSeller().getSellerPhotoUrl(),
                 holder.ivShopImage,true,true,true,0);
+
+
+
+
+        //TODO REMOVE
+        int f = new Random(System.currentTimeMillis()).nextInt() % 5;
+        holder.rbShopRate.setRating(f);
+        holder.rbShopRate.setMax(5);
     }
 
     @Override
