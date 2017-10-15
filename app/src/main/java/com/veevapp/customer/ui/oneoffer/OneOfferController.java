@@ -96,10 +96,10 @@ public class OneOfferController extends HeaderController implements OneOfferCont
             return;
         }
 
-        tvPrice.setText(getActivity().getString(R.string.price) + " : " + offer.getSuggestedPrice() + " تومان");
+        tvPrice.setText(getActivity().getString(R.string.suggest_price) + " : " + offer.getSuggestedPrice() + " تومان");
 
         String desc = !TextUtils.isEmpty(offer.getDescription())?offer.getDescription():"-";
-        tvDesc.setText(getActivity().getString(R.string.desc) + " : " + desc);
+        tvDesc.setText(getActivity().getString(R.string.seller_desc) + " : " + desc);
 
 
         String sellerName;
@@ -136,6 +136,8 @@ public class OneOfferController extends HeaderController implements OneOfferCont
         ImageHandler.getInstance(getActivity())
                 .loadImage(offer.getSeller().getSellerPhotoUrl(),ivShopImage,false,
                         true,true,0);
+
+        headerTitle.setText(getActivity().getString(R.string.shop) + " " + offer.getSeller().getShopName());
     }
 
     @Override
