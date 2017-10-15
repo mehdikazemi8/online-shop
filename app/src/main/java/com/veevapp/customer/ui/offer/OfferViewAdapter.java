@@ -37,7 +37,7 @@ public class OfferViewAdapter extends RecyclerView.Adapter<OfferViewAdapter.View
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         context = parent.getContext();
 
-        View view = LayoutInflater.from(context).inflate(R.layout.template_offer2, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.template_offer, parent, false);
         return new ViewHolder(view);
     }
 
