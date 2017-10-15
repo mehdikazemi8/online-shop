@@ -4,11 +4,16 @@
     <color name="colorPrimaryDark">#659117</color>
     <color name="colorAccent">#344A63</color>
 
+    <color name="colorAccentAlpha50">#77344a63</color>
+    <color name="colorAccentAlpha75">#c2344a63</color>
+
     <color name="colorAccentTrans">#22344A63</color>
 
     <color name="gray_reyhoon">#f4f4f4</color>
     <color name="white">#fff</color>
     <color name="black">#111111</color>
+
+    <color name="red_error">#ff2323</color>
 
     <color name="footer_selected">@color/white</color>
     <color name="footer_unselected">@color/colorAccent</color>
