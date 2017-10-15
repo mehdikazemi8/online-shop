@@ -78,11 +78,16 @@ public class OneOfferController extends HeaderController implements OneOfferCont
     public void showOnMapClicked(){
         double lat = offer.getSeller().getLocation().get(0);
         double lon = offer.getSeller().getLocation().get(1);
-        getRouter().setRoot(
+        getRouter().pushController(
                 RouterTransaction.with(ShowLocationController.newInstance(lat,lon,offer.getSeller().getShopName()))
                         .pushChangeHandler(new FadeChangeHandler())
                         .popChangeHandler(new FadeChangeHandler())
         );
+    }
+
+    @OnClick(R.id.tv_shopAddress)
+    void onAddressClicked(){
+        showOnMapClicked();
     }
 
     private OneOfferContract.Presenter presenter;
