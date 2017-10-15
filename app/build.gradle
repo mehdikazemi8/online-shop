@@ -84,6 +84,8 @@ dependencies {
     implementation 'com.google.android.gms:play-services-location:11.4.0'
     compile 'pub.devrel:easypermissions:1.0.0'
     implementation 'io.nlopez.smartlocation:library:3.3.2'
+    //Direction
+    compile 'com.github.jd-alexander:library:1.1.0'
 
 }
 

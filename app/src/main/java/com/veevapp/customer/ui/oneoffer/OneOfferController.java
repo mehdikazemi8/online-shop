@@ -14,10 +14,13 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bluelinelabs.conductor.RouterTransaction;
+import com.bluelinelabs.conductor.changehandler.FadeChangeHandler;
 import com.veevapp.customer.R;
 import com.veevapp.customer.controller.base.HeaderController;
 import com.veevapp.customer.data.DataRepository;
 import com.veevapp.customer.data.models.BuyRequestOffer;
+import com.veevapp.customer.ui.showlocation.ShowLocationController;
 import com.veevapp.customer.util.GlobalToast;
 import com.veevapp.customer.util.imageloader.ImageHandler;
 
@@ -69,6 +72,17 @@ public class OneOfferController extends HeaderController implements OneOfferCont
         Intent intent = new Intent(Intent.ACTION_DIAL);
         intent.setData(Uri.parse("tel:" + offer.getSeller().getSellerMobileNumber()));
         startActivity(intent);
+    }
+
+    @OnClick(R.id.iv_showOnMap)
+    public void showOnMapClicked(){
+        double lat = offer.getSeller().getLocation().get(0);
+        double lon = offer.getSeller().getLocation().get(1);
+        getRouter().setRoot(
+                RouterTransaction.with(ShowLocationController.newInstance(lat,lon,offer.getSeller().getShopName()))
+                        .pushChangeHandler(new FadeChangeHandler())
+                        .popChangeHandler(new FadeChangeHandler())
+        );
     }
 
     private OneOfferContract.Presenter presenter;

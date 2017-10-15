@@ -1,6 +1,7 @@
 package com.veevapp.customer.ui.showlocation;
 
 import android.Manifest;
+import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,12 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.bluelinelabs.conductor.RestoreViewOnCreateController;
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.veevapp.customer.R;
@@ -161,12 +160,11 @@ public class ShowLocationController extends RestoreViewOnCreateController implem
             return;
         }
 
-
-        LatLng addressPlace = new LatLng(location.getLatitude(), location.getLongitude());
-        CameraPosition cameraPosition = new CameraPosition.Builder()
-                .target(addressPlace)
-                .zoom(16)
-                .build();
-        googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+        LatLng shopLatLng = new LatLng(showingLat,showingLon);
+        LatLng myLatLng = new LatLng(location.getLatitude(),location.getLongitude());
+        MyLocationManager.zoomOnLatLongs(getActivity(),googleMap,shopLatLng,myLatLng);
+        MyLocationManager.showRoute(googleMap, Color.RED,myLatLng,shopLatLng);
     }
+
+
 }
