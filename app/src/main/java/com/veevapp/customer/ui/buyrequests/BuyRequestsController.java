@@ -22,6 +22,7 @@ import com.veevapp.customer.ui.offer.OffersController;
 import com.veevapp.customer.ui.oneoffer.OneOfferController;
 import com.veevapp.customer.util.AppConstants;
 import com.veevapp.customer.util.listener.OnItemSelectedListener;
+import com.veevapp.customer.view.decoration.ByeRequestDecoration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,6 +73,7 @@ public class BuyRequestsController extends BaseBackStackController implements Bu
         buyRequestViewAdapter = new BuyRequestViewAdapter(buyRequestList, onItemSelectedListener);
         buyRequests.setLayoutManager(new LinearLayoutManager(getActivity()));
         buyRequests.setAdapter(buyRequestViewAdapter);
+        buyRequests.addItemDecoration(new ByeRequestDecoration(getActivity()));
     }
 
     @Override

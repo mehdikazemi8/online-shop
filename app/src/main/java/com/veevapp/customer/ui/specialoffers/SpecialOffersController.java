@@ -1,7 +1,7 @@
 package com.veevapp.customer.ui.specialoffers;
 
 import android.support.annotation.NonNull;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +15,7 @@ import com.veevapp.customer.data.DataRepository;
 import com.veevapp.customer.data.models.SpecialOffer;
 import com.veevapp.customer.ui.singlespecialoffer.SingleSpecialOfferController;
 import com.veevapp.customer.util.listener.OnItemPositionSelectedListener;
+import com.veevapp.customer.view.decoration.SpecialOfferDecoration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,13 +37,14 @@ public class SpecialOffersController extends BaseBackStackController implements 
 
     @Override
     protected View inflateView(@NonNull LayoutInflater inflater, @NonNull ViewGroup container) {
-        return inflater.inflate(R.layout.special_offers_controller, container, false);
+        return inflater.inflate(R.layout.controller_special_offers, container, false);
     }
 
     private void init() {
         specialOfferViewAdapter = new SpecialOfferViewAdapter(specialOfferList, onItemSelectedListener);
-        specialOffers.setLayoutManager(new LinearLayoutManager(getActivity()));
+        specialOffers.setLayoutManager(new GridLayoutManager(getActivity(),2));
         specialOffers.setAdapter(specialOfferViewAdapter);
+        specialOffers.addItemDecoration(new SpecialOfferDecoration(getActivity()));
     }
 
     private OnItemPositionSelectedListener<SpecialOffer> onItemSelectedListener = new OnItemPositionSelectedListener<SpecialOffer>() {

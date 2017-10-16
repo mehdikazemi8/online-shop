@@ -14,4 +14,30 @@
 
     <dimen name="logo_size">100dp</dimen>
 
+    <!--App-->
+    <dimen name="app_radius">8dp</dimen>
+    <!--App-->
+
+    <!--controller_one_offer-->
+    <dimen name="cof_fields_image_size">22dp</dimen>
+    <!--controller_one_offer-->
+
+    <!--template_offer-->
+    <dimen name="to_height">68dp</dimen>
+    <dimen name="to_padding">16dp</dimen>
+    <dimen name="to_paddingHalf">8dp</dimen>
+    <!--template_offer-->
+
+    <!--template_buy_request-->
+    <dimen name="tbr_height">68dp</dimen>
+    <dimen name="tbr_padding">16dp</dimen>
+    <dimen name="tbr_paddingHalf">8dp</dimen>
+    <!--template_buy_request-->
+
+    <!--template_special_offer-->
+    <dimen name="tso_padding">12dp</dimen>
+    <dimen name="tso_paddingHalf">6dp</dimen>
+    <!--template_special_offer-->
+
+
 </resources>
