@@ -8,38 +8,46 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <Spinner
-            android:id="@+id/categories"
+        <com.veevapp.customer.view.customwidget.SelectableFieldView
+            android:id="@+id/sfv_categories"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/space_8" />
+            android:text="انتخاب دسته بندی"
+            android:layout_margin="8dp"
+            />
 
-        <Spinner
-            android:id="@+id/subcategories"
+        <com.veevapp.customer.view.customwidget.SelectableFieldView
+            android:id="@+id/sfv_subcategories"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/space_8" />
+            android:text="انتخاب زیر دسته"
+            android:layout_margin="8dp"
+            />
 
-        <Spinner
-            android:id="@+id/colors"
+        <com.veevapp.customer.view.customwidget.SelectableFieldView
+            android:id="@+id/sfv_colors"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/space_8" />
-
-        <Spinner
-            android:id="@+id/count"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/space_8" />
+            android:text="انتخاب رنگ (اختیاری)"
+            android:layout_margin="8dp"
+            />
 
         <EditText
-            android:id="@+id/product_name"
+            android:id="@+id/et_count"
+            style="@style/primary_edittext"
+            android:hint="تعداد مورد نیاز"
+            android:imeOptions="actionNext"
+            android:inputType="numberSigned"
+            />
+
+        <EditText
+            android:id="@+id/et_productName"
             style="@style/primary_edittext"
             android:hint="@string/request_product_name"
             android:imeOptions="actionNext" />
 
         <EditText
-            android:id="@+id/customer_description"
+            android:id="@+id/et_description"
             style="@style/primary_edittext"
             android:hint="@string/description"
             android:imeOptions="actionDone" />
@@ -50,7 +58,7 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/taken_photo"
+                android:id="@+id/iv_photo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 

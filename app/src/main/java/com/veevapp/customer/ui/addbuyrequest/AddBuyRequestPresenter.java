@@ -10,10 +10,12 @@ import com.veevapp.customer.data.DataRepository;
 import com.veevapp.customer.data.DataSource;
 import com.veevapp.customer.data.models.BuyRequest;
 import com.veevapp.customer.data.models.Category;
+import com.veevapp.customer.data.models.ProductColor;
 import com.veevapp.customer.data.models.SubCategory;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AddBuyRequestPresenter implements AddBuyRequestContract.Presenter {
@@ -46,6 +48,17 @@ public class AddBuyRequestPresenter implements AddBuyRequestContract.Presenter {
             }
         });
 
+
+
+        //Todo replace this with webservice and real colors
+        List<ProductColor> colorsList = new ArrayList<>();
+        colorsList.add(new ProductColor("asdf1","black","مشکی"));
+        colorsList.add(new ProductColor("asdf2","white","سفید"));
+        colorsList.add(new ProductColor("asdf3","green","سبز"));
+        colorsList.add(new ProductColor("asdf4","red","قرمز"));
+        colorsList.add(new ProductColor("asdf5","blue","آبی"));
+        colorsList.add(new ProductColor("asdf6","yellow","زرد"));
+        addBuyRequestView.showProductColors(colorsList);
     }
 
     @Override

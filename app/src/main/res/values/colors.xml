@@ -18,6 +18,10 @@
     <color name="footer_selected">@color/white</color>
     <color name="footer_unselected">@color/colorAccent</color>
 
+
+    <color name="fields_text_selected">@color/black</color>
+    <color name="fields_text_unselected">@color/colorAccent</color>
+
     <!--controller_one_offer-->
     <color name="cof_fields_image_color">#838383</color>
     <!--controller_one_offer-->

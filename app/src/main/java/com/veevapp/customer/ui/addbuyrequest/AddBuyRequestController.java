@@ -11,12 +11,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.annimon.stream.Stream;
@@ -33,10 +30,12 @@ import com.veevapp.customer.controller.base.BaseBackStackController;
 import com.veevapp.customer.data.DataRepository;
 import com.veevapp.customer.data.models.BuyRequest;
 import com.veevapp.customer.data.models.Category;
-import com.veevapp.customer.data.models.Color;
 import com.veevapp.customer.data.models.Product;
+import com.veevapp.customer.data.models.ProductColor;
 import com.veevapp.customer.data.models.SubCategory;
 import com.veevapp.customer.util.GlobalToast;
+import com.veevapp.customer.view.DialogMaker;
+import com.veevapp.customer.view.customwidget.SelectableFieldView;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -50,32 +49,40 @@ import static android.app.Activity.RESULT_OK;
 
 public class AddBuyRequestController extends BaseBackStackController implements AddBuyRequestContract.View {
 
-    @BindView(R.id.product_name)
-    EditText productName;
-    @BindView(R.id.customer_description)
-    EditText description;
-    @BindView(R.id.categories)
-    Spinner categories;
-    @BindView(R.id.subcategories)
-    Spinner subCategories;
-    @BindView(R.id.count)
-    Spinner count;
-    @BindView(R.id.colors)
-    Spinner colors;
-    @BindView(R.id.take_photo_from_product)
-    LinearLayout takePhotoFromProduct;
-    @BindView(R.id.taken_photo)
-    ImageView takenPhoto;
+    @BindView(R.id.sfv_categories)
+    SelectableFieldView sfvCategories;
+
+    @BindView(R.id.sfv_subcategories)
+    SelectableFieldView sfvSubcategories;
+
+    @BindView(R.id.sfv_colors)
+    SelectableFieldView sfvColors;
+
+    @BindView(R.id.et_count)
+    EditText etCount;
+
+    @BindView(R.id.et_productName)
+    EditText etProductName;
+
+    @BindView(R.id.et_description)
+    EditText etDescription;
+
+    @BindView(R.id.iv_photo)
+    ImageView ivPhoto;
+
+
 
     private final int CAPTURE_PICTURE_CODE = 9068;
 
     private AddBuyRequestContract.Presenter presenter;
     private List<Category> categoryList = new ArrayList<>();
     private List<SubCategory> subCategoryList = new ArrayList<>();
+    private List<ProductColor> productColorsList = new ArrayList<>();
+
+
     private ArrayAdapter<String> categoryAdapter;
     private ArrayAdapter<String> subCategoryAdapter;
 
-    private List<Color> colorsList;
     private ArrayAdapter<String> colorsAdapter;
     private ArrayAdapter<String> countAdapter;
     private ProgressDialog progressDialog = null;
@@ -88,6 +95,68 @@ public class AddBuyRequestController extends BaseBackStackController implements 
     @OnClick(R.id.take_photo_from_product)
     public void addPhotoOnClick() {
         requestPermission();
+    }
+
+    @OnClick(R.id.sfv_categories)
+    void onCategoriesClicked(){
+        if(categoryList==null || categoryList.size()==0)return;
+
+        String[] titles =
+                Stream.of(categoryList)
+                        .map(category -> category.getTitle())
+                        .toList()
+                        .toArray(new String[0]);
+
+
+        DialogMaker.makeSelectListDialog(
+                getActivity(),
+                getActivity().getString(R.string.select_cat),
+                titles, (dialogInterface, i) -> {
+                    Category category = categoryList.get(i);
+                    sfvCategories.setSelectedObject(category);
+                    refreshSelectedCategory();
+                    presenter.loadSubCategories(category.getId());
+                }).show();
+    }
+
+    @OnClick(R.id.sfv_subcategories)
+    void onSubCategoriesClicked(){
+        if(subCategoryList==null || subCategoryList.size()==0)return;
+
+        String[] titles =
+                Stream.of(subCategoryList)
+                        .map(subCategory -> subCategory.getTitle())
+                        .toList()
+                        .toArray(new String[0]);
+
+        DialogMaker.makeSelectListDialog(
+                getActivity(),
+                getActivity().getString(R.string.select_subcat),
+                titles, (dialogInterface, i) -> {
+                    SubCategory subcat = subCategoryList.get(i);
+                    sfvSubcategories.setSelectedObject(subcat);
+                    refreshSelectedSubCategory();
+                }).show();
+    }
+
+    @OnClick(R.id.sfv_colors)
+    void onColorsClicked(){
+        if(productColorsList==null || productColorsList.size()==0)return;
+
+        String[] titles =
+                Stream.of(productColorsList)
+                        .map(productColor -> productColor.getTitle())
+                        .toList()
+                        .toArray(new String[0]);
+
+        DialogMaker.makeSelectListDialog(
+                getActivity(),
+                getActivity().getString(R.string.select_subcat),
+                titles, (dialogInterface, i) -> {
+                    ProductColor colors = productColorsList.get(i);
+                    sfvColors.setSelectedObject(colors);
+                    refreshSelectedColor();
+                }).show();
     }
 
     private void requestPermission() {
@@ -147,84 +216,10 @@ public class AddBuyRequestController extends BaseBackStackController implements 
         });
     }
 
-    private void initCategories() {
-        List<String> list = new ArrayList<>();
-        list.add("انتخاب دسته");
-        categoryAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, list);
-        categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        categories.setAdapter(categoryAdapter);
-
-        categories.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
-                Log.d("TAG ", "onItemSelected" + position);
-                if (position > 0) {
-                    // todo, write your own adapter for spinners
-                    presenter.loadSubCategories(getCategoryID(position));
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-    }
-
-    private void initSubCategories() {
-        List<String> list = new ArrayList<>();
-        list.add("انتخاب زیردسته");
-        subCategoryAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, list);
-        subCategoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        subCategories.setAdapter(subCategoryAdapter);
-    }
-
-    private void initColors() {
-
-        colorsList = new ArrayList<>();
-        colorsList.add(new Color("asdf1","black","مشکی"));
-        colorsList.add(new Color("asdf2","white","سفید"));
-        colorsList.add(new Color("asdf3","green","سبز"));
-        colorsList.add(new Color("asdf4","red","قرمز"));
-        colorsList.add(new Color("asdf5","blue","آبی"));
-        colorsList.add(new Color("asdf6","yellow","زرد"));
-
-
-        colorsList.add(0,new Color("0","None","انتخاب رنگ (اختیاری)"));
-
-        colorsAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item,
-                Stream.of(colorsList).map(color -> color.getName()).toList());
-        colorsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        colors.setAdapter(colorsAdapter);
-    }
-
-    private void initCount() {
-        List<String> list = new ArrayList<>();
-        list.add("انتخاب تعداد");
-        list.add("1");
-        list.add("2");
-        list.add("3");
-        list.add("4");
-        list.add("5");
-        countAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, list);
-        countAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        count.setAdapter(countAdapter);
-    }
-
-    private void init() {
-        initCategories();
-        initSubCategories();
-        initColors();
-        initCount();
-    }
-
 
     @Override
     protected void onViewBound(@NonNull View view) {
         super.onViewBound(view);
-
-        init();
-
 
         setActive(true);
         presenter = new AddBuyRequestPresenter(DataRepository.getInstance(), this);
@@ -244,25 +239,13 @@ public class AddBuyRequestController extends BaseBackStackController implements 
         return inflater.inflate(R.layout.controller_add_buy_request, container, false);
     }
 
-    private String getCategoryID(int position) {
-        return categoryList.get(position - 1).getId();
-    }
-
-    private String getSubCategoryID(int position) {
-        return subCategoryList.get(position - 1).getId();
-    }
-
     @Override
     public void showCategories(List<Category> categoryList) {
         this.categoryList.clear();
         this.categoryList.addAll(categoryList);
 
-        Category tempCategory = new Category(null);
-        tempCategory.setTitle("انتخاب دسته");
-        categoryList.add(0, tempCategory);
-        categoryAdapter.clear();
-        categoryAdapter.addAll(Stream.of(categoryList).map(category -> category.getTitle()).toList());
-        categoryAdapter.notifyDataSetChanged();
+        sfvCategories.setIsSelected(false);
+        sfvCategories.setText(getActivity().getString(R.string.select_cat));
     }
 
     @Override
@@ -270,11 +253,15 @@ public class AddBuyRequestController extends BaseBackStackController implements 
         this.subCategoryList.clear();
         this.subCategoryList.addAll(subCategoryList);
 
-        SubCategory tempSubCategory = new SubCategory(null, "انتخاب زیردسته");
-        subCategoryList.add(0, tempSubCategory);
-        subCategoryAdapter.clear();
-        subCategoryAdapter.addAll(Stream.of(subCategoryList).map(subCategory -> subCategory.getTitle()).toList());
-        subCategoryAdapter.notifyDataSetChanged();
+        sfvSubcategories.setText(getActivity().getString(R.string.select_subcat));
+    }
+
+    @Override
+    public void showProductColors(List<ProductColor> productColors) {
+        this.productColorsList.clear();
+        this.productColorsList.addAll(productColors);
+
+        sfvColors.setText(getActivity().getString(R.string.select_color));
     }
 
     @OnClick(R.id.button_submit)
@@ -282,15 +269,18 @@ public class AddBuyRequestController extends BaseBackStackController implements 
         BuyRequest buyRequest = new BuyRequest();
 
         //Setting description
-        buyRequest.setDescription(description.getText().toString().trim());
+        buyRequest.setDescription(etDescription.getText().toString().trim());
+
+        Category cat = (Category) sfvCategories.getSelectedObject();
+        SubCategory subcat = (SubCategory) sfvSubcategories.getSelectedObject();
 
         //Setting product
         Product product = new Product(
                 // todo
 //                categoryAdapter.getItem(categories.getSelectedItemPosition()),
-                getCategoryID(categories.getSelectedItemPosition()),
-                getSubCategoryID(subCategories.getSelectedItemPosition()),
-                productName.getText().toString().trim()
+                cat.getId(),
+                subcat.getId(),
+                etProductName.getText().toString().trim()
         );
         buyRequest.setProduct(product);
 
@@ -298,15 +288,18 @@ public class AddBuyRequestController extends BaseBackStackController implements 
         product.addPhoto(base64Photo);
 
         //Setting count
-        int c = Integer.valueOf(countAdapter.getItem(count.getSelectedItemPosition()));
-        buyRequest.setCount(c);
-
-        //Setting color
-        int colorSelectedPos = colors.getSelectedItemPosition();
-        if(colorSelectedPos!=0){
-            String colorCode = colorsList.get(colorSelectedPos).getCodeName();
-            buyRequest.setColor(colorCode);
+        int count;
+        try {
+            count = Integer.valueOf(etCount.getText().toString().trim());
+        } catch (NumberFormatException e) {
+            count = 1;
         }
+        buyRequest.setCount(count);
+
+
+        ProductColor color = (ProductColor) sfvColors.getSelectedObject();
+        //Setting color
+        buyRequest.setColor(color.getCodeName());
 
         // todo: replace category id and subcategory id
         // todo: implement category adapter, and subcategory adapter
@@ -338,14 +331,19 @@ public class AddBuyRequestController extends BaseBackStackController implements 
                 })
                 .show();
 
-        productName.setText("");
-        description.setText("");
-        categories.setSelection(0);
-        subCategories.setSelection(0);
-        colors.setSelection(0);
-        count.setSelection(0);
+        etProductName.setText("");
+        etDescription.setText("");
+        etCount.setText("");
+        sfvCategories.setSelectedObject(null);
+        sfvSubcategories.setSelectedObject(null);
+        sfvColors.setSelectedObject(null);
+        base64Photo = "";
 
-//        GlobalToast.makeToast(getActivity(), getActivity().getString(R.string.sent_successfully), Toast.LENGTH_SHORT);
+        Glide.with(getActivity()).load("").into(ivPhoto);
+
+        refreshSelectedColor();
+        refreshSelectedSubCategory();
+        refreshSelectedCategory();
     }
 
     @Override
@@ -355,9 +353,40 @@ public class AddBuyRequestController extends BaseBackStackController implements 
 
     @Override
     public void showCroppedImage(Uri photoUri, String base64Photo) {
-        Glide.with(getActivity()).load(photoUri).into(takenPhoto);
+        Glide.with(getActivity()).load(photoUri).into(ivPhoto);
         this.base64Photo = base64Photo;
         Log.d("TAG", "abcd " + photoUri);
 
+    }
+
+
+    void refreshSelectedCategory(){
+        if(sfvCategories.getSelectedObject()!=null){
+            Category category = (Category) sfvCategories.getSelectedObject();
+            sfvCategories.setText(category.getTitle());
+            sfvCategories.setIsSelected(true);
+        }else{
+            sfvCategories.setIsSelected(false);
+        }
+    }
+
+    void refreshSelectedSubCategory(){
+        if(sfvSubcategories.getSelectedObject()!=null){
+            SubCategory subCat = (SubCategory) sfvSubcategories.getSelectedObject();
+            sfvSubcategories.setText(subCat.getTitle());
+            sfvSubcategories.setIsSelected(true);
+        }else{
+            sfvSubcategories.setIsSelected(false);
+        }
+    }
+
+    void refreshSelectedColor(){
+        if(sfvColors.getSelectedObject()!=null){
+            ProductColor color = (ProductColor) sfvColors.getSelectedObject();
+            sfvColors.setText(color.getTitle());
+            sfvColors.setIsSelected(true);
+        }else{
+            sfvColors.setIsSelected(false);
+        }
     }
 }

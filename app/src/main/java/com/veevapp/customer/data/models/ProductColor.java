@@ -4,15 +4,20 @@ package com.veevapp.customer.data.models;
  * Created by iman.
  * iman.neofight@gmail.com
  */
-public class Color extends BaseModel{
+
+/**
+ * Created by iman.
+ * iman.neofight@gmail.com
+ */
+public class ProductColor extends BaseModel{
     private String id;
     private String codeName;
-    private String name;
+    private String title;
 
-    public Color(String id,String codeName,String name){
+    public ProductColor(String id,String codeName,String title){
         this.id = id;
         this.codeName = codeName;
-        this.name = name;
+        this.title = title;
     }
 
     public String getId() {
@@ -29,10 +34,10 @@ public class Color extends BaseModel{
         this.codeName = codeName;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String name) {
+        this.title = name;
     }
 }

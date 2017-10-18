@@ -16,6 +16,7 @@
 
     <!--App-->
     <dimen name="app_radius">8dp</dimen>
+    <dimen name="app_fields_height">46dp</dimen>
     <!--App-->
 
     <!--controller_one_offer-->

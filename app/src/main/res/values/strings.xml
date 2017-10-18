@@ -53,4 +53,8 @@
     <string name="toman">تومان</string>
     <string name="offer">پیشنهاد</string>
 
+    <string name="select_cat">انتخاب دسته</string>
+    <string name="select_subcat">انتخاب زیر دسته</string>
+    <string name="select_color">انتخاب رنگ</string>
+
 </resources>
