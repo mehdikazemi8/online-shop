@@ -33,6 +33,7 @@ import com.veevapp.customer.controller.base.BaseBackStackController;
 import com.veevapp.customer.data.DataRepository;
 import com.veevapp.customer.data.models.BuyRequest;
 import com.veevapp.customer.data.models.Category;
+import com.veevapp.customer.data.models.Color;
 import com.veevapp.customer.data.models.Product;
 import com.veevapp.customer.data.models.SubCategory;
 import com.veevapp.customer.util.GlobalToast;
@@ -73,6 +74,8 @@ public class AddBuyRequestController extends BaseBackStackController implements 
     private List<SubCategory> subCategoryList = new ArrayList<>();
     private ArrayAdapter<String> categoryAdapter;
     private ArrayAdapter<String> subCategoryAdapter;
+
+    private List<Color> colorsList;
     private ArrayAdapter<String> colorsAdapter;
     private ArrayAdapter<String> countAdapter;
     private ProgressDialog progressDialog = null;
@@ -177,15 +180,20 @@ public class AddBuyRequestController extends BaseBackStackController implements 
     }
 
     private void initColors() {
-        List<String> list = new ArrayList<>();
-        list.add("انتخاب رنگ (اختیاری)");
-        list.add("مشکی");
-        list.add("سفید");
-        list.add("سبز");
-        list.add("قرمز");
-        list.add("آبی");
-        list.add("زرد");
-        colorsAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, list);
+
+        colorsList = new ArrayList<>();
+        colorsList.add(new Color("asdf1","black","مشکی"));
+        colorsList.add(new Color("asdf2","white","سفید"));
+        colorsList.add(new Color("asdf3","green","سبز"));
+        colorsList.add(new Color("asdf4","red","قرمز"));
+        colorsList.add(new Color("asdf5","blue","آبی"));
+        colorsList.add(new Color("asdf6","yellow","زرد"));
+
+
+        colorsList.add(0,new Color("0","None","انتخاب رنگ (اختیاری)"));
+
+        colorsAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item,
+                Stream.of(colorsList).map(color -> color.getName()).toList());
         colorsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         colors.setAdapter(colorsAdapter);
     }
@@ -272,7 +280,11 @@ public class AddBuyRequestController extends BaseBackStackController implements 
     @OnClick(R.id.button_submit)
     public void submitOnClick() {
         BuyRequest buyRequest = new BuyRequest();
+
+        //Setting description
         buyRequest.setDescription(description.getText().toString().trim());
+
+        //Setting product
         Product product = new Product(
                 // todo
 //                categoryAdapter.getItem(categories.getSelectedItemPosition()),
@@ -280,8 +292,21 @@ public class AddBuyRequestController extends BaseBackStackController implements 
                 getSubCategoryID(subCategories.getSelectedItemPosition()),
                 productName.getText().toString().trim()
         );
-        product.addPhoto(base64Photo);
         buyRequest.setProduct(product);
+
+        //Setting photo
+        product.addPhoto(base64Photo);
+
+        //Setting count
+        int c = Integer.valueOf(countAdapter.getItem(count.getSelectedItemPosition()));
+        buyRequest.setCount(c);
+
+        //Setting color
+        int colorSelectedPos = colors.getSelectedItemPosition();
+        if(colorSelectedPos!=0){
+            String colorCode = colorsList.get(colorSelectedPos).getCodeName();
+            buyRequest.setColor(colorCode);
+        }
 
         // todo: replace category id and subcategory id
         // todo: implement category adapter, and subcategory adapter
