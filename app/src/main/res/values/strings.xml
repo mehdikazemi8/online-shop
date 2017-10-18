@@ -19,6 +19,7 @@
     <string name="template_price">قیمت : %s تومان</string>
     <string name="template_previous_price">قیمت قبلی : %s تومان</string>
     <string name="template_shop">فروشگاه : %s</string>
+    <string name="template_count">تعداد : %s</string>
     <string name="telegram_id">آی دی تلگرام</string>
     <string name="next_step">مرحله بعد</string>
     <string name="name">اسم</string>

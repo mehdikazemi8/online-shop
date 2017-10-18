@@ -42,6 +42,7 @@ public class BuyRequestViewAdapter extends RecyclerView.Adapter<BuyRequestViewAd
         holder.tvName.setText(br.getProduct().getName());
         holder.tvDesc.setText(br.getDescription());
         holder.tvCount.setText(String.valueOf(br.getOfferCount()));
+        holder.tvRequestCount.setText(context.getString(R.string.template_count,String.valueOf(br.getCount())));
     }
 
     @Override
@@ -57,6 +58,8 @@ public class BuyRequestViewAdapter extends RecyclerView.Adapter<BuyRequestViewAd
         TextView tvName;
         @BindView(R.id.tv_count)
         TextView tvCount;
+        @BindView(R.id.tv_requestCount)
+        TextView tvRequestCount;
 
         @OnClick(R.id.root_view)
         public void rootViewOnClick() {
