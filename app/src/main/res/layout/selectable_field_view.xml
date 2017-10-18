@@ -9,7 +9,7 @@
     android:id="@+id/cs_container"
     >
 
-    <android.support.v7.widget.AppCompatTextView
+    <com.veevapp.customer.view.customwidget.AppTextView
         android:id="@+id/tv_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

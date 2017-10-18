@@ -3,6 +3,7 @@ package com.veevapp.customer.ui.addbuyrequest;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
 
@@ -10,6 +11,7 @@ import com.veevapp.customer.data.DataRepository;
 import com.veevapp.customer.data.DataSource;
 import com.veevapp.customer.data.models.BuyRequest;
 import com.veevapp.customer.data.models.Category;
+import com.veevapp.customer.data.models.Product;
 import com.veevapp.customer.data.models.ProductColor;
 import com.veevapp.customer.data.models.SubCategory;
 
@@ -62,7 +64,7 @@ public class AddBuyRequestPresenter implements AddBuyRequestContract.Presenter {
     }
 
     @Override
-    public void onSubmitBuyRequest(BuyRequest request) {
+    public void callAddBuyRequest(BuyRequest request) {
         addBuyRequestView.showProgressBar();
 
         dataRepository.addBuyRequest(request, new DataSource.AddBuyRequestCallback() {
@@ -134,5 +136,73 @@ public class AddBuyRequestPresenter implements AddBuyRequestContract.Presenter {
 //        newProduct.addPhoto(photoString);
 
         addBuyRequestView.showCroppedImage(outputUri, photoString);
+    }
+
+    @Override
+    public void onSubmitClicked(String name, String desc, String countStr,String photoBase64,
+                                Category cat, SubCategory subcat, ProductColor color) {
+
+        //Validate
+        if(cat==null){
+            addBuyRequestView.showCatValidateError();
+            return;
+        }
+
+        if(subcat==null){
+            addBuyRequestView.showSubcatValidateError();
+            return;
+        }
+
+
+        if(TextUtils.isEmpty(countStr)){
+            addBuyRequestView.showCountValidateError();
+            return;
+        }
+
+        int count;
+        try {
+            count = Integer.valueOf(countStr.trim());
+        } catch (NumberFormatException e) {
+            count = 0;
+        }
+        if(count<1){
+            addBuyRequestView.showCountValidateError();
+            return;
+        }
+
+
+
+        if(TextUtils.isEmpty(name)){
+            addBuyRequestView.showNameValidateError();
+            return;
+        }
+
+        if(TextUtils.isEmpty(desc)){
+            addBuyRequestView.showDescValidateError();
+            return;
+        }
+
+
+        BuyRequest buyRequest = new BuyRequest();
+        buyRequest.setDescription(desc);
+
+        Product product = new Product(
+                // todo
+//                categoryAdapter.getItem(categories.getSelectedItemPosition()),
+                cat.getId(),
+                subcat.getId(),
+                name
+        );
+        buyRequest.setProduct(product);
+        product.addPhoto(photoBase64);
+        buyRequest.setCount(count);
+
+        if(color!=null)
+            buyRequest.setColor(color.getCodeName());
+
+        // todo: replace category id and subcategory id
+        // todo: implement category adapter, and subcategory adapter
+
+        callAddBuyRequest(buyRequest);
     }
 }

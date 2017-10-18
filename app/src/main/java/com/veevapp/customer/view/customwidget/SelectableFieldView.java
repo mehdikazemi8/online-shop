@@ -5,7 +5,6 @@ import android.content.res.TypedArray;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
 import android.widget.RelativeLayout;
 
@@ -40,7 +39,7 @@ public class SelectableFieldView extends RelativeLayout {
     String mText;
 
     @BindView(R.id.tv_title)
-    AppCompatTextView tvTitle;
+    public AppTextView tvTitle;
     @BindView(R.id.cs_container)
     ConstraintLayout csContainer;
 
@@ -70,7 +69,11 @@ public class SelectableFieldView extends RelativeLayout {
 
     @Override
     public void setOnClickListener(@Nullable OnClickListener l) {
-        csContainer.setOnClickListener(l);
+        csContainer.setOnClickListener(view -> {
+            tvTitle.setError(null);
+            if(l!=null)
+                l.onClick(view);
+        });
     }
 
 

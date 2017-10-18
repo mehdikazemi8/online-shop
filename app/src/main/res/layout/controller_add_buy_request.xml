@@ -32,7 +32,7 @@
             android:layout_margin="8dp"
             />
 
-        <EditText
+        <com.veevapp.customer.view.customwidget.AppEditText
             android:id="@+id/et_count"
             style="@style/primary_edittext"
             android:hint="تعداد مورد نیاز"
@@ -40,13 +40,13 @@
             android:inputType="numberSigned"
             />
 
-        <EditText
+        <com.veevapp.customer.view.customwidget.AppEditText
             android:id="@+id/et_productName"
             style="@style/primary_edittext"
             android:hint="@string/request_product_name"
             android:imeOptions="actionNext" />
 
-        <EditText
+        <com.veevapp.customer.view.customwidget.AppEditText
             android:id="@+id/et_description"
             style="@style/primary_edittext"
             android:hint="@string/description"

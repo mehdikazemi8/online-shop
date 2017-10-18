@@ -32,16 +32,28 @@ public class AddBuyRequestContract {
 
         void showCroppedImage(Uri photoUri, String base64Photo);
 
+        void showCatValidateError();
+
+        void showSubcatValidateError();
+
+        void showNameValidateError();
+
+        void showDescValidateError();
+
+        void showCountValidateError();
     }
 
     public interface Presenter extends BasePresenter {
 
-        void onSubmitBuyRequest(BuyRequest buyRequest);
+        void callAddBuyRequest(BuyRequest buyRequest);
 
         void loadSubCategories(String categoryID);
 
         void onPhotoCaptured(File file);
 
         void handleCroppedImage();
+
+        void onSubmitClicked(String name, String desc, String count,String photo,
+                             Category cat, SubCategory subcat, ProductColor color);
     }
 }

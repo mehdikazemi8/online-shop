@@ -11,8 +11,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -28,13 +26,12 @@ import com.soundcloud.android.crop.Crop;
 import com.veevapp.customer.R;
 import com.veevapp.customer.controller.base.BaseBackStackController;
 import com.veevapp.customer.data.DataRepository;
-import com.veevapp.customer.data.models.BuyRequest;
 import com.veevapp.customer.data.models.Category;
-import com.veevapp.customer.data.models.Product;
 import com.veevapp.customer.data.models.ProductColor;
 import com.veevapp.customer.data.models.SubCategory;
 import com.veevapp.customer.util.GlobalToast;
 import com.veevapp.customer.view.DialogMaker;
+import com.veevapp.customer.view.customwidget.AppEditText;
 import com.veevapp.customer.view.customwidget.SelectableFieldView;
 
 import java.io.File;
@@ -59,13 +56,13 @@ public class AddBuyRequestController extends BaseBackStackController implements 
     SelectableFieldView sfvColors;
 
     @BindView(R.id.et_count)
-    EditText etCount;
+    AppEditText etCount;
 
     @BindView(R.id.et_productName)
-    EditText etProductName;
+    AppEditText etProductName;
 
     @BindView(R.id.et_description)
-    EditText etDescription;
+    AppEditText etDescription;
 
     @BindView(R.id.iv_photo)
     ImageView ivPhoto;
@@ -79,12 +76,6 @@ public class AddBuyRequestController extends BaseBackStackController implements 
     private List<SubCategory> subCategoryList = new ArrayList<>();
     private List<ProductColor> productColorsList = new ArrayList<>();
 
-
-    private ArrayAdapter<String> categoryAdapter;
-    private ArrayAdapter<String> subCategoryAdapter;
-
-    private ArrayAdapter<String> colorsAdapter;
-    private ArrayAdapter<String> countAdapter;
     private ProgressDialog progressDialog = null;
     private String base64Photo = null;
 
@@ -266,45 +257,15 @@ public class AddBuyRequestController extends BaseBackStackController implements 
 
     @OnClick(R.id.button_submit)
     public void submitOnClick() {
-        BuyRequest buyRequest = new BuyRequest();
-
-        //Setting description
-        buyRequest.setDescription(etDescription.getText().toString().trim());
 
         Category cat = (Category) sfvCategories.getSelectedObject();
         SubCategory subcat = (SubCategory) sfvSubcategories.getSelectedObject();
-
-        //Setting product
-        Product product = new Product(
-                // todo
-//                categoryAdapter.getItem(categories.getSelectedItemPosition()),
-                cat.getId(),
-                subcat.getId(),
-                etProductName.getText().toString().trim()
-        );
-        buyRequest.setProduct(product);
-
-        //Setting photo
-        product.addPhoto(base64Photo);
-
-        //Setting count
-        int count;
-        try {
-            count = Integer.valueOf(etCount.getText().toString().trim());
-        } catch (NumberFormatException e) {
-            count = 1;
-        }
-        buyRequest.setCount(count);
-
-
         ProductColor color = (ProductColor) sfvColors.getSelectedObject();
-        //Setting color
-        buyRequest.setColor(color.getCodeName());
-
-        // todo: replace category id and subcategory id
-        // todo: implement category adapter, and subcategory adapter
-
-        presenter.onSubmitBuyRequest(buyRequest);
+        presenter.onSubmitClicked(
+                etProductName.getText().toString().trim(),
+                etDescription.getText().toString().trim(),
+                etCount.getText().toString().trim(),base64Photo,
+                cat,subcat,color);
     }
 
     @Override
@@ -359,6 +320,31 @@ public class AddBuyRequestController extends BaseBackStackController implements 
 
     }
 
+    @Override
+    public void showCatValidateError() {
+        sfvCategories.tvTitle.setError(getActivity().getString(R.string.select_cat_validation_error));
+    }
+
+    @Override
+    public void showSubcatValidateError() {
+        sfvSubcategories.tvTitle.setError(getActivity().getString(R.string.select_sub_cat_validation_error));
+    }
+
+    @Override
+    public void showNameValidateError() {
+        etProductName.setError(getActivity().getString(R.string.enter_product_name_validation_error));
+    }
+
+    @Override
+    public void showDescValidateError() {
+        etDescription.setError(getActivity().getString(R.string.enter_desc_validation_error));
+    }
+
+    @Override
+    public void showCountValidateError() {
+        etCount.setError(getActivity().getString(R.string.enter_count_validation_error));
+    }
+
 
     void refreshSelectedCategory(){
         if(sfvCategories.getSelectedObject()!=null){
@@ -366,6 +352,7 @@ public class AddBuyRequestController extends BaseBackStackController implements 
             sfvCategories.setText(category.getTitle());
             sfvCategories.setIsSelected(true);
         }else{
+            sfvCategories.setText(getActivity().getString(R.string.select_cat));
             sfvCategories.setIsSelected(false);
         }
     }
@@ -376,6 +363,7 @@ public class AddBuyRequestController extends BaseBackStackController implements 
             sfvSubcategories.setText(subCat.getTitle());
             sfvSubcategories.setIsSelected(true);
         }else{
+            sfvSubcategories.setText(getActivity().getString(R.string.select_subcat));
             sfvSubcategories.setIsSelected(false);
         }
     }
@@ -386,6 +374,7 @@ public class AddBuyRequestController extends BaseBackStackController implements 
             sfvColors.setText(color.getTitle());
             sfvColors.setIsSelected(true);
         }else{
+            sfvColors.setText(getActivity().getString(R.string.select_color));
             sfvColors.setIsSelected(false);
         }
     }

@@ -58,4 +58,10 @@
     <string name="select_subcat">انتخاب زیر دسته</string>
     <string name="select_color">انتخاب رنگ</string>
 
+    <string name="enter_product_name_validation_error">نام محصول را به درستی وارد نمایید</string>
+    <string name="enter_desc_validation_error">توضیحات را به درستی وارد نمایید</string>
+    <string name="enter_count_validation_error">تعداد را به درستی وارد نمایید</string>
+    <string name="select_cat_validation_error">دسته بندی را انتخاب کنید</string>
+    <string name="select_sub_cat_validation_error">زیر دسته را انتخاب کنید</string>
+
 </resources>
