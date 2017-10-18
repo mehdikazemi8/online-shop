@@ -2,6 +2,7 @@ package com.veevapp.customer.view.customwidget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Typeface;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.content.ContextCompat;
@@ -86,10 +87,13 @@ public class SelectableFieldView extends RelativeLayout {
     }
 
     public void setIsSelected(boolean isSelected){
-        if(isSelected)
-            tvTitle.setTextColor(ContextCompat.getColor(getContext(),R.color.fields_text_selected));
-        else
+        if(isSelected) {
+            tvTitle.setTextColor(ContextCompat.getColor(getContext(), R.color.fields_text_selected));
+            tvTitle.setTypeface(null, Typeface.BOLD);
+        }else{
             tvTitle.setTextColor(ContextCompat.getColor(getContext(),R.color.fields_text_unselected));
+            tvTitle.setTypeface(null, Typeface.NORMAL);
+        }
     }
 
     public String getText() {
