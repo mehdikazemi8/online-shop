@@ -142,7 +142,7 @@ public class AddBuyRequestController extends BaseBackStackController implements 
 
         DialogMaker.makeSelectListDialog(
                 getActivity(),
-                getActivity().getString(R.string.select_subcat),
+                getActivity().getString(R.string.select_color),
                 titles, (dialogInterface, i) -> {
                     ProductColor colors = productColorsList.get(i);
                     sfvColors.setSelectedObject(colors);
