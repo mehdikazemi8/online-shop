@@ -22,6 +22,7 @@
         android:gravity="center"
         android:textColor="@color/fields_text_unselected"
         android:fontFamily="@font/iransans"
+        android:textSize="@dimen/text_size_normal"
         />
 
 
