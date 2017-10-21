@@ -23,6 +23,7 @@
     <string name="template_name">نام : %s</string>
     <string name="template_last_name">نام خانوادگی : %s</string>
     <string name="template_mobile">موبایل : %s</string>
+    <string name="template_product_name">نام محصول : %s</string>
     <string name="telegram_id">آی دی تلگرام</string>
     <string name="next_step">مرحله بعد</string>
     <string name="name">اسم</string>

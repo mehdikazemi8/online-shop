@@ -17,6 +17,7 @@ import com.veevapp.customer.util.listener.OnItemPositionSelectedListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -44,16 +45,21 @@ public class SpecialOfferViewAdapter extends RecyclerView.Adapter<SpecialOfferVi
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         SpecialOffer so = items.get(position);
-        holder.tvPrice.setText(String.format(context.getString(R.string.template_price), so.getSuggestedPrice() + ""));
-        holder.tvPreviousPrice.setText(String.format(context.getString(R.string.template_previous_price), so.getProduct().getPrice() + ""));
-        holder.tvProductName.setText(items.get(position).getProduct().getName());
-        holder.tvShopName.setText(context.getString(R.string.template_shop,items.get(position).getSeller().getShopName()));
-
 
         //TODO REMOVE
         List<String> photoList = new ArrayList<>();
         photoList.add("http://lorempixel.com/output/people-q-c-480-480-" + ((position%10)+1) + ".jpg");
         so.getProduct().setPhotoURLs(photoList);
+        so.getSeller().setRate(new Random(System.currentTimeMillis()).nextFloat()%5);
+        so.getSeller().setSellerPhotoUrl("http://lorempixel.com/output/people-q-c-480-480-" + ((position%10)+2) + ".jpg");
+        so.getProduct().setPrice("1000");
+
+
+
+        holder.tvPrice.setText(String.format(context.getString(R.string.template_price), so.getSuggestedPrice() + ""));
+        holder.tvPreviousPrice.setText(String.format(context.getString(R.string.template_previous_price), so.getProduct().getPrice() + ""));
+        holder.tvProductName.setText(items.get(position).getProduct().getName());
+        holder.tvShopName.setText(context.getString(R.string.template_shop,items.get(position).getSeller().getShopName()));
 
 
         List<String> urls = so.getProduct().getPhotoURLs();
