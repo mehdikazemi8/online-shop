@@ -28,13 +28,37 @@
             android:padding="8dp"
             android:clipToPadding="false"
             >
-            <ImageView
-                android:id="@+id/iv_photo"
+            <RelativeLayout
                 android:layout_width="300dp"
                 android:layout_height="200dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/space_small"
-                android:scaleType="centerCrop" />
+                >
+
+                <ImageView
+                    android:id="@+id/iv_photo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:scaleType="centerCrop" />
+
+                <com.veevapp.customer.view.customwidget.AppTextView
+                    android:id="@+id/tv_timer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:text="3 روز  23:44:55"
+                    android:textColor="@color/white"
+                    android:background="@drawable/rounded_bot_accent_alpha_75"
+                    android:gravity="center"
+                    android:paddingTop="6dp"
+                    android:paddingBottom="6dp"
+                    android:fontFamily="@font/iransans"
+                    android:textSize="14sp"
+                    android:layout_marginLeft="@dimen/space_xlarge"
+                    android:layout_marginRight="@dimen/space_xlarge"
+                    />
+
+            </RelativeLayout>
 
             <com.veevapp.customer.view.customwidget.AppTextView
                 android:id="@+id/tv_productName"

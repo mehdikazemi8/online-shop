@@ -1,5 +1,6 @@
 package com.veevapp.customer.ui.singlespecialoffer;
 
+import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.graphics.Paint;
@@ -25,16 +26,21 @@ import com.veevapp.customer.data.models.Product;
 import com.veevapp.customer.data.models.Seller;
 import com.veevapp.customer.data.models.SpecialOffer;
 import com.veevapp.customer.ui.showlocation.ShowLocationController;
+import com.veevapp.customer.util.AppHandler;
+import com.veevapp.customer.util.AppTickHandler;
 import com.veevapp.customer.util.GlobalToast;
 import com.veevapp.customer.util.TextSpannableHandler;
 import com.veevapp.customer.util.imageloader.ImageHandler;
+import com.veevapp.customer.view.customwidget.AppTextView;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class SingleSpecialOfferController extends HeaderController implements SingleSpecialOfferContract.View {
+public class SingleSpecialOfferController
+        extends HeaderController
+        implements SingleSpecialOfferContract.View,AppTickHandler.OnTickListener {
 
     @BindView(R.id.iv_photo)
     ImageView ivPhoto;
@@ -44,6 +50,8 @@ public class SingleSpecialOfferController extends HeaderController implements Si
     TextView tvPrice;
     @BindView(R.id.tv_previousPrice)
     TextView tvPreviousPrice;
+    @BindView(R.id.tv_timer)
+    AppTextView tvTimer;
 
     @BindView(R.id.iv_shopImage)
     ImageView ivShopImage;
@@ -179,10 +187,36 @@ public class SingleSpecialOfferController extends HeaderController implements Si
 
         presenter = new SingleSpecialOfferPresenter();
         presenter.start();
+
+        refreshTimer();
+
+        AppTickHandler.getInstance().addListener(this);
+    }
+
+    @Override
+    protected void onActivityPaused(@NonNull Activity activity) {
+        super.onActivityPaused(activity);
+        AppTickHandler.getInstance().removeListener(this);
+    }
+
+    @Override
+    protected void onActivityResumed(@NonNull Activity activity) {
+        super.onActivityResumed(activity);
+        AppTickHandler.getInstance().addListener(this);
     }
 
     @Override
     protected View inflateView(@NonNull LayoutInflater inflater, @NonNull ViewGroup container) {
         return inflater.inflate(R.layout.controller_single_special_offer, container, false);
+    }
+
+    private void refreshTimer(){
+        AppHandler.RemainingTimeObject rto = AppHandler.getRemainingTime(specialOffer);
+        tvTimer.setText(AppHandler.getRemainingTimeStr(getActivity(),rto));
+    }
+
+    @Override
+    public void onTick(long currentTimeMillis) throws Exception {
+        refreshTimer();
     }
 }
