@@ -48,7 +48,7 @@ public abstract class BaseRecyclerAdapter
     }
     public void resetItems(List<T> items) {
         if(items==null)return;
-        
+
         List<T> oldList = mItems;
         List<T> newLIst = items;
 
@@ -67,8 +67,8 @@ public abstract class BaseRecyclerAdapter
         return new ArrayList<>(mItems);
     }
 
-    private ArrayList<RecyclerView.ViewHolder> getVisibleViewHolders(RecyclerView rvParent){
-        ArrayList<RecyclerView.ViewHolder> viewHolders = new ArrayList<>();
+    public ArrayList<V> getVisibleViewHolders(RecyclerView rvParent){
+        ArrayList<V> viewHolders = new ArrayList<>();
         if(rvParent==null || rvParent.getLayoutManager()==null)
             return viewHolders;
 
@@ -77,7 +77,7 @@ public abstract class BaseRecyclerAdapter
             final int firstVisibleItemPosition = linearLayoutManager.findFirstVisibleItemPosition();
             final int lastVisibleItemPosition = linearLayoutManager.findLastVisibleItemPosition();
             for (int i = firstVisibleItemPosition; i <= lastVisibleItemPosition; ++i) {
-                viewHolders.add(rvParent.findViewHolderForAdapterPosition(i));
+                viewHolders.add((V) rvParent.findViewHolderForAdapterPosition(i));
             }
         }
 

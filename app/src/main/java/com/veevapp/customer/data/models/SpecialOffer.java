@@ -1,8 +1,9 @@
 package com.veevapp.customer.data.models;
 
 import com.google.gson.annotations.SerializedName;
+import com.veevapp.customer.view.adapter.BaseRecyclerAdapter;
 
-public class SpecialOffer extends BaseModel {
+public class SpecialOffer extends BaseModel implements BaseRecyclerAdapter.IDiff {
     private Product product;
     @SerializedName("owner")
     private Seller seller;
@@ -14,7 +15,9 @@ public class SpecialOffer extends BaseModel {
     private String creationDate;
     private Double remainingTime;
 
-    public SpecialOffer() {
+    public long createdObjTimestamp = 0;
+    public SpecialOffer(){
+        createdObjTimestamp = System.currentTimeMillis();
     }
 
     public Integer getDuration() {
@@ -71,5 +74,15 @@ public class SpecialOffer extends BaseModel {
 
     public void setSeller(Seller seller) {
         this.seller = seller;
+    }
+
+    @Override
+    public boolean areContentsTheSame(Object thisType) {
+        return this.equals(thisType);
+    }
+
+    @Override
+    public boolean areItemsTheSame(Object thisType) {
+        return this.product.getId().equals(((SpecialOffer)thisType).getProduct().getId());
     }
 }

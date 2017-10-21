@@ -1,5 +1,6 @@
 package com.veevapp.customer.ui.specialoffers;
 
+import android.app.Activity;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,6 +15,8 @@ import com.veevapp.customer.controller.base.BaseBackStackController;
 import com.veevapp.customer.data.DataRepository;
 import com.veevapp.customer.data.models.SpecialOffer;
 import com.veevapp.customer.ui.singlespecialoffer.SingleSpecialOfferController;
+import com.veevapp.customer.util.AppHandler;
+import com.veevapp.customer.util.AppTickHandler;
 import com.veevapp.customer.util.listener.OnItemPositionSelectedListener;
 import com.veevapp.customer.view.decoration.SpecialOfferDecoration;
 
@@ -22,10 +25,10 @@ import java.util.List;
 
 import butterknife.BindView;
 
-public class SpecialOffersController extends BaseBackStackController implements SpecialOffersContract.View {
+public class SpecialOffersController extends BaseBackStackController implements SpecialOffersContract.View,AppTickHandler.OnTickListener {
 
     @BindView(R.id.special_offers)
-    RecyclerView specialOffers;
+    RecyclerView rvSpecialOffers;
 
     private SpecialOfferViewAdapter specialOfferViewAdapter;
     private List<SpecialOffer> specialOfferList = new ArrayList<>();
@@ -41,10 +44,10 @@ public class SpecialOffersController extends BaseBackStackController implements 
     }
 
     private void init() {
-        specialOfferViewAdapter = new SpecialOfferViewAdapter(specialOfferList, onItemSelectedListener);
-        specialOffers.setLayoutManager(new GridLayoutManager(getActivity(),2));
-        specialOffers.setAdapter(specialOfferViewAdapter);
-        specialOffers.addItemDecoration(new SpecialOfferDecoration(getActivity()));
+        specialOfferViewAdapter = new SpecialOfferViewAdapter(onItemSelectedListener);
+        rvSpecialOffers.setLayoutManager(new GridLayoutManager(getActivity(),2));
+        rvSpecialOffers.setAdapter(specialOfferViewAdapter);
+        rvSpecialOffers.addItemDecoration(new SpecialOfferDecoration(getActivity()));
     }
 
     private OnItemPositionSelectedListener<SpecialOffer> onItemSelectedListener = new OnItemPositionSelectedListener<SpecialOffer>() {
@@ -64,6 +67,9 @@ public class SpecialOffersController extends BaseBackStackController implements 
 
         presenter = new SpecialOffersPresenter(DataRepository.getInstance(), this);
         presenter.start();
+
+
+        AppTickHandler.getInstance().addListener(this);
     }
 
     @Override
@@ -73,9 +79,7 @@ public class SpecialOffersController extends BaseBackStackController implements 
 
     @Override
     public void showSpecialOffers(List<SpecialOffer> specialOfferList) {
-        this.specialOfferList.clear();
-        this.specialOfferList.addAll(specialOfferList);
-        this.specialOfferViewAdapter.notifyDataSetChanged();
+        specialOfferViewAdapter.resetItems(specialOfferList);
     }
 
     @Override
@@ -92,5 +96,29 @@ public class SpecialOffersController extends BaseBackStackController implements 
 //                        .pushChangeHandler(new FadeChangeHandler())
 //                        .popChangeHandler(new FadeChangeHandler())
 //        );
+    }
+
+    @Override
+    protected void onActivityResumed(@NonNull Activity activity) {
+        super.onActivityResumed(activity);
+        AppTickHandler.getInstance().addListener(this);
+    }
+
+    @Override
+    protected void onActivityPaused(@NonNull Activity activity) {
+        super.onActivityPaused(activity);
+        AppTickHandler.getInstance().removeListener(this);
+    }
+
+    @Override
+    public void onTick(long currentTimeMillis) throws Exception {
+        ArrayList<SpecialOfferViewAdapter.ViewHolderSpecialOffer> viewHolders =
+                specialOfferViewAdapter.getVisibleViewHolders(rvSpecialOffers);
+
+        for(SpecialOfferViewAdapter.ViewHolderSpecialOffer vh : viewHolders){
+            SpecialOffer so = specialOfferViewAdapter.getItem(vh.getAdapterPosition());
+            AppHandler.RemainingTimeObject rto = AppHandler.getRemainingTime(so);
+            vh.tvTimer.setText(AppHandler.getRemainingTimeStr(getActivity(),rto));
+        }
     }
 }

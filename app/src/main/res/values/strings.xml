@@ -72,5 +72,6 @@
     <string name="select_cat_validation_error">دسته بندی را انتخاب کنید</string>
     <string name="select_sub_cat_validation_error">زیر دسته را انتخاب کنید</string>
     <string name="show_on_map">نمایش روی نقشه</string>
+    <string name="day">روز</string>
 
 </resources>
