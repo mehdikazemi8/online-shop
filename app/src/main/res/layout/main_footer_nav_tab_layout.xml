@@ -26,14 +26,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="ثبت درخواست"
-        android:textSize="11sp"
+        android:textSize="9sp"
         android:textColor="@color/white"
         android:maxLines="1"
         android:lines="1"
         android:singleLine="true"
         android:gravity="center"
         android:fontFamily="@font/iransans"
-        android:textStyle="bold"
         />
 
 </LinearLayout>
