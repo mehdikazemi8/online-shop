@@ -4,7 +4,6 @@ import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.bluelinelabs.conductor.RouterTransaction;
 import com.bluelinelabs.conductor.changehandler.FadeChangeHandler;
@@ -14,6 +13,8 @@ import com.veevapp.customer.data.DataRepository;
 import com.veevapp.customer.data.local.PreferenceManager;
 import com.veevapp.customer.data.models.Customer;
 import com.veevapp.customer.ui.entermobile.EnterMobileController;
+import com.veevapp.customer.view.DialogMaker;
+import com.veevapp.customer.view.customwidget.AppTextView;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -26,16 +27,19 @@ public class ProfileController extends BaseBackStackController implements Profil
 
     private ProfileContract.Presenter presenter;
 
-    @BindView(R.id.name)
-    TextView name;
-    @BindView(R.id.family)
-    TextView family;
-    @BindView(R.id.mobile)
-    TextView mobile;
 
-    @OnClick(R.id.logout)
+    @BindView(R.id.tv_name)
+    AppTextView tvName;
+
+    @BindView(R.id.tv_lastName)
+    AppTextView tvLastName;
+
+    @BindView(R.id.tv_phoneNumber)
+    AppTextView tvPhoneNumber;
+
+    @OnClick(R.id.btn_logout)
     public void logoutOnClick() {
-        presenter.logout();
+        presenter.onLogoutClicked();
     }
 
     @Override
@@ -49,9 +53,9 @@ public class ProfileController extends BaseBackStackController implements Profil
             return;
         }
 
-        name.setText(customer.name());
-        family.setText(customer.family());
-        mobile.setText(customer.mobile());
+        tvName.setText(getActivity().getString(R.string.template_name,customer.name()));
+        tvLastName.setText(getActivity().getString(R.string.template_last_name,customer.family()));
+        tvPhoneNumber.setText(getActivity().getString(R.string.template_mobile,customer.mobile()));
     }
 
     @Override
@@ -77,5 +81,10 @@ public class ProfileController extends BaseBackStackController implements Profil
                         .pushChangeHandler(new FadeChangeHandler())
                         .popChangeHandler(new FadeChangeHandler())
         );
+    }
+
+    @Override
+    public void showLogoutConfirmation() {
+        DialogMaker.makeLogoutConfirmDialog(getActivity(), (dialogInterface, i) -> presenter.onLogoutConfirmed()).show();
     }
 }

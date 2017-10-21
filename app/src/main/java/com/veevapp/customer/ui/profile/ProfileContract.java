@@ -6,13 +6,12 @@ import com.veevapp.customer.BaseView;
 public class ProfileContract {
 
     public interface View extends BaseView<Presenter> {
-
         void showEnterMobileUI();
+        void showLogoutConfirmation();
     }
 
     public interface Presenter extends BasePresenter {
-
-        void logout();
-
+        void onLogoutClicked();
+        void onLogoutConfirmed();
     }
 }
