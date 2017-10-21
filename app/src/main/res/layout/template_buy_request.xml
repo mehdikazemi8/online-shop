@@ -46,7 +46,6 @@
             android:textSize="8sp"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:textStyle="bold"
             />
 
     </RelativeLayout>
