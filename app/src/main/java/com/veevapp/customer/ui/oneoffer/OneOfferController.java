@@ -4,6 +4,8 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
+import android.text.SpannableString;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +24,7 @@ import com.veevapp.customer.data.DataRepository;
 import com.veevapp.customer.data.models.BuyRequestOffer;
 import com.veevapp.customer.ui.showlocation.ShowLocationController;
 import com.veevapp.customer.util.GlobalToast;
+import com.veevapp.customer.util.TextSpannableHandler;
 import com.veevapp.customer.util.imageloader.ImageHandler;
 
 import java.util.List;
@@ -50,8 +53,6 @@ public class OneOfferController extends HeaderController implements OneOfferCont
     TextView tvPhoneNumber;
     @BindView(R.id.tv_shopAddress)
     TextView tvShopAddress;
-    @BindView(R.id.iv_showOnMap)
-    ImageView ivShowOnMap;
     @BindView(R.id.tv_telegram)
     TextView tvTelegram;
 
@@ -74,8 +75,8 @@ public class OneOfferController extends HeaderController implements OneOfferCont
         startActivity(intent);
     }
 
-    @OnClick(R.id.iv_showOnMap)
-    public void showOnMapClicked(){
+    @OnClick(R.id.tv_shopAddress)
+    void onAddressClicked(){
         double lat = offer.getSeller().getLocation().get(0);
         double lon = offer.getSeller().getLocation().get(1);
         getRouter().pushController(
@@ -83,11 +84,6 @@ public class OneOfferController extends HeaderController implements OneOfferCont
                         .pushChangeHandler(new FadeChangeHandler())
                         .popChangeHandler(new FadeChangeHandler())
         );
-    }
-
-    @OnClick(R.id.tv_shopAddress)
-    void onAddressClicked(){
-        showOnMapClicked();
     }
 
     private OneOfferContract.Presenter presenter;
@@ -144,10 +140,12 @@ public class OneOfferController extends HeaderController implements OneOfferCont
 
 
         List<Double> latLngs = offer.getSeller().getLocation();
-        if(latLngs==null || latLngs.size()!=2){
-            ivShowOnMap.setVisibility(View.GONE);
-        }else{
-            ivShowOnMap.setVisibility(View.VISIBLE);
+        if(latLngs!=null && latLngs.size()==2){
+            tvShopAddress.setText(tvShopAddress.getText() + " " + getActivity().getString(R.string.show_on_map));
+            SpannableString ss = new SpannableString(tvShopAddress.getText());
+            TextSpannableHandler.setColor(ss,getActivity().getString(R.string.show_on_map),
+                    ContextCompat.getColor(getActivity(),R.color.blue_link));
+            tvShopAddress.setText(ss);
         }
 
         String telegram = !TextUtils.isEmpty(offer.getSeller().getTelegram())?offer.getSeller().getTelegram():"-";

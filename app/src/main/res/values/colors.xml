@@ -14,6 +14,7 @@
     <color name="black">#111111</color>
 
     <color name="red_error">#ff2323</color>
+    <color name="blue_link">#2f5cf2</color>
 
     <color name="footer_selected">@color/white</color>
     <color name="footer_unselected">@color/colorAccent</color>

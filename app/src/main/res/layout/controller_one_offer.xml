@@ -127,15 +127,8 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="right|center_vertical"
+            android:layout_marginBottom="8dp"
             >
-            <android.support.v7.widget.AppCompatImageView
-                android:id="@+id/iv_showOnMap"
-                android:layout_width="28dp"
-                android:layout_height="28dp"
-                app:srcCompat="@drawable/ic_map_black_24dp"
-                android:tint="#2f5cf2"
-                android:padding="4dp"
-                />
             <TextView
                 android:id="@+id/tv_shopAddress"
                 android:layout_width="wrap_content"
