@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.graphics.Paint;
 import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewCompat;
+import android.text.SpannableString;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +26,7 @@ import com.veevapp.customer.data.models.Seller;
 import com.veevapp.customer.data.models.SpecialOffer;
 import com.veevapp.customer.ui.showlocation.ShowLocationController;
 import com.veevapp.customer.util.GlobalToast;
+import com.veevapp.customer.util.TextSpannableHandler;
 import com.veevapp.customer.util.imageloader.ImageHandler;
 
 import java.util.List;
@@ -54,8 +57,6 @@ public class SingleSpecialOfferController extends HeaderController implements Si
     TextView tvPhoneNumber;
     @BindView(R.id.tv_shopAddress)
     TextView tvShopAddress;
-    @BindView(R.id.iv_showOnMap)
-    ImageView ivShowOnMap;
     @BindView(R.id.tv_telegram)
     TextView tvTelegram;
 
@@ -113,10 +114,12 @@ public class SingleSpecialOfferController extends HeaderController implements Si
 
 
             List<Double> latLngs = seller.getLocation();
-            if (latLngs == null || latLngs.size() != 2) {
-                ivShowOnMap.setVisibility(View.GONE);
-            } else {
-                ivShowOnMap.setVisibility(View.VISIBLE);
+            if (latLngs != null && latLngs.size() == 2) {
+                tvShopAddress.setText(tvShopAddress.getText() + " " + getActivity().getString(R.string.show_on_map));
+                SpannableString ss = new SpannableString(tvShopAddress.getText());
+                TextSpannableHandler.setColor(ss,getActivity().getString(R.string.show_on_map),
+                        ContextCompat.getColor(getActivity(),R.color.blue_link));
+                tvShopAddress.setText(ss);
             }
 
             String telegram = !TextUtils.isEmpty(seller.getTelegram()) ? seller.getTelegram() : "-";
@@ -155,8 +158,8 @@ public class SingleSpecialOfferController extends HeaderController implements Si
         startActivity(intent);
     }
 
-    @OnClick(R.id.iv_showOnMap)
-    public void showOnMapClicked(){
+    @OnClick(R.id.tv_shopAddress)
+    void onAddressClicked(){
         double lat = specialOffer.getSeller().getLocation().get(0);
         double lon = specialOffer.getSeller().getLocation().get(1);
         getRouter().pushController(
@@ -164,11 +167,6 @@ public class SingleSpecialOfferController extends HeaderController implements Si
                         .pushChangeHandler(new FadeChangeHandler())
                         .popChangeHandler(new FadeChangeHandler())
         );
-    }
-
-    @OnClick(R.id.tv_shopAddress)
-    void onAddressClicked(){
-        showOnMapClicked();
     }
 
     @Override
