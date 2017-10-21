@@ -33,7 +33,7 @@
                 android:layout_width="300dp"
                 android:layout_height="200dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/space_8"
+                android:layout_marginTop="@dimen/space_small"
                 android:scaleType="centerCrop" />
 
             <com.veevapp.customer.view.customwidget.AppTextView
@@ -41,7 +41,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:padding="@dimen/space_8"
+                android:padding="@dimen/space_small"
                 android:text="@string/template_product_name"
                 android:textColor="@color/black"
                 android:fontFamily="@font/iransans"
@@ -52,7 +52,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:padding="@dimen/space_8"
+                android:padding="@dimen/space_small"
                 android:text="@string/template_price"
                 android:textColor="@color/black"
                 android:fontFamily="@font/iransans"
@@ -63,7 +63,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:padding="@dimen/space_8"
+                android:padding="@dimen/space_small"
                 android:text="قیمت قبلی : 1200 تومان"
                 android:textColor="@color/red_error"
                 android:fontFamily="@font/iransans"

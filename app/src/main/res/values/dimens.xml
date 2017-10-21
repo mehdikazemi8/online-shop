@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <dimen name="space_4">4dp</dimen>
-    <dimen name="space_8">8dp</dimen>
-    <dimen name="space_16">16dp</dimen>
-    <dimen name="space_32">32dp</dimen>
+    <dimen name="space_smaller">4dp</dimen>
+    <dimen name="space_small">8dp</dimen>
+    <dimen name="space_normal">16dp</dimen>
+    <dimen name="space_large">32dp</dimen>
 
     <dimen name="check_mark_size">30dp</dimen>
     <dimen name="material_actionbar_size">56dp</dimen>

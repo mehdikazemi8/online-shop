@@ -76,10 +76,7 @@ public class SpecialOfferViewAdapter extends BaseRecyclerAdapter<SpecialOfferVie
 
         ViewCompat.setTransitionName(holder.ivImage, context.getString(R.string.transition_special_offer_photo_index, position));
 
-
-
-        AppHandler.RemainingTimeObject rto = AppHandler.getRemainingTime(so);
-        holder.tvTimer.setText(AppHandler.getRemainingTimeStr(context,rto));
+        holder.refreshTimer();
     }
 
     class ViewHolderSpecialOffer extends RecyclerView.ViewHolder {
@@ -109,6 +106,11 @@ public class SpecialOfferViewAdapter extends BaseRecyclerAdapter<SpecialOfferVie
 
 
             tvPreviousPrice.setPaintFlags(tvPreviousPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+        }
+
+        public void refreshTimer(){
+            AppHandler.RemainingTimeObject rto = AppHandler.getRemainingTime(getItem(getAdapterPosition()));
+            tvTimer.setText(AppHandler.getRemainingTimeStr(context,rto));
         }
     }
 }

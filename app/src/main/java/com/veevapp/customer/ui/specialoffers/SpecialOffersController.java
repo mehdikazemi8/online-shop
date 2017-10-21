@@ -15,7 +15,6 @@ import com.veevapp.customer.controller.base.BaseBackStackController;
 import com.veevapp.customer.data.DataRepository;
 import com.veevapp.customer.data.models.SpecialOffer;
 import com.veevapp.customer.ui.singlespecialoffer.SingleSpecialOfferController;
-import com.veevapp.customer.util.AppHandler;
 import com.veevapp.customer.util.AppTickHandler;
 import com.veevapp.customer.util.listener.OnItemPositionSelectedListener;
 import com.veevapp.customer.view.decoration.SpecialOfferDecoration;
@@ -25,7 +24,9 @@ import java.util.List;
 
 import butterknife.BindView;
 
-public class SpecialOffersController extends BaseBackStackController implements SpecialOffersContract.View,AppTickHandler.OnTickListener {
+public class SpecialOffersController
+        extends BaseBackStackController
+        implements SpecialOffersContract.View, AppTickHandler.OnTickListener {
 
     @BindView(R.id.special_offers)
     RecyclerView rvSpecialOffers;
@@ -116,9 +117,7 @@ public class SpecialOffersController extends BaseBackStackController implements 
                 specialOfferViewAdapter.getVisibleViewHolders(rvSpecialOffers);
 
         for(SpecialOfferViewAdapter.ViewHolderSpecialOffer vh : viewHolders){
-            SpecialOffer so = specialOfferViewAdapter.getItem(vh.getAdapterPosition());
-            AppHandler.RemainingTimeObject rto = AppHandler.getRemainingTime(so);
-            vh.tvTimer.setText(AppHandler.getRemainingTimeStr(getActivity(),rto));
+            vh.refreshTimer();
         }
     }
 }
