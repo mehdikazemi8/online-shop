@@ -49,6 +49,7 @@
     <string name="logout_confirmation">آیا واقعا خارج میشوید؟</string>
     <string name="no_buy_request_yet">تا کنون درخواستی ثبت نکرده اید</string>
     <string name="add_product_photo">افزودن عکس محصول (اختیاری)</string>
+    <string name="change_product_photo">تغییر عکس محصول (اختیاری)</string>
     <string name="price">قیمت</string>
     <string name="suggest_price">قیمت پیشنهادی</string>
     <string name="desc">توضیحات</string>

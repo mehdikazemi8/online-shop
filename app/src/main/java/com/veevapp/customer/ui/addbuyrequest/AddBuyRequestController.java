@@ -32,6 +32,7 @@ import com.veevapp.customer.data.models.SubCategory;
 import com.veevapp.customer.util.GlobalToast;
 import com.veevapp.customer.view.DialogMaker;
 import com.veevapp.customer.view.customwidget.AppEditText;
+import com.veevapp.customer.view.customwidget.AppTextView;
 import com.veevapp.customer.view.customwidget.SelectableFieldView;
 
 import java.io.File;
@@ -67,6 +68,9 @@ public class AddBuyRequestController extends BaseBackStackController implements 
     @BindView(R.id.iv_photo)
     ImageView ivPhoto;
 
+    @BindView(R.id.tv_addPhoto)
+    AppTextView tvAddPhoto;
+
 
 
     private final int CAPTURE_PICTURE_CODE = 9068;
@@ -83,7 +87,7 @@ public class AddBuyRequestController extends BaseBackStackController implements 
         return new AddBuyRequestController();
     }
 
-    @OnClick(R.id.take_photo_from_product)
+    @OnClick(R.id.ll_addPhoto)
     public void addPhotoOnClick() {
         requestPermission();
     }
@@ -317,6 +321,10 @@ public class AddBuyRequestController extends BaseBackStackController implements 
         Glide.with(getActivity()).load(photoUri).into(ivPhoto);
         this.base64Photo = base64Photo;
         Log.d("TAG", "abcd " + photoUri);
+
+        if(photoUri!=null && base64Photo!=null){
+            tvAddPhoto.setText(getActivity().getString(R.string.change_product_photo));
+        }
 
     }
 
