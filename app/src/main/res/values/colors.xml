@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#92AF41</color>
-    <color name="colorPrimaryDark">#659117</color>
+    <color name="colorPrimary">#f5d328</color>
+    <color name="colorPrimaryDark">#c2a71e</color>
     <color name="colorAccent">#344A63</color>
 
     <color name="colorAccentAlpha50">#77344a63</color>
@@ -14,9 +14,14 @@
     <color name="black">#111111</color>
 
     <color name="red_error">#ff2323</color>
+    <color name="blue_link">#2f5cf2</color>
 
     <color name="footer_selected">@color/white</color>
     <color name="footer_unselected">@color/colorAccent</color>
+
+
+    <color name="fields_text_selected">@color/black</color>
+    <color name="fields_text_unselected">@color/colorAccent</color>
 
     <!--controller_one_offer-->
     <color name="cof_fields_image_color">#838383</color>

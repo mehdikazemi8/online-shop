@@ -21,7 +21,12 @@ public class ProfilePresenter implements ProfileContract.Presenter {
     }
 
     @Override
-    public void logout() {
+    public void onLogoutClicked() {
+        profileView.showLogoutConfirmation();
+    }
+
+    @Override
+    public void onLogoutConfirmed() {
         preferenceManager.clear();
         profileView.showEnterMobileUI();
     }

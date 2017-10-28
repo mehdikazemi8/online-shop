@@ -46,7 +46,6 @@
             android:textSize="8sp"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:textStyle="bold"
             />
 
     </RelativeLayout>
@@ -55,7 +54,7 @@
         android:id="@+id/tv_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/tv_requestCount"
         app:layout_constraintRight_toLeftOf="@id/ll_count"
         app:layout_constraintTop_toTopOf="@id/ll_count"
         app:layout_constraintBottom_toTopOf="@+id/tv_desc"
@@ -91,6 +90,24 @@
         android:textSize="14sp"
         />
 
+    <android.support.v7.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/tv_requestCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/template_count"
+        android:textColor="@color/black"
+        android:textSize="10sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_name"
+        app:layout_constraintBottom_toBottomOf="@id/tv_name"
+        android:layout_marginLeft="6dp"
+        android:textStyle="bold"
+        app:fontFamily="@font/iransans"
+        />
 
 </android.support.constraint.ConstraintLayout>

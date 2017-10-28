@@ -19,6 +19,11 @@
     <string name="template_price">قیمت : %s تومان</string>
     <string name="template_previous_price">قیمت قبلی : %s تومان</string>
     <string name="template_shop">فروشگاه : %s</string>
+    <string name="template_count">تعداد : %s</string>
+    <string name="template_name">نام : %s</string>
+    <string name="template_last_name">نام خانوادگی : %s</string>
+    <string name="template_mobile">موبایل : %s</string>
+    <string name="template_product_name">نام محصول : %s</string>
     <string name="telegram_id">آی دی تلگرام</string>
     <string name="next_step">مرحله بعد</string>
     <string name="name">اسم</string>
@@ -38,9 +43,13 @@
     <string name="special_offer">پیشنهاد ویژه</string>
     <string name="offers">پیشنهادها برای درخواست شما</string>
 
+    <string name="yes">بله</string>
+    <string name="no">خیر</string>
     <string name="logout">خروج</string>
+    <string name="logout_confirmation">آیا واقعا خارج میشوید؟</string>
     <string name="no_buy_request_yet">تا کنون درخواستی ثبت نکرده اید</string>
     <string name="add_product_photo">افزودن عکس محصول (اختیاری)</string>
+    <string name="change_product_photo">تغییر عکس محصول (اختیاری)</string>
     <string name="price">قیمت</string>
     <string name="suggest_price">قیمت پیشنهادی</string>
     <string name="desc">توضیحات</string>
@@ -52,5 +61,17 @@
     <string name="shop">فروشگاه</string>
     <string name="toman">تومان</string>
     <string name="offer">پیشنهاد</string>
+
+    <string name="select_cat">انتخاب دسته</string>
+    <string name="select_subcat">انتخاب زیر دسته</string>
+    <string name="select_color">انتخاب رنگ</string>
+
+    <string name="enter_product_name_validation_error">نام محصول را به درستی وارد نمایید</string>
+    <string name="enter_desc_validation_error">توضیحات را به درستی وارد نمایید</string>
+    <string name="enter_count_validation_error">تعداد را به درستی وارد نمایید</string>
+    <string name="select_cat_validation_error">دسته بندی را انتخاب کنید</string>
+    <string name="select_sub_cat_validation_error">زیر دسته را انتخاب کنید</string>
+    <string name="show_on_map">نمایش روی نقشه</string>
+    <string name="day">روز</string>
 
 </resources>

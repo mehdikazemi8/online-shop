@@ -199,7 +199,7 @@ public class MainController extends HeaderController implements MainContract.Vie
 
     public View getTabView(int position) {
         // Given you have a custom layout in `res/layout/custom_tab.xml` with a TextView and ImageView
-        View v = LayoutInflater.from(getActivity()).inflate(R.layout.main_custom_tab_layout, null);
+        View v = LayoutInflater.from(getActivity()).inflate(R.layout.main_footer_nav_tab_layout, null);
         ImageView iv = v.findViewById(R.id.iv_image);
         TextView tv = v.findViewById(R.id.tv_title);
         iv.setImageResource(pagesImagesRes[position]);

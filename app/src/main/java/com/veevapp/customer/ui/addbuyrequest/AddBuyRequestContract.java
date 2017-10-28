@@ -6,6 +6,7 @@ import com.veevapp.customer.BasePresenter;
 import com.veevapp.customer.BaseView;
 import com.veevapp.customer.data.models.BuyRequest;
 import com.veevapp.customer.data.models.Category;
+import com.veevapp.customer.data.models.ProductColor;
 import com.veevapp.customer.data.models.SubCategory;
 
 import java.io.File;
@@ -19,6 +20,8 @@ public class AddBuyRequestContract {
 
         void showSubCategories(List<SubCategory> subCategoryList);
 
+        void showProductColors(List<ProductColor> productColors);
+
         void showProgressBar();
 
         void hideProgressBar();
@@ -29,16 +32,28 @@ public class AddBuyRequestContract {
 
         void showCroppedImage(Uri photoUri, String base64Photo);
 
+        void showCatValidateError();
+
+        void showSubcatValidateError();
+
+        void showNameValidateError();
+
+        void showDescValidateError();
+
+        void showCountValidateError();
     }
 
     public interface Presenter extends BasePresenter {
 
-        void onSubmitBuyRequest(BuyRequest buyRequest);
+        void callAddBuyRequest(BuyRequest buyRequest);
 
         void loadSubCategories(String categoryID);
 
         void onPhotoCaptured(File file);
 
         void handleCroppedImage();
+
+        void onSubmitClicked(String name, String desc, String count,String photo,
+                             Category cat, SubCategory subcat, ProductColor color);
     }
 }
