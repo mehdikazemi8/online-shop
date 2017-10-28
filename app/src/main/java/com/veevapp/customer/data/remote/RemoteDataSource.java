@@ -15,6 +15,7 @@ import com.veevapp.customer.data.remote.request.SubmitMobileRequest;
 import com.veevapp.customer.data.remote.response.BuyRequestsResponse;
 import com.veevapp.customer.data.remote.response.CategoriesResponse;
 import com.veevapp.customer.data.remote.response.OffersResponse;
+import com.veevapp.customer.data.remote.response.SlidersResponse;
 import com.veevapp.customer.data.remote.response.SpecialOffersResponse;
 import com.veevapp.customer.data.remote.response.SubCategoriesResponse;
 import com.veevapp.customer.data.remote.response.TokenResponse;
@@ -353,6 +354,26 @@ public class RemoteDataSource extends DataSource {
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
+                callback.onFailure();
+            }
+        });
+    }
+
+    @Override
+    public void getSliders(GetSlidersCallback callback) {
+        Call<SlidersResponse> call = apiService.getSliders();
+        call.enqueue(new Callback<SlidersResponse>() {
+            @Override
+            public void onResponse(Call<SlidersResponse> call, Response<SlidersResponse> response) {
+                if (response.isSuccessful()) {
+                    callback.onResponse(response.body().getSliders());
+                } else {
+                    callback.onFailure();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<SlidersResponse> call, Throwable t) {
                 callback.onFailure();
             }
         });

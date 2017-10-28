@@ -22,7 +22,6 @@ import com.veevapp.customer.ui.splash.SplashController;
 import com.veevapp.customer.util.AppConstants;
 import com.veevapp.customer.util.NetworkHelper;
 
-import dagger.android.AndroidInjection;
 import pl.aprilapps.easyphotopicker.EasyImage;
 
 public class MainActivity extends AppCompatActivity {
@@ -94,6 +93,17 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         router.onActivityResult(requestCode, resultCode, data);
+    }
+
+    void checkIntent(Intent intent) {
+        try {
+            Log.d("TAG", "abcd onNewIntent " + intent.getAction());
+            Log.d("TAG", "abcd onNewIntent " + intent.getData().getScheme());
+            Log.d("TAG", "abcd onNewIntent " + intent.getData().getHost());
+            Log.d("TAG", "abcd onNewIntent " + intent.getData().getPath());
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

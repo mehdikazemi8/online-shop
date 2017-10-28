@@ -139,10 +139,19 @@ public class DataRepository extends DataSource {
 
     @Override
     public void registerCustomer(RegisterRequest registerRequest, RegisterCustomerCallback callback) {
-        if(!networkHelper.isNetworkAvailable()) {
+        if (!networkHelper.isNetworkAvailable()) {
             callback.onNetworkFailure();
         } else {
             remoteDataSource.registerCustomer(registerRequest, callback);
+        }
+    }
+
+    @Override
+    public void getSliders(GetSlidersCallback callback) {
+        if (!networkHelper.isNetworkAvailable()) {
+            callback.onNetworkFailure();
+        } else {
+            remoteDataSource.getSliders(callback);
         }
     }
 }

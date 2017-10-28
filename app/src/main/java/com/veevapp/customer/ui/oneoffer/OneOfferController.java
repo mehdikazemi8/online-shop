@@ -76,11 +76,11 @@ public class OneOfferController extends HeaderController implements OneOfferCont
     }
 
     @OnClick(R.id.tv_shopAddress)
-    void onAddressClicked(){
+    void onAddressClicked() {
         double lat = offer.getSeller().getLocation().get(0);
         double lon = offer.getSeller().getLocation().get(1);
         getRouter().pushController(
-                RouterTransaction.with(ShowLocationController.newInstance(lat,lon,offer.getSeller().getShopName()))
+                RouterTransaction.with(ShowLocationController.newInstance(lat, lon, offer.getSeller().getShopName()))
                         .pushChangeHandler(new FadeChangeHandler())
                         .popChangeHandler(new FadeChangeHandler())
         );
@@ -113,47 +113,47 @@ public class OneOfferController extends HeaderController implements OneOfferCont
 
         tvPrice.setText(getActivity().getString(R.string.suggest_price) + " : " + offer.getSuggestedPrice() + " تومان");
 
-        String desc = !TextUtils.isEmpty(offer.getDescription())?offer.getDescription():"-";
+        String desc = !TextUtils.isEmpty(offer.getDescription()) ? offer.getDescription() : "-";
         tvDesc.setText(getActivity().getString(R.string.seller_desc) + " : " + desc);
 
 
         String sellerName;
-        if(!TextUtils.isEmpty(offer.getSeller().getName()) && !TextUtils.isEmpty(offer.getSeller().getFamily()))
+        if (!TextUtils.isEmpty(offer.getSeller().getName()) && !TextUtils.isEmpty(offer.getSeller().getFamily()))
             sellerName = offer.getSeller().getName() + offer.getSeller().getFamily();
         else
             sellerName = "-";
         tvSellerName.setText(getActivity().getString(R.string.seller_name) + " : " + sellerName);
 
 
-        String shopName = !TextUtils.isEmpty(offer.getSeller().getShopName())?offer.getSeller().getShopName():"-";
+        String shopName = !TextUtils.isEmpty(offer.getSeller().getShopName()) ? offer.getSeller().getShopName() : "-";
         tvShopName.setText(shopName);
 
 
         rbShopRate.setRating(offer.getSeller().getRate());
 
 
-        String phoneNumber = !TextUtils.isEmpty(offer.getSeller().getShopPhoneNumber())?offer.getSeller().getShopPhoneNumber():"-";
+        String phoneNumber = !TextUtils.isEmpty(offer.getSeller().getShopPhoneNumber()) ? offer.getSeller().getShopPhoneNumber() : "-";
         tvPhoneNumber.setText(getActivity().getString(R.string.phone_number) + " : " + phoneNumber);
 
-        String shopAddress = !TextUtils.isEmpty(offer.getSeller().getShopAddress())?offer.getSeller().getShopAddress():"-";
+        String shopAddress = !TextUtils.isEmpty(offer.getSeller().getShopAddress()) ? offer.getSeller().getShopAddress() : "-";
         tvShopAddress.setText(getActivity().getString(R.string.shop_address) + " : " + shopAddress);
 
 
         List<Double> latLngs = offer.getSeller().getLocation();
-        if(latLngs!=null && latLngs.size()==2){
+        if (latLngs != null && latLngs.size() == 2) {
             tvShopAddress.setText(tvShopAddress.getText() + " " + getActivity().getString(R.string.show_on_map));
             SpannableString ss = new SpannableString(tvShopAddress.getText());
-            TextSpannableHandler.setColor(ss,getActivity().getString(R.string.show_on_map),
-                    ContextCompat.getColor(getActivity(),R.color.blue_link));
+            TextSpannableHandler.setColor(ss, getActivity().getString(R.string.show_on_map),
+                    ContextCompat.getColor(getActivity(), R.color.blue_link));
             tvShopAddress.setText(ss);
         }
 
-        String telegram = !TextUtils.isEmpty(offer.getSeller().getTelegram())?offer.getSeller().getTelegram():"-";
+        String telegram = !TextUtils.isEmpty(offer.getSeller().getTelegram()) ? offer.getSeller().getTelegram() : "-";
         tvTelegram.setText(getActivity().getString(R.string.telegram_id) + " : " + telegram);
 
         ImageHandler.getInstance(getActivity())
-                .loadImage(offer.getSeller().getSellerPhotoUrl(),ivShopImage,true,
-                        true,true,0);
+                .loadImage(offer.getSeller().getSellerPhotoUrl(), ivShopImage, true,
+                        true, true, 0);
 
         headerTitle.setText(getActivity().getString(R.string.shop) + " " + offer.getSeller().getShopName());
     }

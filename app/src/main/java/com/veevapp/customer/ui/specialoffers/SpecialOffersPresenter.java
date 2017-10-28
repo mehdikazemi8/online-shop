@@ -2,6 +2,7 @@ package com.veevapp.customer.ui.specialoffers;
 
 import com.veevapp.customer.data.DataRepository;
 import com.veevapp.customer.data.DataSource;
+import com.veevapp.customer.data.models.Slider;
 import com.veevapp.customer.data.models.SpecialOffer;
 
 import java.util.List;
@@ -23,6 +24,23 @@ public class SpecialOffersPresenter implements SpecialOffersContract.Presenter {
             @Override
             public void onResponse(List<SpecialOffer> specialOfferList) {
                 specialView.showSpecialOffers(specialOfferList);
+            }
+
+            @Override
+            public void onFailure() {
+
+            }
+
+            @Override
+            public void onNetworkFailure() {
+
+            }
+        });
+
+        dataRepository.getSliders(new DataSource.GetSlidersCallback() {
+            @Override
+            public void onResponse(List<Slider> sliderList) {
+                specialView.showSliders(sliderList);
             }
 
             @Override

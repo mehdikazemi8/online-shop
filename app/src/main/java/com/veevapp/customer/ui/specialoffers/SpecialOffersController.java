@@ -3,7 +3,9 @@ package com.veevapp.customer.ui.specialoffers;
 import android.app.Activity;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,10 +15,12 @@ import com.veevapp.customer.R;
 import com.veevapp.customer.changehandler.ArcFadeMoveChangeHandlerCompat;
 import com.veevapp.customer.controller.base.BaseBackStackController;
 import com.veevapp.customer.data.DataRepository;
+import com.veevapp.customer.data.models.Slider;
 import com.veevapp.customer.data.models.SpecialOffer;
 import com.veevapp.customer.ui.singlespecialoffer.SingleSpecialOfferController;
 import com.veevapp.customer.util.AppTickHandler;
 import com.veevapp.customer.util.listener.OnItemPositionSelectedListener;
+import com.veevapp.customer.util.listener.OnItemSelectedListener;
 import com.veevapp.customer.view.decoration.SpecialOfferDecoration;
 
 import java.util.ArrayList;
@@ -30,9 +34,11 @@ public class SpecialOffersController
 
     @BindView(R.id.special_offers)
     RecyclerView rvSpecialOffers;
+    @BindView(R.id.sliders)
+    RecyclerView rvSliders;
 
+    private SliderViewAdapter sliderViewAdapter;
     private SpecialOfferViewAdapter specialOfferViewAdapter;
-    private List<SpecialOffer> specialOfferList = new ArrayList<>();
     private SpecialOffersContract.Presenter presenter;
 
     public static SpecialOffersController newInstance() {
@@ -46,15 +52,33 @@ public class SpecialOffersController
 
     private void init() {
         specialOfferViewAdapter = new SpecialOfferViewAdapter(onItemSelectedListener);
-        rvSpecialOffers.setLayoutManager(new GridLayoutManager(getActivity(),2));
+        rvSpecialOffers.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         rvSpecialOffers.setAdapter(specialOfferViewAdapter);
         rvSpecialOffers.addItemDecoration(new SpecialOfferDecoration(getActivity()));
+        rvSpecialOffers.setNestedScrollingEnabled(false);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        sliderViewAdapter = new SliderViewAdapter(onSliderSelectedListener);
+        rvSliders.setLayoutManager(layoutManager);
+        rvSliders.setAdapter(sliderViewAdapter);
     }
 
     private OnItemPositionSelectedListener<SpecialOffer> onItemSelectedListener = new OnItemPositionSelectedListener<SpecialOffer>() {
         @Override
         public void onSelect(SpecialOffer specialOffer, int fromPosition) {
             presenter.onSpecialOfferSelected(specialOffer, fromPosition);
+        }
+    };
+
+    private OnItemSelectedListener<Slider> onSliderSelectedListener = new OnItemSelectedListener<Slider>() {
+        @Override
+        public void onSelect(Slider slider) {
+            Log.d("TAG", "slider " + slider.getPhotoURL());
+        }
+
+        @Override
+        public void onDeselect(Slider object) {
+
         }
     };
 
@@ -68,7 +92,6 @@ public class SpecialOffersController
 
         presenter = new SpecialOffersPresenter(DataRepository.getInstance(), this);
         presenter.start();
-
 
         AppTickHandler.getInstance().addListener(this);
     }
@@ -116,8 +139,16 @@ public class SpecialOffersController
         ArrayList<SpecialOfferViewAdapter.ViewHolderSpecialOffer> viewHolders =
                 specialOfferViewAdapter.getVisibleViewHolders(rvSpecialOffers);
 
-        for(SpecialOfferViewAdapter.ViewHolderSpecialOffer vh : viewHolders){
+        for (SpecialOfferViewAdapter.ViewHolderSpecialOffer vh : viewHolders) {
             vh.refreshTimer();
         }
+    }
+
+    @Override
+    public void showSliders(List<Slider> sliderList) {
+        // todo remove
+        sliderList.addAll(sliderList);
+
+        sliderViewAdapter.resetItems(sliderList);
     }
 }

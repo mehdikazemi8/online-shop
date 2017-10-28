@@ -10,6 +10,7 @@ import com.veevapp.customer.data.remote.request.SubmitMobileRequest;
 import com.veevapp.customer.data.remote.response.BuyRequestsResponse;
 import com.veevapp.customer.data.remote.response.CategoriesResponse;
 import com.veevapp.customer.data.remote.response.OffersResponse;
+import com.veevapp.customer.data.remote.response.SlidersResponse;
 import com.veevapp.customer.data.remote.response.SpecialOffersResponse;
 import com.veevapp.customer.data.remote.response.SubCategoriesResponse;
 import com.veevapp.customer.data.remote.response.TokenResponse;
@@ -63,6 +64,8 @@ public interface ApiService {
     @GET("specialOffer/")
     Call<SpecialOffersResponse> getAvailableSpecialOffers();
 
+    @GET("slider/")
+    Call<SlidersResponse> getSliders();
 
     @GET
     Call<ResponseBody> downloadPhoto(@Url String photoURL);

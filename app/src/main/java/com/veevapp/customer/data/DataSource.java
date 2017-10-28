@@ -4,6 +4,7 @@ import com.veevapp.customer.data.models.BuyRequest;
 import com.veevapp.customer.data.models.BuyRequestOffer;
 import com.veevapp.customer.data.models.Category;
 import com.veevapp.customer.data.models.Customer;
+import com.veevapp.customer.data.models.Slider;
 import com.veevapp.customer.data.models.SpecialOffer;
 import com.veevapp.customer.data.models.SubCategory;
 import com.veevapp.customer.data.remote.request.ConfirmationCodeRequest;
@@ -135,6 +136,15 @@ public abstract class DataSource {
         void onNetworkFailure();
     }
 
+    public interface GetSlidersCallback {
+
+        void onResponse(List<Slider> sliderList);
+
+        void onFailure();
+
+        void onNetworkFailure();
+    }
+
     public abstract void prepareDataSource();
 
     public abstract void addBuyRequest(BuyRequest request, AddBuyRequestCallback callback);
@@ -162,4 +172,6 @@ public abstract class DataSource {
     public abstract void submitMobileNumber(String mobileNumber, SubmitMobileNumberCallback callback);
 
     public abstract void registerCustomer(RegisterRequest registerRequest, RegisterCustomerCallback callback);
+
+    public abstract void getSliders(GetSlidersCallback callback);
 }

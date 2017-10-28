@@ -49,7 +49,6 @@ public class MainController extends HeaderController implements MainContract.Vie
     private final int NUMBER_OF_TABS = 4;
 
 
-
     @BindView(R.id.tab_layout)
     TabLayout tabLayout;
     @BindView(R.id.view_pager)
@@ -210,9 +209,10 @@ public class MainController extends HeaderController implements MainContract.Vie
 
         return v;
     }
-    private void refreshFooterSelected(){
+
+    private void refreshFooterSelected() {
         int selectedPos = viewPager.getCurrentItem();
-        for(int i=0;i<4;i++){
+        for (int i = 0; i < 4; i++) {
             footerImages[i].setColorFilter(foolterUnselectedColor);
             footerTexts[i].setTextColor(foolterUnselectedColor);
         }

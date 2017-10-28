@@ -76,4 +76,9 @@ public class LocalDataSource extends DataSource {
     public void registerCustomer(RegisterRequest registerRequest, RegisterCustomerCallback callback) {
 
     }
+
+    @Override
+    public void getSliders(GetSlidersCallback callback) {
+
+    }
 }
