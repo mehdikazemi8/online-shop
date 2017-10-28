@@ -1,38 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
 
     <include layout="@layout/template_header" />
-
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:orientation="vertical"
-        >
-
-
-
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="8dp"
             android:clipToPadding="false"
-            >
+            android:orientation="vertical"
+            android:padding="8dp">
+
             <RelativeLayout
                 android:layout_width="300dp"
                 android:layout_height="200dp"
-                android:layout_gravity="center_horizontal"
-                >
+                android:layout_gravity="center_horizontal">
 
                 <ImageView
                     android:id="@+id/iv_photo"
@@ -46,17 +38,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
-                    android:text="3 روز  23:44:55"
-                    android:textColor="@color/white"
-                    android:background="@drawable/rounded_bot_accent_alpha_75"
-                    android:gravity="center"
-                    android:paddingTop="6dp"
-                    android:paddingBottom="6dp"
-                    android:fontFamily="@font/iransans"
-                    android:textSize="14sp"
                     android:layout_marginLeft="@dimen/space_xlarge"
                     android:layout_marginRight="@dimen/space_xlarge"
-                    />
+                    android:background="@drawable/rounded_bot_accent_alpha_75"
+                    android:fontFamily="@font/iransans"
+                    android:gravity="center"
+                    android:paddingBottom="6dp"
+                    android:paddingTop="6dp"
+                    android:text="3 روز  23:44:55"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
 
             </RelativeLayout>
 
@@ -64,79 +55,95 @@
                 android:id="@+id/tv_productName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/iransans"
                 android:gravity="center_horizontal"
                 android:padding="@dimen/space_small"
                 android:text="@string/template_product_name"
-                android:textColor="@color/black"
-                android:fontFamily="@font/iransans"
-                />
+                android:textColor="@color/black" />
 
             <com.veevapp.customer.view.customwidget.AppTextView
                 android:id="@+id/tv_price"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/iransans"
                 android:gravity="center_horizontal"
                 android:padding="@dimen/space_small"
                 android:text="@string/template_price"
-                android:textColor="@color/black"
-                android:fontFamily="@font/iransans"
-                />
+                android:textColor="@color/black" />
 
             <com.veevapp.customer.view.customwidget.AppTextView
                 android:id="@+id/tv_previousPrice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:padding="@dimen/space_small"
-                android:text="قیمت قبلی : 1200 تومان"
-                android:textColor="@color/red_error"
                 android:fontFamily="@font/iransans"
-                android:maxLines="1"
-                android:singleLine="true"
+                android:gravity="center_horizontal"
                 android:lines="1"
-                />
+                android:maxLines="1"
+                android:padding="@dimen/space_small"
+                android:singleLine="true"
+                android:text="قیمت قبلی : 1200 تومان"
+                android:textColor="@color/red_error" />
+
+            <LinearLayout
+                android:id="@+id/share_button_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <com.veevapp.customer.view.customwidget.AppTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:fontFamily="@font/iransans"
+                    android:text="@string/share_special_offer" />
+
+                <com.veevapp.customer.view.customwidget.AppTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:fontFamily="@font/icons"
+                    android:padding="@dimen/space_small"
+                    android:text="@string/icon.share" />
+
+            </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#a9a9a9"
                 android:layout_marginBottom="8dp"
                 android:layout_marginTop="8dp"
-                />
+                android:background="#a9a9a9" />
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="right|center"
                 android:layout_marginBottom="6dp"
-                >
+                android:gravity="right|center"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
                     android:gravity="right"
-                    >
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/tv_shopName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="فروشگاه علی"
                         android:fontFamily="@font/iransans"
-                        />
+                        android:text="فروشگاه علی" />
 
                     <RatingBar
                         android:id="@+id/rb_shopRate"
+                        style="@style/Widget.AppCompat.RatingBar.Indicator"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        style="@style/Widget.AppCompat.RatingBar.Indicator"
                         android:layout_marginBottom="4dp"
-                        android:max="5"
-                        />
+                        android:max="5" />
 
                 </LinearLayout>
 
@@ -146,8 +153,7 @@
                     android:layout_height="60dp"
                     android:layout_gravity="center"
                     android:layout_marginLeft="8dp"
-                    app:srcCompat="@drawable/loading_circle"
-                    />
+                    app:srcCompat="@drawable/loading_circle" />
 
             </LinearLayout>
 
@@ -155,54 +161,48 @@
                 android:id="@+id/tv_sellerName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/seller_name"
-                android:fontFamily="@font/iransans"
-                android:textColor="@color/black"
-                android:gravity="right|center"
                 android:layout_marginBottom="8dp"
-                />
+                android:fontFamily="@font/iransans"
+                android:gravity="right|center"
+                android:text="@string/seller_name"
+                android:textColor="@color/black" />
 
             <TextView
                 android:id="@+id/tv_phoneNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/phone_number"
-                android:fontFamily="@font/iransans"
-                android:textColor="@color/black"
-                android:gravity="right|center"
                 android:layout_marginBottom="8dp"
-                />
+                android:fontFamily="@font/iransans"
+                android:gravity="right|center"
+                android:text="@string/phone_number"
+                android:textColor="@color/black" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="right|center_vertical"
                 android:layout_marginBottom="8dp"
-                >
+                android:gravity="right|center_vertical"
+                android:orientation="horizontal">
+
                 <TextView
                     android:id="@+id/tv_shopAddress"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/shop_address"
                     android:fontFamily="@font/iransans"
-                    android:textColor="@color/black"
                     android:gravity="right|center"
-                    />
+                    android:text="@string/shop_address"
+                    android:textColor="@color/black" />
             </LinearLayout>
-
 
             <TextView
                 android:id="@+id/tv_telegram"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/telegram"
-                android:fontFamily="@font/iransans"
-                android:textColor="@color/black"
-                android:gravity="right|center"
                 android:layout_marginBottom="8dp"
-                />
-
+                android:fontFamily="@font/iransans"
+                android:gravity="right|center"
+                android:text="@string/telegram"
+                android:textColor="@color/black" />
 
         </LinearLayout>
 

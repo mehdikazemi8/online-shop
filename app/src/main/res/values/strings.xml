@@ -7,6 +7,7 @@
     <string name="icon.arrow.left">B</string>
     <string name="icon.place">C</string>
     <string name="icon.plus.circle">D</string>
+    <string name="icon.share">E</string>
 
     <string name="submit">ثبت</string>
     <string name="submit_request">ثبت درخواست</string>
@@ -66,6 +67,8 @@
     <string name="select_subcat">انتخاب زیر دسته</string>
     <string name="select_color">انتخاب رنگ</string>
 
+    <string name="template_share_recipe">یه پیشنهاد ویژه \n محصول: %s \n قیمت: %d تومان \n\n %s</string>
+
     <string name="enter_product_name_validation_error">نام محصول را به درستی وارد نمایید</string>
     <string name="enter_desc_validation_error">توضیحات را به درستی وارد نمایید</string>
     <string name="enter_count_validation_error">تعداد را به درستی وارد نمایید</string>
@@ -73,5 +76,6 @@
     <string name="select_sub_cat_validation_error">زیر دسته را انتخاب کنید</string>
     <string name="show_on_map">نمایش روی نقشه</string>
     <string name="day">روز</string>
+    <string name="share_special_offer">اشتراک گذاری این پیشنهاد</string>
 
 </resources>
