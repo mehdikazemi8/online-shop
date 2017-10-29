@@ -5,12 +5,12 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.bluelinelabs.conductor.RouterTransaction;
+import com.bluelinelabs.conductor.changehandler.HorizontalChangeHandler;
 import com.veevapp.customer.R;
 import com.veevapp.customer.changehandler.ArcFadeMoveChangeHandlerCompat;
 import com.veevapp.customer.controller.base.BaseBackStackController;
@@ -73,7 +73,14 @@ public class SpecialOffersController
     private OnItemSelectedListener<Slider> onSliderSelectedListener = new OnItemSelectedListener<Slider>() {
         @Override
         public void onSelect(Slider slider) {
-            Log.d("TAG", "slider " + slider.getPhotoURL());
+            slider.getSpecialOffer().getProduct().getPhotoURLs().add(0, slider.getPhotoURL());
+
+            getParentController().getRouter().pushController(
+                    RouterTransaction.with(SingleSpecialOfferController.newInstance(
+                            slider.getSpecialOffer(), -1))
+                            .pushChangeHandler(new HorizontalChangeHandler())
+                            .popChangeHandler(new HorizontalChangeHandler())
+            );
         }
 
         @Override

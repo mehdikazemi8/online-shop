@@ -107,6 +107,10 @@ public class SingleSpecialOfferController
 
         if (specialOffer == null) return;
 
+        // comment: if fromPosition is -1 it means this is a slider not a special offer so there is no need for timer
+        if (fromPosition == -1) {
+            tvTimer.setVisibility(View.INVISIBLE);
+        }
 
         headerTitle.setText(getResources().getString(R.string.special_offer));
         tvPrice.setText(String.format(getActivity().getString(R.string.template_price), String.valueOf(specialOffer.getSuggestedPrice())));
