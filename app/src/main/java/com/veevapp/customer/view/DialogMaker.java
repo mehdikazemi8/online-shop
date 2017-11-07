@@ -15,9 +15,9 @@ import com.veevapp.customer.view.dialog.DialogSelectList;
 public class DialogMaker {
     public static Dialog makeSelectListDialog(Context ctx,String title,
                                               String[] items,DialogInterface.OnClickListener onClickListener){
-        DialogSelectList d = new DialogSelectList(ctx);
-        d.setTitle(title);
-        d.setItems(items);
+        DialogSelectList d = new DialogSelectList(ctx, title, items);
+//        d.setTitle(title);
+//        d.setItems(items);
         d.setListener(pos -> {
             d.dismiss();
             if(onClickListener!=null)
