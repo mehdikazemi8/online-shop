@@ -15,12 +15,16 @@ import com.veevapp.customer.data.remote.response.SpecialOffersResponse;
 import com.veevapp.customer.data.remote.response.SubCategoriesResponse;
 import com.veevapp.customer.data.remote.response.TokenResponse;
 
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Url;
 
@@ -47,8 +51,13 @@ public interface ApiService {
     @GET("product/category/{categoryID}/subcategory/")
     Call<SubCategoriesResponse> getAllSubCategories(@Path("categoryID") String categoryID);
 
+    @Multipart
     @POST("buy/")
-    Call<BuyRequest> addBuyRequest(@Body BuyRequest buyRequest);
+//    Call<BuyRequest> addBuyRequest(@Body BuyRequest buyRequest);
+    Call<BuyRequest> addBuyRequest(
+            @Part("buyRequest") RequestBody buyRequest,
+            @Part MultipartBody.Part photo
+    );
 
     @PATCH("customer/info/")
     Call<ResponseBody> sendFcmIDToServer(@Body FCMRequest fcmRequest);

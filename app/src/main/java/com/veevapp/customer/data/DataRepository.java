@@ -5,6 +5,8 @@ import com.veevapp.customer.data.remote.request.ConfirmationCodeRequest;
 import com.veevapp.customer.data.remote.request.RegisterRequest;
 import com.veevapp.customer.util.NetworkHelper;
 
+import okhttp3.MultipartBody;
+
 public class DataRepository extends DataSource {
     private DataSource remoteDataSource;
     private DataSource localDataSource;
@@ -32,11 +34,11 @@ public class DataRepository extends DataSource {
     }
 
     @Override
-    public void addBuyRequest(BuyRequest request, AddBuyRequestCallback callback) {
+    public void addBuyRequest(BuyRequest request, MultipartBody.Part photo, AddBuyRequestCallback callback) {
         if (!networkHelper.isNetworkAvailable()) {
             callback.onNetworkFailure();
         } else {
-            remoteDataSource.addBuyRequest(request, callback);
+            remoteDataSource.addBuyRequest(request, photo, callback);
         }
     }
 

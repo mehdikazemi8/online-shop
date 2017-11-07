@@ -20,6 +20,10 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+
 public class AddBuyRequestPresenter implements AddBuyRequestContract.Presenter {
 
     private DataRepository dataRepository;
@@ -51,15 +55,14 @@ public class AddBuyRequestPresenter implements AddBuyRequestContract.Presenter {
         });
 
 
-
         //Todo replace this with webservice and real colors
         List<ProductColor> colorsList = new ArrayList<>();
-        colorsList.add(new ProductColor("asdf1","black","مشکی"));
-        colorsList.add(new ProductColor("asdf2","white","سفید"));
-        colorsList.add(new ProductColor("asdf3","green","سبز"));
-        colorsList.add(new ProductColor("asdf4","red","قرمز"));
-        colorsList.add(new ProductColor("asdf5","blue","آبی"));
-        colorsList.add(new ProductColor("asdf6","yellow","زرد"));
+        colorsList.add(new ProductColor("asdf1", "black", "مشکی"));
+        colorsList.add(new ProductColor("asdf2", "white", "سفید"));
+        colorsList.add(new ProductColor("asdf3", "green", "سبز"));
+        colorsList.add(new ProductColor("asdf4", "red", "قرمز"));
+        colorsList.add(new ProductColor("asdf5", "blue", "آبی"));
+        colorsList.add(new ProductColor("asdf6", "yellow", "زرد"));
         addBuyRequestView.showProductColors(colorsList);
     }
 
@@ -67,7 +70,7 @@ public class AddBuyRequestPresenter implements AddBuyRequestContract.Presenter {
     public void callAddBuyRequest(BuyRequest request) {
         addBuyRequestView.showProgressBar();
 
-        dataRepository.addBuyRequest(request, new DataSource.AddBuyRequestCallback() {
+        dataRepository.addBuyRequest(request, getPhotoPart(outputUri), new DataSource.AddBuyRequestCallback() {
             @Override
             public void onSuccess(BuyRequest buyRequest) {
                 if (!addBuyRequestView.isActive()) {
@@ -139,22 +142,22 @@ public class AddBuyRequestPresenter implements AddBuyRequestContract.Presenter {
     }
 
     @Override
-    public void onSubmitClicked(String name, String desc, String countStr,String photoBase64,
+    public void onSubmitClicked(String name, String desc, String countStr, String photoBase64,
                                 Category cat, SubCategory subcat, ProductColor color) {
 
         //Validate
-        if(cat==null){
+        if (cat == null) {
             addBuyRequestView.showCatValidateError();
             return;
         }
 
-        if(subcat==null){
+        if (subcat == null) {
             addBuyRequestView.showSubcatValidateError();
             return;
         }
 
 
-        if(TextUtils.isEmpty(countStr)){
+        if (TextUtils.isEmpty(countStr)) {
             addBuyRequestView.showCountValidateError();
             return;
         }
@@ -165,19 +168,18 @@ public class AddBuyRequestPresenter implements AddBuyRequestContract.Presenter {
         } catch (NumberFormatException e) {
             count = 0;
         }
-        if(count<1){
+        if (count < 1) {
             addBuyRequestView.showCountValidateError();
             return;
         }
 
 
-
-        if(TextUtils.isEmpty(name)){
+        if (TextUtils.isEmpty(name)) {
             addBuyRequestView.showNameValidateError();
             return;
         }
 
-        if(TextUtils.isEmpty(desc)){
+        if (TextUtils.isEmpty(desc)) {
             addBuyRequestView.showDescValidateError();
             return;
         }
@@ -194,15 +196,25 @@ public class AddBuyRequestPresenter implements AddBuyRequestContract.Presenter {
                 name
         );
         buyRequest.setProduct(product);
-        product.addPhoto(photoBase64);
+//        product.addPhoto(photoBase64);
         buyRequest.setCount(count);
 
-        if(color!=null)
+        if (color != null)
             buyRequest.setColor(color.getCodeName());
 
         // todo: replace category id and subcategory id
         // todo: implement category adapter, and subcategory adapter
 
         callAddBuyRequest(buyRequest);
+    }
+
+    private MultipartBody.Part getPhotoPart(Uri fileUri) {
+        if (fileUri == null) {
+            return null;
+        }
+
+        File file = new File(fileUri.getPath());
+        RequestBody reqFile = RequestBody.create(MediaType.parse("image/*"), file);
+        return MultipartBody.Part.createFormData("photo", file.getName(), reqFile);
     }
 }

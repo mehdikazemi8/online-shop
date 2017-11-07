@@ -13,6 +13,7 @@ import com.veevapp.customer.data.remote.response.TokenResponse;
 
 import java.util.List;
 
+import okhttp3.MultipartBody;
 import okhttp3.ResponseBody;
 
 public abstract class DataSource {
@@ -147,7 +148,7 @@ public abstract class DataSource {
 
     public abstract void prepareDataSource();
 
-    public abstract void addBuyRequest(BuyRequest request, AddBuyRequestCallback callback);
+    public abstract void addBuyRequest(BuyRequest request, MultipartBody.Part photo, AddBuyRequestCallback callback);
 
     public abstract void getAllCategories(GetCategoriesCallback callback);
 

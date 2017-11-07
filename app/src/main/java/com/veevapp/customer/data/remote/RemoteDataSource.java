@@ -22,8 +22,11 @@ import com.veevapp.customer.data.remote.response.TokenResponse;
 
 import java.util.concurrent.TimeUnit;
 
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
@@ -94,8 +97,11 @@ public class RemoteDataSource extends DataSource {
     }
 
     @Override
-    public void addBuyRequest(BuyRequest request, AddBuyRequestCallback callback) {
-        Call<BuyRequest> call = apiService.addBuyRequest(request);
+    public void addBuyRequest(BuyRequest request, MultipartBody.Part photo, AddBuyRequestCallback callback) {
+        Call<BuyRequest> call = apiService.addBuyRequest(
+                RequestBody.create(MediaType.parse("application/json"), request.serialize()),
+                photo
+        );
         call.enqueue(new Callback<BuyRequest>() {
             @Override
             public void onResponse(Call<BuyRequest> call, Response<BuyRequest> response) {

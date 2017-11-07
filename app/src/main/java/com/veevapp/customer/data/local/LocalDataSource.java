@@ -5,10 +5,12 @@ import com.veevapp.customer.data.models.BuyRequest;
 import com.veevapp.customer.data.remote.request.ConfirmationCodeRequest;
 import com.veevapp.customer.data.remote.request.RegisterRequest;
 
+import okhttp3.MultipartBody;
+
 public class LocalDataSource extends DataSource {
 
     @Override
-    public void addBuyRequest(BuyRequest request, AddBuyRequestCallback callback) {
+    public void addBuyRequest(BuyRequest request, MultipartBody.Part photo, AddBuyRequestCallback callback) {
 
     }
 
