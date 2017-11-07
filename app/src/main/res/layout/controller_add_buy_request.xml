@@ -12,33 +12,29 @@
             android:id="@+id/sfv_categories"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="انتخاب دسته بندی"
             android:layout_margin="8dp"
-            />
+            android:text="انتخاب دسته بندی" />
 
         <com.veevapp.customer.view.customwidget.SelectableFieldView
             android:id="@+id/sfv_subcategories"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="انتخاب زیر دسته"
             android:layout_margin="8dp"
-            />
+            android:text="انتخاب زیر دسته" />
 
         <com.veevapp.customer.view.customwidget.SelectableFieldView
             android:id="@+id/sfv_colors"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="انتخاب رنگ (اختیاری)"
             android:layout_margin="8dp"
-            />
+            android:text="انتخاب رنگ (اختیاری)" />
 
         <com.veevapp.customer.view.customwidget.AppEditText
             android:id="@+id/et_count"
             style="@style/primary_edittext"
             android:hint="تعداد مورد نیاز"
             android:imeOptions="actionNext"
-            android:inputType="numberSigned"
-            />
+            android:inputType="numberSigned" />
 
         <com.veevapp.customer.view.customwidget.AppEditText
             android:id="@+id/et_productName"
@@ -61,8 +57,7 @@
                 android:id="@+id/iv_photo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                />
+                android:layout_margin="8dp" />
 
             <LinearLayout
                 android:id="@+id/ll_addPhoto"
@@ -85,9 +80,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:fontFamily="@font/icons"
-                    android:text="@string/icon.plus.circle" />
+                    android:text="@string/icon.add.circle" />
             </LinearLayout>
-
 
         </LinearLayout>
 

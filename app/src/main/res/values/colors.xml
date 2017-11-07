@@ -19,7 +19,6 @@
     <color name="footer_selected">@color/white</color>
     <color name="footer_unselected">@color/colorAccent</color>
 
-
     <color name="fields_text_selected">@color/black</color>
     <color name="fields_text_unselected">@color/colorAccent</color>
 

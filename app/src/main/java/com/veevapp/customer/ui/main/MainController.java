@@ -34,20 +34,18 @@ public class MainController extends HeaderController implements MainContract.Vie
             R.drawable.ic_person_outline_black_24dp,
             R.drawable.ic_star_border_black_24dp,
             R.drawable.ic_list_black_24dp,
-            R.drawable.ic_playlist_add_black_24dp};
+            R.drawable.ic_playlist_add_black_24dp
+    };
     private TextView[] footerTexts = new TextView[4];
     private ImageView[] footerImages = new ImageView[4];
-
 
     @BindColor(R.color.footer_selected)
     int footerSelectedColor;
 
     @BindColor(R.color.footer_unselected)
-    int foolterUnselectedColor;
-
+    int footerUnselectedColor;
 
     private final int NUMBER_OF_TABS = 4;
-
 
     @BindView(R.id.tab_layout)
     TabLayout tabLayout;
@@ -213,8 +211,8 @@ public class MainController extends HeaderController implements MainContract.Vie
     private void refreshFooterSelected() {
         int selectedPos = viewPager.getCurrentItem();
         for (int i = 0; i < 4; i++) {
-            footerImages[i].setColorFilter(foolterUnselectedColor);
-            footerTexts[i].setTextColor(foolterUnselectedColor);
+            footerImages[i].setColorFilter(footerUnselectedColor);
+            footerTexts[i].setTextColor(footerUnselectedColor);
         }
 
         footerImages[selectedPos].setColorFilter(footerSelectedColor);

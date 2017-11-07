@@ -40,6 +40,10 @@ public class RegisterPresenter implements RegisterContract.Presenter {
                 if (!registerView.isActive()) {
                     return;
                 }
+
+                // todo remove
+                registerView.showMainPageUI();
+
                 registerView.hideProgressBar();
 
             }
@@ -50,6 +54,10 @@ public class RegisterPresenter implements RegisterContract.Presenter {
                     return;
                 }
                 registerView.hideProgressBar();
+
+
+                // todo remove
+                registerView.showMainPageUI();
 
             }
         });

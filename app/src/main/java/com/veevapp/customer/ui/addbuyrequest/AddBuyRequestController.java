@@ -325,7 +325,6 @@ public class AddBuyRequestController extends BaseBackStackController implements 
         if(photoUri!=null && base64Photo!=null){
             tvAddPhoto.setText(getActivity().getString(R.string.change_product_photo));
         }
-
     }
 
     @Override

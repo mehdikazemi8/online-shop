@@ -15,13 +15,26 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_gravity">center_vertical</item>
         <item name="android:padding">@dimen/space_normal</item>
-        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textColor">@color/colorAccent</item>
         <item name="android:textSize">@dimen/text_size_small</item>
     </style>
 
     <style name="register_views">
-        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textSize">@dimen/text_size_normal</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:fontFamily">@font/iransans</item>
+        <item name="android:layout_margin">@dimen/space_small</item>
+    </style>
+
+    <style name="register_views_icons">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:textSize">@dimen/text_size_normal</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/icons</item>
         <item name="android:layout_margin">@dimen/space_small</item>
     </style>
 

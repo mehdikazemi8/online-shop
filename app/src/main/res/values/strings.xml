@@ -6,8 +6,16 @@
     <string name="icon.arrow.right">A</string>
     <string name="icon.arrow.left">B</string>
     <string name="icon.place">C</string>
-    <string name="icon.plus.circle">D</string>
+    <string name="icon.add.circle">D</string>
     <string name="icon.share">E</string>
+    <string name="icon.phone">F</string>
+    <string name="icon.shop">G</string>
+    <string name="icon.pin">H</string>
+    <string name="icon.mobile">I</string>
+    <string name="icon.person">J</string>
+    <string name="icon.exit">K</string>
+    <string name="icon.list">L</string>
+    <string name="icon.telegram">M</string>
 
     <string name="submit">ثبت</string>
     <string name="submit_request">ثبت درخواست</string>
@@ -21,7 +29,7 @@
     <string name="template_previous_price">قیمت قبلی : %s تومان</string>
     <string name="template_shop">فروشگاه : %s</string>
     <string name="template_count">تعداد : %s</string>
-    <string name="template_name">نام : %s</string>
+    <string name="template_name">نام : %s %s</string>
     <string name="template_last_name">نام خانوادگی : %s</string>
     <string name="template_mobile">موبایل : %s</string>
     <string name="template_product_name">نام محصول : %s</string>

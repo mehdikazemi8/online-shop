@@ -10,8 +10,10 @@
     <dimen name="check_mark_size">30dp</dimen>
     <dimen name="material_actionbar_size">56dp</dimen>
 
-    <dimen name="text_size_small">12sp</dimen>
-    <dimen name="text_size_normal">16sp</dimen>
+    <dimen name="text_size_smaller">12sp</dimen>
+    <dimen name="text_size_small">15sp</dimen>
+    <dimen name="text_size_normal">18sp</dimen>
+    <dimen name="text_size_place_icon">60sp</dimen>
 
     <dimen name="logo_size">100dp</dimen>
 

@@ -40,7 +40,7 @@
             android:fontFamily="@font/iransans"
             android:gravity="center"
             android:maxLength="35"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/colorAccent"
             android:textSize="@dimen/text_size_normal"
             android:textStyle="bold" />
     </FrameLayout>

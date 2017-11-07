@@ -53,9 +53,9 @@ public class ProfileController extends BaseBackStackController implements Profil
             return;
         }
 
-        tvName.setText(getActivity().getString(R.string.template_name,customer.name()));
-        tvLastName.setText(getActivity().getString(R.string.template_last_name,customer.family()));
-        tvPhoneNumber.setText(getActivity().getString(R.string.template_mobile,customer.mobile()));
+        tvName.setText(getActivity().getString(R.string.template_name, customer.name(), customer.family()));
+        tvLastName.setText(getActivity().getString(R.string.template_last_name, customer.family()));
+        tvPhoneNumber.setText(getActivity().getString(R.string.template_mobile, customer.mobile()));
     }
 
     @Override

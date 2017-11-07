@@ -1,133 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/root_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:clickable="true"
     android:focusable="true"
-    android:foreground="?android:attr/selectableItemBackground"
-    >
+    android:foreground="?android:attr/selectableItemBackground">
 
 
     <com.veevapp.customer.view.customwidget.AppCardView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         app:cardBackgroundColor="@color/white"
-        >
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingBottom="6dp"
-            >
-
+            android:paddingBottom="6dp">
 
             <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/iv_image"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="1:1"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintDimensionRatio="1:1"
-                app:srcCompat="@drawable/loading"
-                />
+                app:srcCompat="@drawable/loading" />
 
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/tv_price"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintLeft_toLeftOf="@id/iv_image"
-                app:layout_constraintRight_toRightOf="@id/iv_image"
-                app:layout_constraintBottom_toBottomOf="@id/iv_image"
-                android:text="۱۲۹ تومان"
-                android:textSize="14sp"
-                android:textColor="@color/white"
                 android:background="@color/colorAccentAlpha50"
-                android:gravity="center"
-                android:paddingTop="4dp"
-                android:paddingBottom="4dp"
-                android:maxLines="1"
-                android:singleLine="true"
-                android:lines="1"
-                android:textStyle="bold"
                 android:fontFamily="@font/iransans"
-                />
+                android:gravity="center"
+                android:lines="1"
+                android:maxLines="1"
+                android:paddingBottom="4dp"
+                android:paddingTop="4dp"
+                android:singleLine="true"
+                android:text="۱۲۹ تومان"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/iv_image"
+                app:layout_constraintLeft_toLeftOf="@id/iv_image"
+                app:layout_constraintRight_toRightOf="@id/iv_image" />
 
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/tv_timer"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintLeft_toLeftOf="@id/iv_image"
-                app:layout_constraintRight_toRightOf="@id/iv_image"
-                app:layout_constraintTop_toTopOf="@id/iv_image"
-                android:text="3 روز  23:44:55"
-                android:textColor="@color/white"
-                android:background="@drawable/rounded_bot_accent_alpha_75"
-                android:gravity="center"
-                android:paddingTop="6dp"
-                android:paddingBottom="6dp"
-                android:fontFamily="@font/iransans"
-                android:textSize="14sp"
                 android:layout_marginLeft="@dimen/space_normal"
                 android:layout_marginRight="@dimen/space_normal"
-                />
+                android:background="@drawable/rounded_bot_accent_alpha_75"
+                android:fontFamily="@font/iransans"
+                android:gravity="center"
+                android:paddingBottom="6dp"
+                android:paddingTop="6dp"
+                android:text="3 روز  23:44:55"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:layout_constraintLeft_toLeftOf="@id/iv_image"
+                app:layout_constraintRight_toRightOf="@id/iv_image"
+                app:layout_constraintTop_toTopOf="@id/iv_image" />
 
 
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/tv_productName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="گلکسی s4"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/iv_image"
-                android:fontFamily="@font/iransans"
-                android:textStyle="bold"
+                android:layout_marginRight="6dp"
                 android:layout_marginTop="6dp"
+                android:fontFamily="@font/iransans"
+                android:lines="1"
                 android:maxLines="1"
                 android:singleLine="true"
-                android:lines="1"
+                android:text="گلکسی s4"
                 android:textSize="12sp"
-                android:layout_marginRight="6dp"
-                />
+                android:textStyle="bold"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_image" />
 
 
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/tv_previousPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="قیمت قبلی : 1200 تومان"
-                android:textSize="11sp"
-                app:layout_constraintRight_toRightOf="@id/tv_productName"
-                app:layout_constraintTop_toBottomOf="@id/tv_productName"
+                android:layout_marginTop="6dp"
+                android:fontFamily="@font/iransans"
+                android:lines="1"
                 android:maxLines="1"
                 android:singleLine="true"
-                android:lines="1"
+                android:text="قیمت قبلی : 1200 تومان"
                 android:textColor="@color/red_error"
-                android:fontFamily="@font/iransans"
-                android:layout_marginTop="6dp"
-                />
+                android:textSize="11sp"
+                app:layout_constraintRight_toRightOf="@id/tv_productName"
+                app:layout_constraintTop_toBottomOf="@id/tv_productName" />
 
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/tv_shopName"
                 android:layout_width="wrap_content"
                 android:layout_height="17dp"
+                android:layout_marginTop="6dp"
+                android:fontFamily="@font/iransans"
                 android:lines="1"
                 android:maxLines="1"
                 android:singleLine="true"
                 android:text="از فروشگاه علی"
-                android:textSize="11sp"
                 android:textColor="@color/black"
+                android:textSize="11sp"
                 app:layout_constraintRight_toRightOf="@id/tv_previousPrice"
-                app:layout_constraintTop_toBottomOf="@id/tv_previousPrice"
-                android:fontFamily="@font/iransans"
-                android:layout_marginTop="6dp"
-                />
+                app:layout_constraintTop_toBottomOf="@id/tv_previousPrice" />
 
 
         </android.support.constraint.ConstraintLayout>

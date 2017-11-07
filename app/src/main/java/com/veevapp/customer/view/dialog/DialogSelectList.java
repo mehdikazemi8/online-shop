@@ -55,7 +55,6 @@ public class DialogSelectList extends Dialog {
     private void init(Context context) {
         getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
 
-
         View v = LayoutInflater.from(context).inflate(R.layout.dialog_select_item,null,false);
         setContentView(v);
         ButterKnife.bind(this);

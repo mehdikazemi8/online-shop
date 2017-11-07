@@ -66,8 +66,7 @@ public class RemoteDataSource extends DataSource {
                     Request newRequest = builder.build();
                     return chain.proceed(newRequest);
                 }
-        );
-
+        ).build();
 
         HttpLoggingInterceptor logger = new HttpLoggingInterceptor();
         logger.setLevel(HttpLoggingInterceptor.Level.BODY);
