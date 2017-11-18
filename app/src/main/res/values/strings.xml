@@ -87,4 +87,8 @@
     <string name="day">روز</string>
     <string name="share_special_offer">اشتراک گذاری این پیشنهاد</string>
 
+
+    <string name="do_filter">فیلتر کردن</string>
+    <string name="do_sort">مرتب سازی</string>
+
 </resources>

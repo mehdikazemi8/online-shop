@@ -1,6 +1,7 @@
 package com.veevapp.customer.ui.specialoffers;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,16 +18,20 @@ import com.veevapp.customer.controller.base.BaseBackStackController;
 import com.veevapp.customer.data.DataRepository;
 import com.veevapp.customer.data.models.Slider;
 import com.veevapp.customer.data.models.SpecialOffer;
+import com.veevapp.customer.data.models.StringItem;
 import com.veevapp.customer.ui.singlespecialoffer.SingleSpecialOfferController;
 import com.veevapp.customer.util.AppTickHandler;
 import com.veevapp.customer.util.listener.OnItemPositionSelectedListener;
 import com.veevapp.customer.util.listener.OnItemSelectedListener;
+import com.veevapp.customer.view.customwidget.AppTextView;
 import com.veevapp.customer.view.decoration.SpecialOfferDecoration;
+import com.veevapp.customer.view.dialog.DialogSelectListRadio;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 public class SpecialOffersController
         extends BaseBackStackController
@@ -34,8 +39,18 @@ public class SpecialOffersController
 
     @BindView(R.id.special_offers)
     RecyclerView rvSpecialOffers;
+
     @BindView(R.id.sliders)
     RecyclerView rvSliders;
+
+    @BindView(R.id.tv_selectedFilter)
+    AppTextView tvSelectedFilter;
+
+    @BindView(R.id.tv_selectedSort)
+    AppTextView tvSelectedSort;
+    int currentSelectedSort = -1;
+    Dialog sortDialog;
+
 
     private SliderViewAdapter sliderViewAdapter;
     private SpecialOfferViewAdapter specialOfferViewAdapter;
@@ -88,6 +103,29 @@ public class SpecialOffersController
 
         }
     };
+
+    @OnClick(R.id.ll_filter)
+    void onFiltersSelected(){
+
+    }
+
+    @OnClick(R.id.ll_sort)
+    void onSortClicked(){
+
+        ArrayList<StringItem> stringItems = new ArrayList<>();
+        stringItems.add(new StringItem(1,"item 1"));
+        stringItems.add(new StringItem(2,"item 2"));
+        stringItems.add(new StringItem(3,"item 3"));
+        stringItems.add(new StringItem(4,"item 4"));
+        stringItems.add(new StringItem(5,"item 5"));
+
+        sortDialog = new DialogSelectListRadio(getActivity(), pos -> {
+            currentSelectedSort = pos;
+            if(sortDialog!=null)
+                sortDialog.dismiss();
+        },null, currentSelectedSort,stringItems);
+        sortDialog.show();
+    }
 
     @Override
     protected void onViewBound(@NonNull View view) {

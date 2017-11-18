@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import com.veevapp.customer.R;
+import com.veevapp.customer.data.models.StringItem;
 import com.veevapp.customer.view.customwidget.AppTextView;
 
 import java.util.List;
@@ -17,7 +18,7 @@ import java.util.List;
  * iman.neofight@gmail.com
  */
 public class AdapterSelectableList extends
-        BaseRecyclerAdapter<AdapterSelectableList.ViewHolderSelectableList,AdapterSelectableList.StringItem>{
+        BaseRecyclerAdapter<AdapterSelectableList.ViewHolderSelectableList,StringItem>{
 
     Context mContext ;
     OnAdapterViewClickedListener mListener;
@@ -66,25 +67,5 @@ public class AdapterSelectableList extends
             });
         }
 
-    }
-
-    public static final class StringItem implements BaseRecyclerAdapter.IDiff {
-        public int id;
-        public String text;
-
-        public StringItem(int id,String text){
-            this.id = id;
-            this.text = text;
-        }
-
-        @Override
-        public boolean areContentsTheSame(Object thisType) {
-            return text.equals(((StringItem)thisType).text);
-        }
-
-        @Override
-        public boolean areItemsTheSame(Object thisType) {
-            return id == ((StringItem)thisType).id;
-        }
     }
 }

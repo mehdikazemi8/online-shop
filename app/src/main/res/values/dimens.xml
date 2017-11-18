@@ -43,5 +43,13 @@
     <dimen name="tso_paddingHalf">6dp</dimen>
     <!--template_special_offer-->
 
+    <!--filers section-->
+    <dimen name="fs_height">46dp</dimen>
+    <dimen name="fs_icons_size">26dp</dimen>
+    <dimen name="fs_icons_mar">@dimen/space_smaller</dimen>
+    <dimen name="fs_title_size">12sp</dimen>
+    <dimen name="fs_selected_size">10sp</dimen>
+    <!--filers section-->
+
 
 </resources>
