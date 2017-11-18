@@ -9,7 +9,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
+import com.annimon.stream.Stream;
 import com.bluelinelabs.conductor.RouterTransaction;
 import com.bluelinelabs.conductor.changehandler.HorizontalChangeHandler;
 import com.veevapp.customer.R;
@@ -17,10 +19,12 @@ import com.veevapp.customer.changehandler.ArcFadeMoveChangeHandlerCompat;
 import com.veevapp.customer.controller.base.BaseBackStackController;
 import com.veevapp.customer.data.DataRepository;
 import com.veevapp.customer.data.models.Slider;
+import com.veevapp.customer.data.models.SortItem;
 import com.veevapp.customer.data.models.SpecialOffer;
 import com.veevapp.customer.data.models.StringItem;
 import com.veevapp.customer.ui.singlespecialoffer.SingleSpecialOfferController;
 import com.veevapp.customer.util.AppTickHandler;
+import com.veevapp.customer.util.SortHandler;
 import com.veevapp.customer.util.listener.OnItemPositionSelectedListener;
 import com.veevapp.customer.util.listener.OnItemSelectedListener;
 import com.veevapp.customer.view.customwidget.AppTextView;
@@ -50,6 +54,10 @@ public class SpecialOffersController
     AppTextView tvSelectedSort;
     int currentSelectedSort = -1;
     Dialog sortDialog;
+
+    @BindView(R.id.progress_bar)
+    ProgressBar pbLoading;
+
 
 
     private SliderViewAdapter sliderViewAdapter;
@@ -112,17 +120,20 @@ public class SpecialOffersController
     @OnClick(R.id.ll_sort)
     void onSortClicked(){
 
-        ArrayList<StringItem> stringItems = new ArrayList<>();
-        stringItems.add(new StringItem(1,"item 1"));
-        stringItems.add(new StringItem(2,"item 2"));
-        stringItems.add(new StringItem(3,"item 3"));
-        stringItems.add(new StringItem(4,"item 4"));
-        stringItems.add(new StringItem(5,"item 5"));
+        List<SortItem> sortItems = SortHandler.getInstance().getItems();
+        List<StringItem> stringItems = Stream.of(sortItems)
+                .map(sortItem -> new StringItem(sortItem.id,sortItem.text)).toList();
 
         sortDialog = new DialogSelectListRadio(getActivity(), pos -> {
             currentSelectedSort = pos;
             if(sortDialog!=null)
                 sortDialog.dismiss();
+
+            SortItem selectedSortItem = SortHandler.getInstance().getItem(pos);
+
+            tvSelectedSort.setText(selectedSortItem.text);
+            presenter.getSpecialRequest().setSort(selectedSortItem.key);
+            presenter.getSpecialOffers();
         },null, currentSelectedSort,stringItems);
         sortDialog.show();
     }
@@ -165,6 +176,16 @@ public class SpecialOffersController
 //                        .pushChangeHandler(new FadeChangeHandler())
 //                        .popChangeHandler(new FadeChangeHandler())
 //        );
+    }
+
+    @Override
+    public void showLoading() {
+        pbLoading.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideLoading() {
+        pbLoading.setVisibility(View.GONE);
     }
 
     @Override

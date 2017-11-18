@@ -1,166 +1,191 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:scrollbars="none">
+    >
 
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/sliders"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintDimensionRatio="2:1"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
-        <com.veevapp.customer.view.customwidget.AppCardView
-            android:id="@+id/sort_container"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/fs_height"
-            android:orientation="horizontal"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/sliders"
-            >
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                >
-
-
-                <LinearLayout
-                    android:id="@+id/ll_sort"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:gravity="center"
-                    android:background="?android:attr/selectableItemBackground"
-                    >
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:gravity="center"
-                        >
-
-                        <com.veevapp.customer.view.customwidget.AppTextView
-                            android:id="@+id/tv_sort"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/do_sort"
-                            android:fontFamily="@font/iran_sans_bold"
-                            android:textSize="@dimen/fs_title_size"
-                            android:layout_marginBottom="-3dp"
-                            android:textColor="@color/black"
-                            />
-
-                        <com.veevapp.customer.view.customwidget.AppTextView
-                            android:id="@+id/tv_selectedSort"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="پر بازدیدترین"
-                            android:textSize="@dimen/fs_selected_size"
-                            android:layout_marginTop="-3dp"
-                            />
-
-                    </LinearLayout>
-
-
-                    <com.veevapp.customer.view.customwidget.AppImageView
-                        android:id="@+id/iv_sort"
-                        android:layout_width="@dimen/fs_icons_size"
-                        android:layout_height="@dimen/fs_icons_size"
-                        app:srcCompat="@drawable/ic_sort_black_24dp"
-                        app:tint="@color/black"
-                        android:layout_marginLeft="@dimen/fs_icons_mar"
-                        />
-
-
-                </LinearLayout>
-
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/black"
-                    />
-
-                <LinearLayout
-                    android:id="@+id/ll_filter"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:gravity="center"
-                    android:background="?android:attr/selectableItemBackground"
-                    >
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:gravity="center"
-                        >
-
-                        <com.veevapp.customer.view.customwidget.AppTextView
-                            android:id="@+id/tv_filter"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/do_filter"
-                            android:fontFamily="@font/iran_sans_bold"
-                            android:textSize="@dimen/fs_title_size"
-                            android:layout_marginBottom="-3dp"
-                            android:textColor="@color/black"
-                            />
-
-                        <com.veevapp.customer.view.customwidget.AppTextView
-                            android:id="@+id/tv_selectedFilter"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="رنگ , نوع , قیمت و..."
-                            android:textSize="@dimen/fs_selected_size"
-                            android:layout_marginTop="-3dp"
-                            />
-
-                    </LinearLayout>
-
-
-                    <com.veevapp.customer.view.customwidget.AppImageView
-                        android:id="@+id/iv_filter"
-                        android:layout_width="@dimen/fs_icons_size"
-                        android:layout_height="@dimen/fs_icons_size"
-                        app:srcCompat="@drawable/ic_filter_list_black_24dp"
-                        app:tint="@color/black"
-                        android:layout_marginLeft="@dimen/fs_icons_mar"
-                        />
-
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-
-        </com.veevapp.customer.view.customwidget.AppCardView>
-
-        i<android.support.v7.widget.RecyclerView
-        android:id="@+id/special_offers"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:clipToPadding="false"
-        android:padding="@dimen/tso_paddingHalf"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scrollbars="none"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/sort_container" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
 
-    </android.support.constraint.ConstraintLayout>
-</android.support.v4.widget.NestedScrollView>
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/sliders"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="2:1"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <com.veevapp.customer.view.customwidget.AppCardView
+                android:id="@+id/sort_container"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/fs_height"
+                android:orientation="horizontal"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/sliders"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    >
+
+
+                    <LinearLayout
+                        android:id="@+id/ll_sort"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:background="?android:attr/selectableItemBackground"
+                        >
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            >
+
+                            <com.veevapp.customer.view.customwidget.AppTextView
+                                android:id="@+id/tv_sort"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/do_sort"
+                                android:fontFamily="@font/iran_sans_bold"
+                                android:textSize="@dimen/fs_title_size"
+                                android:layout_marginBottom="-3dp"
+                                android:textColor="@color/black"
+                                />
+
+                            <com.veevapp.customer.view.customwidget.AppTextView
+                                android:id="@+id/tv_selectedSort"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="-"
+                                android:textSize="@dimen/fs_selected_size"
+                                android:layout_marginTop="-3dp"
+                                />
+
+                        </LinearLayout>
+
+
+                        <com.veevapp.customer.view.customwidget.AppImageView
+                            android:id="@+id/iv_sort"
+                            android:layout_width="@dimen/fs_icons_size"
+                            android:layout_height="@dimen/fs_icons_size"
+                            app:srcCompat="@drawable/ic_sort_black_24dp"
+                            app:tint="@color/black"
+                            android:layout_marginLeft="@dimen/fs_icons_mar"
+                            />
+
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/black"
+                        />
+
+                    <LinearLayout
+                        android:id="@+id/ll_filter"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:background="?android:attr/selectableItemBackground"
+                        >
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            >
+
+                            <com.veevapp.customer.view.customwidget.AppTextView
+                                android:id="@+id/tv_filter"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/do_filter"
+                                android:fontFamily="@font/iran_sans_bold"
+                                android:textSize="@dimen/fs_title_size"
+                                android:layout_marginBottom="-3dp"
+                                android:textColor="@color/black"
+                                />
+
+                            <com.veevapp.customer.view.customwidget.AppTextView
+                                android:id="@+id/tv_selectedFilter"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="رنگ , نوع , قیمت و..."
+                                android:textSize="@dimen/fs_selected_size"
+                                android:layout_marginTop="-3dp"
+                                />
+
+                        </LinearLayout>
+
+
+                        <com.veevapp.customer.view.customwidget.AppImageView
+                            android:id="@+id/iv_filter"
+                            android:layout_width="@dimen/fs_icons_size"
+                            android:layout_height="@dimen/fs_icons_size"
+                            app:srcCompat="@drawable/ic_filter_list_black_24dp"
+                            app:tint="@color/black"
+                            android:layout_marginLeft="@dimen/fs_icons_mar"
+                            />
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            </com.veevapp.customer.view.customwidget.AppCardView>
+
+            i<android.support.v7.widget.RecyclerView
+            android:id="@+id/special_offers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:padding="@dimen/tso_paddingHalf"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/sort_container" />
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+</android.support.constraint.ConstraintLayout>

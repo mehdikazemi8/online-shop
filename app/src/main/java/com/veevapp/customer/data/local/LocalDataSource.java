@@ -4,6 +4,7 @@ import com.veevapp.customer.data.DataSource;
 import com.veevapp.customer.data.models.BuyRequest;
 import com.veevapp.customer.data.remote.request.ConfirmationCodeRequest;
 import com.veevapp.customer.data.remote.request.RegisterRequest;
+import com.veevapp.customer.data.remote.request.SpecialOfferRequest;
 
 import okhttp3.MultipartBody;
 
@@ -50,8 +51,7 @@ public class LocalDataSource extends DataSource {
     }
 
     @Override
-    public void getAvailableSpecialOffers(String categoryID, String subCategoryID, Integer priceFrom, Integer priceTo, Integer sortPrice, GetAvailableSpecialOffers callback) {
-
+    public void getAvailableSpecialOffers(SpecialOfferRequest request, GetAvailableSpecialOffers callback) {
     }
 
     @Override

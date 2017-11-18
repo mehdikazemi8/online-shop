@@ -4,6 +4,7 @@ import com.veevapp.customer.BasePresenter;
 import com.veevapp.customer.BaseView;
 import com.veevapp.customer.data.models.Slider;
 import com.veevapp.customer.data.models.SpecialOffer;
+import com.veevapp.customer.data.remote.request.SpecialOfferRequest;
 
 import java.util.List;
 
@@ -16,12 +17,20 @@ public class SpecialOffersContract {
         void showSliders(List<Slider> sliderList);
 
         void showSingleSpecialOffer(SpecialOffer specialOffer, int fromPosition);
+
+        void showLoading();
+
+        void hideLoading();
     }
 
     public interface Presenter extends BasePresenter {
 
         void onSpecialOfferSelected(SpecialOffer specialOffer, int fromPosition);
 
-        void getSpecialOffers(String categoryID, String subCategoryID, Integer priceFrom, Integer priceTo, Integer sortPrice);
+        void getSpecialOffers();
+
+        SpecialOfferRequest getSpecialRequest();
+
+        void setSpecialOfferRequest(SpecialOfferRequest request);
     }
 }

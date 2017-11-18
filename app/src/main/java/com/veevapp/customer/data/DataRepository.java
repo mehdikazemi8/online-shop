@@ -3,6 +3,7 @@ package com.veevapp.customer.data;
 import com.veevapp.customer.data.models.BuyRequest;
 import com.veevapp.customer.data.remote.request.ConfirmationCodeRequest;
 import com.veevapp.customer.data.remote.request.RegisterRequest;
+import com.veevapp.customer.data.remote.request.SpecialOfferRequest;
 import com.veevapp.customer.util.NetworkHelper;
 
 import okhttp3.MultipartBody;
@@ -104,17 +105,12 @@ public class DataRepository extends DataSource {
     }
 
     @Override
-    public void getAvailableSpecialOffers(String categoryID, String subCategoryID, Integer priceFrom, Integer priceTo, Integer sortPrice, GetAvailableSpecialOffers callback) {
+    public void getAvailableSpecialOffers(SpecialOfferRequest request, GetAvailableSpecialOffers callback) {
         if (!networkHelper.isNetworkAvailable()) {
             callback.onNetworkFailure();
         } else {
             remoteDataSource.getAvailableSpecialOffers(
-                    categoryID,
-                    subCategoryID,
-                    priceFrom,
-                    priceTo,
-                    sortPrice,
-                    callback
+                    request, callback
             );
         }
     }

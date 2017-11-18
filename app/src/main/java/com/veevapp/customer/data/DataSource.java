@@ -9,6 +9,7 @@ import com.veevapp.customer.data.models.SpecialOffer;
 import com.veevapp.customer.data.models.SubCategory;
 import com.veevapp.customer.data.remote.request.ConfirmationCodeRequest;
 import com.veevapp.customer.data.remote.request.RegisterRequest;
+import com.veevapp.customer.data.remote.request.SpecialOfferRequest;
 import com.veevapp.customer.data.remote.response.TokenResponse;
 
 import java.util.List;
@@ -165,11 +166,7 @@ public abstract class DataSource {
     public abstract void getSingleOffer(String offerID, GetSingleOfferCallback callback);
 
     public abstract void getAvailableSpecialOffers(
-            String categoryID,
-            String subCategoryID,
-            Integer priceFrom,
-            Integer priceTo,
-            Integer sortPrice,
+            SpecialOfferRequest request,
             GetAvailableSpecialOffers callback
     );
 

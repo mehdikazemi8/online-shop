@@ -11,6 +11,7 @@ import com.veevapp.customer.data.models.Customer;
 import com.veevapp.customer.data.remote.request.ConfirmationCodeRequest;
 import com.veevapp.customer.data.remote.request.FCMRequest;
 import com.veevapp.customer.data.remote.request.RegisterRequest;
+import com.veevapp.customer.data.remote.request.SpecialOfferRequest;
 import com.veevapp.customer.data.remote.request.SubmitMobileRequest;
 import com.veevapp.customer.data.remote.response.BuyRequestsResponse;
 import com.veevapp.customer.data.remote.response.CategoriesResponse;
@@ -260,13 +261,13 @@ public class RemoteDataSource extends DataSource {
     }
 
     @Override
-    public void getAvailableSpecialOffers(String categoryID, String subCategoryID, Integer priceFrom, Integer priceTo, Integer sortPrice, GetAvailableSpecialOffers callback) {
+    public void getAvailableSpecialOffers(SpecialOfferRequest request, GetAvailableSpecialOffers callback) {
         Call<SpecialOffersResponse> call = apiService.getAvailableSpecialOffers(
-                categoryID,
-                subCategoryID,
-                priceFrom,
-                priceTo,
-                sortPrice
+                request.getCategoryID(),
+                request.getSubCategoryID(),
+                request.getPriceFrom(),
+                request.getPriceTo(),
+                request.getSort()
         );
         call.enqueue(new Callback<SpecialOffersResponse>() {
             @Override

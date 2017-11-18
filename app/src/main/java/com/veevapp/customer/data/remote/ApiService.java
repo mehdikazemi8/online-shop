@@ -75,10 +75,10 @@ public interface ApiService {
     @GET("specialOffer/")
     Call<SpecialOffersResponse> getAvailableSpecialOffers(
             @Query("category") String categoryID,
-            @Query("subCategry") String subCategoryID,
+            @Query("subCategory") String subCategoryID,
             @Query("priceFrom") Integer priceFrom,
             @Query("priceTo") Integer priceTo,
-            @Query("sortPrice") Integer sortPrice
+            @Query("sort") String sort
     );
 
     @GET("slider/")
