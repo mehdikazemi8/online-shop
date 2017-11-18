@@ -45,8 +45,10 @@ public class SelectableFieldView extends RelativeLayout {
     ConstraintLayout csContainer;
 
     Object selectedObject;
+    Context mcontext;
 
     private void initAttrs(Context context, AttributeSet attrs) {
+        mcontext = context;
         if (attrs != null) {
             int[] attrsArray = {
                     android.R.attr.text
@@ -89,10 +91,10 @@ public class SelectableFieldView extends RelativeLayout {
     public void setIsSelected(boolean isSelected){
         if(isSelected) {
             tvTitle.setTextColor(ContextCompat.getColor(getContext(), R.color.fields_text_selected));
-            tvTitle.setTypeface(null, Typeface.BOLD);
+            tvTitle.setTypeface(tvTitle.getTypeface(), Typeface.BOLD);
         }else{
             tvTitle.setTextColor(ContextCompat.getColor(getContext(),R.color.fields_text_unselected));
-            tvTitle.setTypeface(null, Typeface.NORMAL);
+            tvTitle.setTypeface(tvTitle.getTypeface(), Typeface.NORMAL);
         }
     }
 

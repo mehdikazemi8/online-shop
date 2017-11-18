@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,15 +14,21 @@ import android.widget.ProgressBar;
 
 import com.annimon.stream.Stream;
 import com.bluelinelabs.conductor.RouterTransaction;
+import com.bluelinelabs.conductor.changehandler.FadeChangeHandler;
 import com.bluelinelabs.conductor.changehandler.HorizontalChangeHandler;
 import com.veevapp.customer.R;
 import com.veevapp.customer.changehandler.ArcFadeMoveChangeHandlerCompat;
 import com.veevapp.customer.controller.base.BaseBackStackController;
 import com.veevapp.customer.data.DataRepository;
+import com.veevapp.customer.data.local.PreferenceManager;
+import com.veevapp.customer.data.models.Category;
 import com.veevapp.customer.data.models.Slider;
 import com.veevapp.customer.data.models.SortItem;
 import com.veevapp.customer.data.models.SpecialOffer;
 import com.veevapp.customer.data.models.StringItem;
+import com.veevapp.customer.data.models.SubCategory;
+import com.veevapp.customer.data.remote.request.SpecialOfferRequest;
+import com.veevapp.customer.ui.filter.FilterController;
 import com.veevapp.customer.ui.singlespecialoffer.SingleSpecialOfferController;
 import com.veevapp.customer.util.AppTickHandler;
 import com.veevapp.customer.util.SortHandler;
@@ -114,7 +121,43 @@ public class SpecialOffersController
 
     @OnClick(R.id.ll_filter)
     void onFiltersSelected(){
+        getParentController().getRouter().pushController(
+                RouterTransaction.with(FilterController.newInstance(presenter.getSpecialRequest(), request -> {
+                    if(request==null)return;
 
+                    presenter.setSpecialOfferRequest(request);
+                    presenter.getSpecialOffers();
+
+
+                    refreshFiltersText(request);
+
+                }))
+                        .pushChangeHandler(new FadeChangeHandler())
+                        .popChangeHandler(new FadeChangeHandler())
+        );
+    }
+
+    private void refreshFiltersText(SpecialOfferRequest request) {
+        String showingText = "";
+
+        if(!TextUtils.isEmpty(request.getCategoryID())) {
+            Category cat = PreferenceManager.getInstance(getActivity()).getCategoryBiId(request.getCategoryID());
+            showingText += cat.getTitle();
+
+            SubCategory subcat;
+            if(cat!=null && !TextUtils.isEmpty(request.getSubCategoryID())){
+                subcat = PreferenceManager.getInstance(getActivity()).getSubCategoryById(cat.getId(),request.getSubCategoryID());
+
+                showingText += " - " + subcat.getTitle();
+            }
+        }
+
+        if(request.getPriceFrom()!=null &&
+                request.getPriceTo()!=null) {
+            showingText += " " + request.getPriceFrom() + " تا " + request.getPriceTo();
+        }
+
+        tvSelectedFilter.setText(showingText);
     }
 
     @OnClick(R.id.ll_sort)

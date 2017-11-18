@@ -184,6 +184,15 @@ public class PreferenceManager {
         }
     }
 
+    public Category getCategoryBiId(String catId) {
+        for(Category cat : getCategories()){
+            if(cat.getId().equals(catId)){
+                return cat;
+            }
+        }
+        return null;
+    }
+
     //*************************************************************
 
     public void putSubCategory(String categoryID, SubCategoriesResponse subCategoriesResponse) {
@@ -197,6 +206,15 @@ public class PreferenceManager {
         } else {
             return response.getSubCategories();
         }
+    }
+
+    public SubCategory getSubCategoryById(String catId,String subCategoryID) {
+        for(SubCategory subCat : getSubCategory(catId)){
+            if(subCat.getId().equals(subCategoryID)){
+                return subCat;
+            }
+        }
+        return null;
     }
 
     //*************************************************************

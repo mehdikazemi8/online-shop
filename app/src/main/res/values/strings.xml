@@ -90,5 +90,6 @@
 
     <string name="do_filter">فیلتر کردن</string>
     <string name="do_sort">مرتب سازی</string>
+    <string name="filter_now">فیلتر کن</string>
 
 </resources>
