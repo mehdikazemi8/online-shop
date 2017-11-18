@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -18,7 +19,18 @@
                 style="@style/template_header_icons"
                 android:fontFamily="@font/icons"
                 android:text="@string/icon.arrow.left"
-                android:visibility="invisible" />
+                android:visibility="gone"
+                />
+
+            <com.veevapp.customer.view.customwidget.AppImageView
+                android:id="@+id/template_header_refresh"
+                android:layout_width="@dimen/material_actionbar_size"
+                android:layout_height="@dimen/material_actionbar_size"
+                android:text="@string/icon.arrow.left"
+                app:srcCompat="@drawable/ic_refresh_black_24dp"
+                android:padding="12dp"
+                android:visibility="gone"
+                />
 
             <TextView
                 android:layout_width="0dp"

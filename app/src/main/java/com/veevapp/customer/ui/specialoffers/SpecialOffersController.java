@@ -152,11 +152,6 @@ public class SpecialOffersController
             }
         }
 
-        if(request.getPriceFrom()!=null &&
-                request.getPriceTo()!=null) {
-            showingText += " " + request.getPriceFrom() + " تا " + request.getPriceTo();
-        }
-
         tvSelectedFilter.setText(showingText);
     }
 

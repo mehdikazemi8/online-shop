@@ -74,6 +74,8 @@ public class FilterController extends HeaderController implements FilterContract
 
         headerTitle.setText(getActivity().getString(R.string.do_filter));
 
+        headerRefresh.setVisibility(View.VISIBLE);
+
         presenter = new FilterPresenter(this,mSpecialOfferRequest, PreferenceManager.getInstance(getActivity()));
         presenter.start();
 
@@ -97,6 +99,9 @@ public class FilterController extends HeaderController implements FilterContract
                 titles, (dialogInterface, i) -> {
                     Category category = categoryList.get(i);
                     setCategory(category);
+
+                    sfvSubcategories.setSelectedObject(null);
+                    refreshSelectedSubCategory();
                 }).show();
     }
 
@@ -157,12 +162,28 @@ public class FilterController extends HeaderController implements FilterContract
                     subCatId = null;
                 }
                 mSpecialOfferRequest.setSubCategoryID(subCatId);
+            }else{
+                mSpecialOfferRequest.setSubCategoryID(null);
             }
         }
         if(mOnFilterDoneListener!=null)
             mOnFilterDoneListener.onFilterDone(mSpecialOfferRequest);
 
         getRouter().popCurrentController();
+    }
+
+    @OnClick(R.id.template_header_refresh)
+    void onRefreshClicked(){
+        //Reset Filters
+        etPriceFrom.setText("");
+        etPriceTo.setText("");
+
+        sfvCategories.setSelectedObject(null);
+        refreshSelectedCategory();
+
+        sfvSubcategories.setSelectedObject(null);
+        refreshSelectedSubCategory();
+
     }
 
     @Override

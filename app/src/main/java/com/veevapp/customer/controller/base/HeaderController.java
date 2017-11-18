@@ -4,6 +4,7 @@ import android.widget.TextView;
 
 import com.veevapp.customer.BaseController;
 import com.veevapp.customer.R;
+import com.veevapp.customer.view.customwidget.AppImageView;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -28,4 +29,7 @@ public abstract class HeaderController extends BaseController {
 
     @BindView(R.id.template_header_title)
     public TextView headerTitle;
+
+    @BindView(R.id.template_header_refresh)
+    public AppImageView headerRefresh;
 }
