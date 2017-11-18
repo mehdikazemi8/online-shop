@@ -30,8 +30,8 @@ import retrofit2.http.Url;
 
 public interface ApiService {
     //    String BASE_URL = "http://www.mocky.io/v2/";
-//    String BASE_URL = "http://136.243.149.242:8090/";
-    String BASE_URL = "http://192.168.0.55:9000/";
+    String BASE_URL = "http://136.243.149.242:8090/";
+//    String BASE_URL = "http://192.168.0.55:9000/";
 
     @POST("customer/submit_mobile/")
     Call<ResponseBody> submitMobileNumber(@Body SubmitMobileRequest request);

@@ -16,6 +16,7 @@
     <string name="icon.exit">K</string>
     <string name="icon.list">L</string>
     <string name="icon.telegram">M</string>
+    <string name="icon.sort">N</string>
 
     <string name="submit">ثبت</string>
     <string name="submit_request">ثبت درخواست</string>
