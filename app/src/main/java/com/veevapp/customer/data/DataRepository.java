@@ -104,11 +104,18 @@ public class DataRepository extends DataSource {
     }
 
     @Override
-    public void getAvailableSpecialOffers(GetAvailableSpecialOffers callback) {
+    public void getAvailableSpecialOffers(String categoryID, String subCategoryID, Integer priceFrom, Integer priceTo, Integer sortPrice, GetAvailableSpecialOffers callback) {
         if (!networkHelper.isNetworkAvailable()) {
             callback.onNetworkFailure();
         } else {
-            remoteDataSource.getAvailableSpecialOffers(callback);
+            remoteDataSource.getAvailableSpecialOffers(
+                    categoryID,
+                    subCategoryID,
+                    priceFrom,
+                    priceTo,
+                    sortPrice,
+                    callback
+            );
         }
     }
 

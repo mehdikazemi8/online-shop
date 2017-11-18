@@ -260,8 +260,14 @@ public class RemoteDataSource extends DataSource {
     }
 
     @Override
-    public void getAvailableSpecialOffers(GetAvailableSpecialOffers callback) {
-        Call<SpecialOffersResponse> call = apiService.getAvailableSpecialOffers();
+    public void getAvailableSpecialOffers(String categoryID, String subCategoryID, Integer priceFrom, Integer priceTo, Integer sortPrice, GetAvailableSpecialOffers callback) {
+        Call<SpecialOffersResponse> call = apiService.getAvailableSpecialOffers(
+                categoryID,
+                subCategoryID,
+                priceFrom,
+                priceTo,
+                sortPrice
+        );
         call.enqueue(new Callback<SpecialOffersResponse>() {
             @Override
             public void onResponse(Call<SpecialOffersResponse> call, Response<SpecialOffersResponse> response) {

@@ -164,7 +164,14 @@ public abstract class DataSource {
 
     public abstract void getSingleOffer(String offerID, GetSingleOfferCallback callback);
 
-    public abstract void getAvailableSpecialOffers(GetAvailableSpecialOffers callback);
+    public abstract void getAvailableSpecialOffers(
+            String categoryID,
+            String subCategoryID,
+            Integer priceFrom,
+            Integer priceTo,
+            Integer sortPrice,
+            GetAvailableSpecialOffers callback
+    );
 
     public abstract void getCustomerInfo(GetCustomerInfoCallback callback);
 

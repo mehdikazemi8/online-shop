@@ -50,7 +50,7 @@ public class LocalDataSource extends DataSource {
     }
 
     @Override
-    public void getAvailableSpecialOffers(GetAvailableSpecialOffers callback) {
+    public void getAvailableSpecialOffers(String categoryID, String subCategoryID, Integer priceFrom, Integer priceTo, Integer sortPrice, GetAvailableSpecialOffers callback) {
 
     }
 

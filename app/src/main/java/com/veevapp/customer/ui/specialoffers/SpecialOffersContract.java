@@ -22,5 +22,6 @@ public class SpecialOffersContract {
 
         void onSpecialOfferSelected(SpecialOffer specialOffer, int fromPosition);
 
+        void getSpecialOffers(String categoryID, String subCategoryID, Integer priceFrom, Integer priceTo, Integer sortPrice);
     }
 }

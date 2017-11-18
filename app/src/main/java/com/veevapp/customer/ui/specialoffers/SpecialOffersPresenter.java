@@ -20,10 +20,12 @@ public class SpecialOffersPresenter implements SpecialOffersContract.Presenter {
     @Override
     public void start() {
 
-        dataRepository.getAvailableSpecialOffers(new DataSource.GetAvailableSpecialOffers() {
+        getSpecialOffers(null, null, null, null, null);
+
+        dataRepository.getSliders(new DataSource.GetSlidersCallback() {
             @Override
-            public void onResponse(List<SpecialOffer> specialOfferList) {
-                specialView.showSpecialOffers(specialOfferList);
+            public void onResponse(List<Slider> sliderList) {
+                specialView.showSliders(sliderList);
             }
 
             @Override
@@ -36,11 +38,14 @@ public class SpecialOffersPresenter implements SpecialOffersContract.Presenter {
 
             }
         });
+    }
 
-        dataRepository.getSliders(new DataSource.GetSlidersCallback() {
+    @Override
+    public void getSpecialOffers(String categoryID, String subCategoryID, Integer priceFrom, Integer priceTo, Integer sortPrice) {
+        dataRepository.getAvailableSpecialOffers(categoryID, subCategoryID, priceFrom, priceTo, sortPrice, new DataSource.GetAvailableSpecialOffers() {
             @Override
-            public void onResponse(List<Slider> sliderList) {
-                specialView.showSliders(sliderList);
+            public void onResponse(List<SpecialOffer> specialOfferList) {
+                specialView.showSpecialOffers(specialOfferList);
             }
 
             @Override

@@ -26,6 +26,7 @@ import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 import retrofit2.http.Url;
 
 public interface ApiService {
@@ -72,7 +73,13 @@ public interface ApiService {
     Call<OffersResponse> getOffersOfOneBuyRequest(@Path("buyRequestID") String buyRequestID);
 
     @GET("specialOffer/")
-    Call<SpecialOffersResponse> getAvailableSpecialOffers();
+    Call<SpecialOffersResponse> getAvailableSpecialOffers(
+            @Query("category") String categoryID,
+            @Query("subCategry") String subCategoryID,
+            @Query("priceFrom") Integer priceFrom,
+            @Query("priceTo") Integer priceTo,
+            @Query("sortPrice") Integer sortPrice
+    );
 
     @GET("slider/")
     Call<SlidersResponse> getSliders();
