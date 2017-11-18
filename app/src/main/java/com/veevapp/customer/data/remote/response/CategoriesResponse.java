@@ -1,11 +1,16 @@
 package com.veevapp.customer.data.remote.response;
 
+import com.veevapp.customer.data.models.BaseModel;
 import com.veevapp.customer.data.models.Category;
 
 import java.util.List;
 
-public class CategoriesResponse {
+public class CategoriesResponse extends BaseModel {
     List<Category> categories;
+
+    public CategoriesResponse(List<Category> categories) {
+        this.categories = categories;
+    }
 
     public List<Category> getCategories() {
         return categories;

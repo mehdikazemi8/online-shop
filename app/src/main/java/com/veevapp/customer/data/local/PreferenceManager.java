@@ -4,18 +4,25 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.veevapp.customer.data.models.BaseModel;
+import com.veevapp.customer.data.models.Category;
 import com.veevapp.customer.data.models.Customer;
+import com.veevapp.customer.data.models.SubCategory;
 import com.veevapp.customer.data.remote.request.FCMRequest;
+import com.veevapp.customer.data.remote.response.CategoriesResponse;
+import com.veevapp.customer.data.remote.response.SubCategoriesResponse;
 import com.veevapp.customer.data.remote.response.TokenResponse;
 
 import java.lang.reflect.Type;
+import java.util.List;
+import java.util.ArrayList;
 
 // todo, for all operations use asynctask
 public class PreferenceManager {
     private enum Key {
         TOKEN,
         CUSTOMER_INFO,
-        FCM_ID
+        FCM_ID,
+        CATEGORIES
     }
 
     public static PreferenceManager getInstance(Context context) {
@@ -64,6 +71,11 @@ public class PreferenceManager {
         editor.apply();
     }
 
+    private void put(String key, BaseModel object) {
+        editor.putString(key, object.serialize());
+        editor.apply();
+    }
+
     private String getString(Key key) {
         return sharedPreferences.getString(key.toString(), null);
     }
@@ -82,6 +94,15 @@ public class PreferenceManager {
 
     private <T> T get(Key key, Type type) {
         String json = sharedPreferences.getString(key.toString(), null);
+        if (json == null) {
+            return null;
+        }
+
+        return BaseModel.deserialize(json, type);
+    }
+
+    private <T> T get(String key, Type type) {
+        String json = sharedPreferences.getString(key, null);
         if (json == null) {
             return null;
         }
@@ -148,6 +169,37 @@ public class PreferenceManager {
         return get(Key.CUSTOMER_INFO, Customer.class);
     }
 
+    //*************************************************************
+
+    public void putCategories(CategoriesResponse categoriesResponse) {
+        put(Key.CATEGORIES, categoriesResponse);
+    }
+
+    public List<Category> getCategories() {
+        CategoriesResponse response = get(Key.CATEGORIES, CategoriesResponse.class);
+        if (response == null) {
+            return new ArrayList<>();
+        } else {
+            return response.getCategories();
+        }
+    }
+
+    //*************************************************************
+
+    public void putSubCategory(String categoryID, SubCategoriesResponse subCategoriesResponse) {
+        put(categoryID, subCategoriesResponse);
+    }
+
+    public List<SubCategory> getSubCategory(String categoryID) {
+        SubCategoriesResponse response = get(categoryID, SubCategoriesResponse.class);
+        if (response == null) {
+            return new ArrayList<>();
+        } else {
+            return response.getSubCategories();
+        }
+    }
+
+    //*************************************************************
 
 }
 
