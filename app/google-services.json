@@ -1,0 +1,73 @@
+{
+  "project_info": {
+    "project_number": "891333992469",
+    "firebase_url": "https://veevapp-9037f.firebaseio.com",
+    "project_id": "veevapp-9037f",
+    "storage_bucket": "veevapp-9037f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:891333992469:android:d65b12d7381bcac5",
+        "android_client_info": {
+          "package_name": "com.veevapp.seller"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "891333992469-3ra6ugegh9j84coljsn4ifdhu610aet3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDiD9rECawTexUm8O7R6xCr_-kQxfNNU40"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:891333992469:android:f58e8f8113f404f4",
+        "android_client_info": {
+          "package_name": "com.veevapp.customer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "891333992469-3ra6ugegh9j84coljsn4ifdhu610aet3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDiD9rECawTexUm8O7R6xCr_-kQxfNNU40"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
