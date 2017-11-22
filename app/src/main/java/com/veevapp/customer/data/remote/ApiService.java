@@ -78,7 +78,8 @@ public interface ApiService {
             @Query("subCategory") String subCategoryID,
             @Query("priceFrom") Integer priceFrom,
             @Query("priceTo") Integer priceTo,
-            @Query("sort") String sort
+            @Query("sort") String sort,
+            @Query("keyword") String keyword
     );
 
     @GET("slider/")

@@ -10,6 +10,7 @@ public class SpecialOfferRequest {
     private Integer priceFrom;
     private Integer priceTo;
     private String sort;
+    private String keyword;
 
 
     public String getCategoryID() {
@@ -45,5 +46,12 @@ public class SpecialOfferRequest {
     }
     public void setSort(String sort) {
         this.sort = sort;
+    }
+
+    public String getKeyword() {
+        return keyword;
+    }
+    public void setKeyword(String keyword) {
+        this.keyword = keyword;
     }
 }

@@ -26,7 +26,18 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
+            android:paddingTop="@dimen/space_normal"
+            android:clipToPadding="false"
             >
+
+            <com.veevapp.customer.view.customwidget.AppEditText
+                android:id="@+id/et_keyword"
+                android:layout_width="match_parent"
+                style="@style/primary_edittext"
+                android:hint="جستجو (کلمه کلیدی)"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                />
 
             <com.veevapp.customer.view.customwidget.AppTextView
                 android:layout_width="wrap_content"
@@ -37,7 +48,7 @@
                 android:layout_gravity="right"
                 android:layout_marginRight="@dimen/space_small"
                 android:layout_marginBottom="@dimen/space_small"
-                android:layout_marginTop="@dimen/space_large"
+                android:layout_marginTop="@dimen/space_normal"
                 android:fontFamily="@font/iransans"
                 />
 
@@ -78,7 +89,7 @@
                 android:layout_gravity="right"
                 android:layout_marginRight="@dimen/space_small"
                 android:layout_marginBottom="@dimen/space_small"
-                android:layout_marginTop="@dimen/space_large"
+                android:layout_marginTop="@dimen/space_normal"
                 android:fontFamily="@font/iransans"
                 />
 
@@ -102,7 +113,7 @@
                 android:layout_gravity="right"
                 android:layout_marginRight="@dimen/space_small"
                 android:layout_marginBottom="@dimen/space_small"
-                android:layout_marginTop="@dimen/space_large"
+                android:layout_marginTop="@dimen/space_normal"
                 android:fontFamily="@font/iransans"
                 />
 

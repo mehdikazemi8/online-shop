@@ -30,6 +30,7 @@
                 app:srcCompat="@drawable/ic_refresh_black_24dp"
                 android:padding="12dp"
                 android:visibility="gone"
+                app:tint="@color/colorAccent"
                 />
 
             <TextView

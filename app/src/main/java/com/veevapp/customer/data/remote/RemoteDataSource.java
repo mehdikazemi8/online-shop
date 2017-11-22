@@ -267,7 +267,8 @@ public class RemoteDataSource extends DataSource {
                 request.getSubCategoryID(),
                 request.getPriceFrom(),
                 request.getPriceTo(),
-                request.getSort()
+                request.getSort(),
+                request.getKeyword()
         );
         call.enqueue(new Callback<SpecialOffersResponse>() {
             @Override

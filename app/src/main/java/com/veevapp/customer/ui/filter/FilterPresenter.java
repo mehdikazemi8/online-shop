@@ -26,6 +26,10 @@ public class FilterPresenter implements FilterContract.Presenter {
         filterView.showCategories(mPreferenceManager.getCategories());
 
         if(mSpecialOfferRequest!=null){
+            if(mSpecialOfferRequest.getKeyword()!=null){
+                filterView.setKeyword(mSpecialOfferRequest.getKeyword());
+            }
+
             if(mSpecialOfferRequest.getPriceFrom()!=null){
                 filterView.setPriceFrom(String.valueOf(mSpecialOfferRequest.getPriceFrom()));
             }

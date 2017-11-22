@@ -49,6 +49,9 @@ public class FilterController extends HeaderController implements FilterContract
     private List<SubCategory> subCategoryList = new ArrayList<>();
 
 
+    @BindView(R.id.et_keyword)
+    AppEditText etKeyword;
+
     @BindView(R.id.sfv_categories)
     SelectableFieldView sfvCategories;
 
@@ -127,6 +130,8 @@ public class FilterController extends HeaderController implements FilterContract
     @OnClick(R.id.btn_filter)
     void onFilterClickListener(){
         if(mSpecialOfferRequest!=null){
+            mSpecialOfferRequest.setKeyword(etKeyword.getText().toString().trim());
+
             Integer priceFrom;
             try {
                 priceFrom = Integer.valueOf(etPriceFrom.getText().toString());
@@ -175,6 +180,7 @@ public class FilterController extends HeaderController implements FilterContract
     @OnClick(R.id.template_header_refresh)
     void onRefreshClicked(){
         //Reset Filters
+        etKeyword.setText("");
         etPriceFrom.setText("");
         etPriceTo.setText("");
 
@@ -201,6 +207,11 @@ public class FilterController extends HeaderController implements FilterContract
         this.subCategoryList.addAll(subCategoryList);
 
         sfvSubcategories.setText(getActivity().getString(R.string.select_subcat));
+    }
+
+    @Override
+    public void setKeyword(String s) {
+        etKeyword.setText(s);
     }
 
     @Override

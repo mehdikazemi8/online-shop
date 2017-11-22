@@ -17,6 +17,8 @@ public class FilterContract {
 
         void showSubCategories(List<SubCategory> subCategoryList);
 
+        void setKeyword(String s);
+
         void setPriceFrom(String s);
 
         void setPriceTo(String s);
