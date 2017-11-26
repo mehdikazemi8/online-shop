@@ -81,6 +81,11 @@ public class SplashPresenter implements SplashContract.Presenter {
     }
 
     private void syncSellerInfo() {
+        if(preferenceManager.getAuthorization()==null){
+            splashView.showEnterMobileUI();
+            return;
+        }
+
         dataRepository.getCustomerInfo(new DataSource.GetCustomerInfoCallback() {
 
             @Override
