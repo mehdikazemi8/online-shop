@@ -15,6 +15,7 @@ import com.veevapp.customer.data.remote.request.SpecialOfferRequest;
 import com.veevapp.customer.data.remote.request.SubmitMobileRequest;
 import com.veevapp.customer.data.remote.response.BuyRequestsResponse;
 import com.veevapp.customer.data.remote.response.CategoriesResponse;
+import com.veevapp.customer.data.remote.response.EnterMobileResponse;
 import com.veevapp.customer.data.remote.response.OffersResponse;
 import com.veevapp.customer.data.remote.response.SlidersResponse;
 import com.veevapp.customer.data.remote.response.SpecialOffersResponse;
@@ -329,24 +330,24 @@ public class RemoteDataSource extends DataSource {
 
     @Override
     public void submitMobileNumber(String mobileNumber, SubmitMobileNumberCallback callback) {
-        Call<ResponseBody> call = apiService.submitMobileNumber(new SubmitMobileRequest(mobileNumber));
-        call.enqueue(new Callback<ResponseBody>() {
+        Call<EnterMobileResponse> call = apiService.submitMobileNumber(new SubmitMobileRequest(mobileNumber));
+        call.enqueue(new Callback<EnterMobileResponse>() {
             @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+            public void onResponse(Call<EnterMobileResponse> call, Response<EnterMobileResponse> response) {
                 // todo, inja hamishe 201 migiram, hatman mire baraye submit code 4 raghami,
                 // ba'adesh ke code ro ferestad, khodesh getInfo mikone, bar asase field
 
                 if (response.code() == 201 || response.code() == 200) {
-                    callback.onMustLogin();
+                    callback.onMustLogin(response.body().getConfirmationCode());
                 } else if (response.code() == 404) {
-                    callback.onMustRegister();
+                    callback.onMustRegister(response.body().getConfirmationCode());
                 } else {
                     callback.onFailure();
                 }
             }
 
             @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
+            public void onFailure(Call<EnterMobileResponse> call, Throwable t) {
                 callback.onFailure();
             }
         });

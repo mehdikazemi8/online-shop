@@ -120,9 +120,9 @@ public abstract class DataSource {
 
     public interface SubmitMobileNumberCallback {
 
-        void onMustLogin();
+        void onMustLogin(String confirmationCode);
 
-        void onMustRegister();
+        void onMustRegister(String confirmationCode);
 
         void onFailure();
 

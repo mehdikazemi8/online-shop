@@ -93,7 +93,9 @@ public class EnterMobileController extends BaseController implements EnterMobile
     }
 
     @Override
-    public void showConfirmCodeUI(boolean mustGetSellerInfo) {
+    public void showConfirmCodeUI(boolean mustGetSellerInfo, String confirmationCode) {
+        GlobalToast.makeToast(getActivity(), "confirm code : " + confirmationCode, Toast.LENGTH_LONG);
+
         ConfirmCodeController confirmCodeController = ConfirmCodeController.newInstance(
                 new BundleBuilder().putBoolean(MUST_GET_SELLER_INFO, mustGetSellerInfo).build(),
                 mobileNumberEditText.getText().toString().trim()

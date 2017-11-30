@@ -41,21 +41,21 @@ public class EnterMobilePresenter implements EnterMobileContract.Presenter {
 
         dataRepository.submitMobileNumber(mobileNumber, new DataSource.SubmitMobileNumberCallback() {
             @Override
-            public void onMustLogin() {
+            public void onMustLogin(String confirmationCode) {
                 if (enterMobileView.isActive()) {
                     enterMobileView.hideProgressDialog();
                 }
 
-                enterMobileView.showConfirmCodeUI(true);
+                enterMobileView.showConfirmCodeUI(true, confirmationCode);
             }
 
             @Override
-            public void onMustRegister() {
+            public void onMustRegister(String confirmationCode) {
                 if (enterMobileView.isActive()) {
                     enterMobileView.hideProgressDialog();
                 }
 
-                enterMobileView.showConfirmCodeUI(false);
+                enterMobileView.showConfirmCodeUI(false, confirmationCode);
             }
 
             @Override

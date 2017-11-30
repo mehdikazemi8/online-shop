@@ -15,7 +15,7 @@ public class EnterMobileContract {
 
         void hideProgressDialog();
 
-        void showConfirmCodeUI(boolean mustGetSellerInfo);
+        void showConfirmCodeUI(boolean mustGetSellerInfo, String confirmationCode);
     }
 
     interface Presenter extends BasePresenter {

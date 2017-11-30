@@ -9,6 +9,7 @@ import com.veevapp.customer.data.remote.request.RegisterRequest;
 import com.veevapp.customer.data.remote.request.SubmitMobileRequest;
 import com.veevapp.customer.data.remote.response.BuyRequestsResponse;
 import com.veevapp.customer.data.remote.response.CategoriesResponse;
+import com.veevapp.customer.data.remote.response.EnterMobileResponse;
 import com.veevapp.customer.data.remote.response.OffersResponse;
 import com.veevapp.customer.data.remote.response.SlidersResponse;
 import com.veevapp.customer.data.remote.response.SpecialOffersResponse;
@@ -35,7 +36,7 @@ public interface ApiService {
 //    String BASE_URL = "http://192.168.0.55:9000/";
 
     @POST("customer/submit_mobile/")
-    Call<ResponseBody> submitMobileNumber(@Body SubmitMobileRequest request);
+    Call<EnterMobileResponse> submitMobileNumber(@Body SubmitMobileRequest request);
 
     @POST("customer/submit_confirmation_code/")
     Call<TokenResponse> submitConfirmationCode(@Body ConfirmationCodeRequest confirmationCodeRequest);
