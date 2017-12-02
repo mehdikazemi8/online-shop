@@ -94,7 +94,7 @@ public class SpecialOfferViewAdapter extends BaseRecyclerAdapter<SpecialOfferVie
         @BindView(R.id.tv_shopName)
         TextView tvShopName;
 
-        @OnClick(R.id.root_view)
+        @OnClick(R.id.cv_container)
         public void rootViewOnClick() {
             onItemSelectedListener.onSelect(getAllItems().get(getAdapterPosition()), getAdapterPosition());
         }
