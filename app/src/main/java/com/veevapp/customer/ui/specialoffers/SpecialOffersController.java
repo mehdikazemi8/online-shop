@@ -5,7 +5,9 @@ import android.app.Dialog;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.LinearSnapHelper;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SnapHelper;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -87,6 +89,9 @@ public class SpecialOffersController
         rvSpecialOffers.addItemDecoration(new SpecialOfferDecoration(getActivity()));
         rvSpecialOffers.setNestedScrollingEnabled(false);
 
+        
+        SnapHelper snapHelper = new LinearSnapHelper();
+        snapHelper.attachToRecyclerView(rvSliders);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         sliderViewAdapter = new SliderViewAdapter(onSliderSelectedListener);
         rvSliders.setLayoutManager(layoutManager);
