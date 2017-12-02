@@ -32,7 +32,9 @@
 
             <com.veevapp.customer.view.customwidget.AppTextView
                 android:id="@+id/tv_name"
-                style="@style/register_views" />
+                style="@style/register_views"
+                android:gravity="right"
+                />
 
             <TextView
                 style="@style/register_views_icons"
@@ -45,7 +47,9 @@
 
             <com.veevapp.customer.view.customwidget.AppTextView
                 android:id="@+id/tv_phoneNumber"
-                style="@style/register_views" />
+                style="@style/register_views"
+                android:gravity="right"
+                />
 
             <TextView
                 style="@style/register_views_icons"
