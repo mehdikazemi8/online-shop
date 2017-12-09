@@ -50,7 +50,7 @@
         <com.veevapp.customer.view.customwidget.AppButton
             android:id="@+id/btn_report"
             style="@style/primary_button"
-            android:text="گزارش تخلف"
+            android:text="@string/report"
             />
 
         <View

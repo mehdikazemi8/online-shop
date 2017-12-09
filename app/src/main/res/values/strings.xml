@@ -94,5 +94,6 @@
     <string name="do_sort">مرتب سازی</string>
     <string name="filter_now">فیلتر کن</string>
     <string name="report_type">نوع گزارش</string>
+    <string name="report">گزارش تخلف</string>
 
 </resources>
