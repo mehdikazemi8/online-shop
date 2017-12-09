@@ -32,7 +32,7 @@
             <com.veevapp.customer.view.customwidget.AppCardView
                 android:id="@+id/sort_container"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/fs_height"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -41,8 +41,11 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingTop="@dimen/space_smaller"
+                    android:paddingBottom="@dimen/space_smaller"
                     >
 
 
@@ -50,7 +53,7 @@
                         android:id="@+id/ll_sort"
                         android:layout_width="0dp"
                         android:layout_weight="1"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:gravity="center"
                         android:background="?android:attr/selectableItemBackground"
@@ -59,7 +62,7 @@
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_weight="1"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:orientation="vertical"
                             android:gravity="right|center"
                             >
@@ -89,7 +92,7 @@
                         <RelativeLayout
                             android:layout_width="0dp"
                             android:layout_weight="1"
-                            android:layout_height="match_parent">
+                            android:layout_height="wrap_content">
 
                             <com.veevapp.customer.view.customwidget.AppImageView
                                 android:id="@+id/iv_sort"
@@ -118,7 +121,7 @@
                         android:id="@+id/ll_filter"
                         android:layout_width="0dp"
                         android:layout_weight="1"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:gravity="center"
                         android:background="?android:attr/selectableItemBackground"
