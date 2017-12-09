@@ -91,10 +91,10 @@ public class SelectableFieldView extends RelativeLayout {
     public void setIsSelected(boolean isSelected){
         if(isSelected) {
             tvTitle.setTextColor(ContextCompat.getColor(getContext(), R.color.fields_text_selected));
-            tvTitle.setTypeface(tvTitle.getTypeface(), Typeface.BOLD);
+            tvTitle.setTypeface(Typeface.create(tvTitle.getTypeface(),Typeface.BOLD));
         }else{
             tvTitle.setTextColor(ContextCompat.getColor(getContext(),R.color.fields_text_unselected));
-            tvTitle.setTypeface(tvTitle.getTypeface(), Typeface.NORMAL);
+            tvTitle.setTypeface(Typeface.create(tvTitle.getTypeface(),Typeface.NORMAL));
         }
     }
 
