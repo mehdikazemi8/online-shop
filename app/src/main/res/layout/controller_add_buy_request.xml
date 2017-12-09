@@ -43,10 +43,21 @@
             android:imeOptions="actionNext" />
 
         <com.veevapp.customer.view.customwidget.AppEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:id="@+id/et_description"
-            style="@style/primary_edittext"
             android:hint="@string/description"
-            android:imeOptions="actionDone" />
+            android:lines="10"
+            android:minLines="1"
+            android:maxLines="10"
+            android:singleLine="false"
+            android:background="@drawable/rounded_edittext"
+            android:padding="@dimen/space_small"
+            android:textSize="@dimen/text_size_normal"
+            android:layout_margin="@dimen/space_small"
+            android:gravity="center"
+            android:fontFamily="@font/iransans"
+            />
 
         <LinearLayout
             android:layout_width="match_parent"
