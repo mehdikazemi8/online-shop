@@ -18,6 +18,10 @@ public class BuyRequestsPresenter implements BuyRequestsContract.Presenter {
 
     @Override
     public void start() {
+        callGetBuyRequests();
+    }
+
+    private void callGetBuyRequests() {
         buyRequestsView.showLoading();
         dataRepository.getBuyRequests(new DataSource.GetBuyRequestsCallback() {
             @Override

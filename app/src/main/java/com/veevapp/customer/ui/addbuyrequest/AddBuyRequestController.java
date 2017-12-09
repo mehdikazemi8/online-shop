@@ -29,6 +29,8 @@ import com.veevapp.customer.data.DataRepository;
 import com.veevapp.customer.data.models.Category;
 import com.veevapp.customer.data.models.ProductColor;
 import com.veevapp.customer.data.models.SubCategory;
+import com.veevapp.customer.rx.bus.RxBus;
+import com.veevapp.customer.rx.bus.events.AddedBuyRequestEvent;
 import com.veevapp.customer.util.GlobalToast;
 import com.veevapp.customer.view.DialogMaker;
 import com.veevapp.customer.view.customwidget.AppEditText;
@@ -296,6 +298,12 @@ public class AddBuyRequestController extends BaseBackStackController implements 
                 })
                 .show();
 
+        resetPageFields();
+
+        RxBus.getInstance().send(new AddedBuyRequestEvent());
+    }
+
+    private void resetPageFields() {
         etProductName.setText("");
         etDescription.setText("");
         etCount.setText("");

@@ -17,6 +17,8 @@ import com.veevapp.customer.R;
 import com.veevapp.customer.controller.base.BaseBackStackController;
 import com.veevapp.customer.data.DataRepository;
 import com.veevapp.customer.data.models.BuyRequest;
+import com.veevapp.customer.rx.bus.RxBus;
+import com.veevapp.customer.rx.bus.events.AddedBuyRequestEvent;
 import com.veevapp.customer.ui.main.MainController;
 import com.veevapp.customer.ui.offer.OffersController;
 import com.veevapp.customer.ui.oneoffer.OneOfferController;
@@ -29,6 +31,8 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 public class BuyRequestsController extends BaseBackStackController implements BuyRequestsContract.View {
 
@@ -87,6 +91,16 @@ public class BuyRequestsController extends BaseBackStackController implements Bu
 
         presenter = new BuyRequestsPresenter(this, DataRepository.getInstance());
         presenter.start();
+
+
+        RxBus.getInstance().toObservable()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(o -> {
+                    if(o instanceof AddedBuyRequestEvent){
+                        presenter.start();
+                    }
+                });
     }
 
     void checkNewOffer(Intent intent) {
