@@ -3,6 +3,7 @@ package com.veevapp.customer.data;
 import com.veevapp.customer.data.models.BuyRequest;
 import com.veevapp.customer.data.remote.request.ConfirmationCodeRequest;
 import com.veevapp.customer.data.remote.request.RegisterRequest;
+import com.veevapp.customer.data.remote.request.ReportOfferRequest;
 import com.veevapp.customer.data.remote.request.SpecialOfferRequest;
 import com.veevapp.customer.util.NetworkHelper;
 
@@ -157,6 +158,15 @@ public class DataRepository extends DataSource {
             callback.onNetworkFailure();
         } else {
             remoteDataSource.getSliders(callback);
+        }
+    }
+
+    @Override
+    public void reportOffer(ReportOfferRequest reportOfferRequest, ReportOfferCallback callback) {
+        if (!networkHelper.isNetworkAvailable()) {
+            callback.onNetworkFailure();
+        } else {
+            remoteDataSource.reportOffer(reportOfferRequest,callback);
         }
     }
 }

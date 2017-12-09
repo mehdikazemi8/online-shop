@@ -91,7 +91,7 @@ public class OneOfferController extends HeaderController implements OneOfferCont
 
     @OnClick(R.id.btn_report)
     void onReportClicked(){
-        new DialogReportOffer(getActivity()).show();
+        new DialogReportOffer(getActivity(),offer,DataRepository.getInstance()).show();
     }
 
     private OneOfferContract.Presenter presenter;

@@ -6,6 +6,7 @@ import com.veevapp.customer.data.models.Customer;
 import com.veevapp.customer.data.remote.request.ConfirmationCodeRequest;
 import com.veevapp.customer.data.remote.request.FCMRequest;
 import com.veevapp.customer.data.remote.request.RegisterRequest;
+import com.veevapp.customer.data.remote.request.ReportOfferRequest;
 import com.veevapp.customer.data.remote.request.SubmitMobileRequest;
 import com.veevapp.customer.data.remote.response.BuyRequestsResponse;
 import com.veevapp.customer.data.remote.response.CategoriesResponse;
@@ -14,6 +15,7 @@ import com.veevapp.customer.data.remote.response.OffersResponse;
 import com.veevapp.customer.data.remote.response.SlidersResponse;
 import com.veevapp.customer.data.remote.response.SpecialOffersResponse;
 import com.veevapp.customer.data.remote.response.SubCategoriesResponse;
+import com.veevapp.customer.data.remote.response.SuccessMessageResponse;
 import com.veevapp.customer.data.remote.response.TokenResponse;
 
 import okhttp3.MultipartBody;
@@ -33,6 +35,7 @@ import retrofit2.http.Url;
 public interface ApiService {
     //    String BASE_URL = "http://www.mocky.io/v2/";
     String BASE_URL = "http://136.243.149.242:8090/";
+    String MOCK_URL = "http://www.mocky.io/";
 //    String BASE_URL = "http://192.168.0.55:9000/";
 
     @POST("customer/submit_mobile/")
@@ -88,4 +91,7 @@ public interface ApiService {
 
     @GET
     Call<ResponseBody> downloadPhoto(@Url String photoURL);
+
+    @POST("/v2/5a2b92352f00006c040392e0")
+    Call<SuccessMessageResponse> reportOffer(@Body ReportOfferRequest reportOfferRequest);
 }

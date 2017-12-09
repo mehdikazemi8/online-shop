@@ -11,6 +11,7 @@ import com.veevapp.customer.data.models.Customer;
 import com.veevapp.customer.data.remote.request.ConfirmationCodeRequest;
 import com.veevapp.customer.data.remote.request.FCMRequest;
 import com.veevapp.customer.data.remote.request.RegisterRequest;
+import com.veevapp.customer.data.remote.request.ReportOfferRequest;
 import com.veevapp.customer.data.remote.request.SpecialOfferRequest;
 import com.veevapp.customer.data.remote.request.SubmitMobileRequest;
 import com.veevapp.customer.data.remote.response.BuyRequestsResponse;
@@ -20,6 +21,7 @@ import com.veevapp.customer.data.remote.response.OffersResponse;
 import com.veevapp.customer.data.remote.response.SlidersResponse;
 import com.veevapp.customer.data.remote.response.SpecialOffersResponse;
 import com.veevapp.customer.data.remote.response.SubCategoriesResponse;
+import com.veevapp.customer.data.remote.response.SuccessMessageResponse;
 import com.veevapp.customer.data.remote.response.TokenResponse;
 
 import java.util.concurrent.TimeUnit;
@@ -41,6 +43,7 @@ public class RemoteDataSource extends DataSource {
 
     private PreferenceManager preferenceManager;
     private ApiService apiService = null;
+    private ApiService mockApiService = null;
     private static RemoteDataSource remoteDataSource = null;
 
     public static RemoteDataSource getInstance(PreferenceManager preferenceManager) {
@@ -89,8 +92,15 @@ public class RemoteDataSource extends DataSource {
                 .client(okhttpBuilder.build())
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
-
         apiService = retrofit.create(ApiService.class);
+
+
+        Retrofit mockRetrofit = new Retrofit.Builder()
+                .baseUrl(ApiService.MOCK_URL)
+                .client(okhttpBuilder.build())
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build();
+        mockApiService= mockRetrofit.create(ApiService.class);
     }
 
     @Override
@@ -388,6 +398,27 @@ public class RemoteDataSource extends DataSource {
 
             @Override
             public void onFailure(Call<SlidersResponse> call, Throwable t) {
+                callback.onFailure();
+            }
+        });
+    }
+
+    @Override
+    public void reportOffer(ReportOfferRequest reportOfferRequest, ReportOfferCallback callback) {
+        Call<SuccessMessageResponse> call = mockApiService.reportOffer(reportOfferRequest);
+        call.enqueue(new Callback<SuccessMessageResponse>() {
+            @Override
+            public void onResponse(Call<SuccessMessageResponse> call,
+                                   Response<SuccessMessageResponse> response) {
+                if (response.isSuccessful()) {
+                    callback.onResponse(response.body());
+                } else {
+                    callback.onFailure();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<SuccessMessageResponse> call, Throwable t) {
                 callback.onFailure();
             }
         });

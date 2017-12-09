@@ -9,7 +9,9 @@ import com.veevapp.customer.data.models.SpecialOffer;
 import com.veevapp.customer.data.models.SubCategory;
 import com.veevapp.customer.data.remote.request.ConfirmationCodeRequest;
 import com.veevapp.customer.data.remote.request.RegisterRequest;
+import com.veevapp.customer.data.remote.request.ReportOfferRequest;
 import com.veevapp.customer.data.remote.request.SpecialOfferRequest;
+import com.veevapp.customer.data.remote.response.SuccessMessageResponse;
 import com.veevapp.customer.data.remote.response.TokenResponse;
 
 import java.util.List;
@@ -147,6 +149,14 @@ public abstract class DataSource {
         void onNetworkFailure();
     }
 
+    public interface ReportOfferCallback {
+        void onResponse(SuccessMessageResponse successMessageResponse);
+
+        void onFailure();
+
+        void onNetworkFailure();
+    }
+
     public abstract void prepareDataSource();
 
     public abstract void addBuyRequest(BuyRequest request, MultipartBody.Part photo, AddBuyRequestCallback callback);
@@ -179,4 +189,6 @@ public abstract class DataSource {
     public abstract void registerCustomer(RegisterRequest registerRequest, RegisterCustomerCallback callback);
 
     public abstract void getSliders(GetSlidersCallback callback);
+
+    public abstract void reportOffer(ReportOfferRequest reportOfferRequest,ReportOfferCallback callback);
 }

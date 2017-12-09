@@ -1,6 +1,7 @@
 package com.veevapp.customer.view.dialog;
 
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,7 +12,12 @@ import android.widget.Toast;
 
 import com.annimon.stream.Stream;
 import com.veevapp.customer.R;
+import com.veevapp.customer.data.DataRepository;
+import com.veevapp.customer.data.DataSource;
+import com.veevapp.customer.data.models.BuyRequestOffer;
 import com.veevapp.customer.data.models.ReportTypeItem;
+import com.veevapp.customer.data.remote.request.ReportOfferRequest;
+import com.veevapp.customer.data.remote.response.SuccessMessageResponse;
 import com.veevapp.customer.util.ReportHandler;
 import com.veevapp.customer.view.DialogMaker;
 import com.veevapp.customer.view.customwidget.AppEditText;
@@ -36,11 +42,15 @@ public class DialogReportOffer extends Dialog{
     @BindView(R.id.et_description)
     AppEditText etDescription;
 
+    private ProgressDialog progressDialog = null;
+    private DataRepository mDataRepository;
+    private BuyRequestOffer buyRequestOffer;
 
-
-    public DialogReportOffer(@NonNull Context context) {
+    public DialogReportOffer(@NonNull Context context, BuyRequestOffer offer, DataRepository dataRepository) {
         super(context);
         mContext = context;
+        mDataRepository = dataRepository;
+        buyRequestOffer = offer;
     }
 
 
@@ -60,7 +70,14 @@ public class DialogReportOffer extends Dialog{
 
     @OnClick(R.id.button_submit)
     void onSubmitClicked(){
-        Toast.makeText(mContext, "submit", Toast.LENGTH_SHORT).show();
+        //Validation
+        if(sfvReportType.getSelectedObject()==null){
+            Toast.makeText(mContext, "لطفا نوع گزارش را مشخص کنید", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        //Call API
+        callReport();
     }
 
     @OnClick(R.id.sfv_reportType)
@@ -97,4 +114,53 @@ public class DialogReportOffer extends Dialog{
             sfvReportType.setIsSelected(false);
         }
     }
+
+    private void showLoading(){
+        if (progressDialog == null) {
+            progressDialog = new ProgressDialog(mContext);
+            progressDialog.setMessage(mContext.getString(R.string.sending));
+        }
+        progressDialog.show();
+    }
+
+    private void hideLoading(){
+        progressDialog.cancel();
+    }
+
+    private void callReport(){
+        if(buyRequestOffer==null)return;
+        if(sfvReportType.getSelectedObject() == null) return;
+
+        showLoading();
+
+        ReportOfferRequest reportOfferRequest = new ReportOfferRequest();
+        reportOfferRequest.description = etDescription.getText().toString().trim();
+        reportOfferRequest.reportType = ((ReportTypeItem)sfvReportType.getSelectedObject()).id;
+        reportOfferRequest.offerId = buyRequestOffer.getId();
+
+        mDataRepository.reportOffer(reportOfferRequest, new DataSource.ReportOfferCallback() {
+            @Override
+            public void onResponse(SuccessMessageResponse successMessageResponse) {
+                hideLoading();
+                if(successMessageResponse.success) {
+                    Toast.makeText(mContext, "گزارش شما با موفقیت ثبت شد", Toast.LENGTH_SHORT).show();
+                    DialogReportOffer.this.hide();
+                }else{
+                    if(successMessageResponse.message!=null)
+                        Toast.makeText(mContext, successMessageResponse.message, Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure() {
+                hideLoading();
+            }
+
+            @Override
+            public void onNetworkFailure() {
+                hideLoading();
+            }
+        });
+    }
+
 }

@@ -4,6 +4,7 @@ import com.veevapp.customer.data.DataSource;
 import com.veevapp.customer.data.models.BuyRequest;
 import com.veevapp.customer.data.remote.request.ConfirmationCodeRequest;
 import com.veevapp.customer.data.remote.request.RegisterRequest;
+import com.veevapp.customer.data.remote.request.ReportOfferRequest;
 import com.veevapp.customer.data.remote.request.SpecialOfferRequest;
 
 import okhttp3.MultipartBody;
@@ -81,6 +82,11 @@ public class LocalDataSource extends DataSource {
 
     @Override
     public void getSliders(GetSlidersCallback callback) {
+
+    }
+
+    @Override
+    public void reportOffer(ReportOfferRequest reportOfferRequest, ReportOfferCallback callback) {
 
     }
 }
