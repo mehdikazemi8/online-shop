@@ -74,6 +74,7 @@
     <string name="offer">پیشنهاد</string>
 
     <string name="select_cat">انتخاب دسته</string>
+    <string name="select_report_type">انتخاب نوع گزارش</string>
     <string name="select_subcat">انتخاب زیر دسته</string>
     <string name="select_color">انتخاب رنگ</string>
 
@@ -92,5 +93,6 @@
     <string name="do_filter">فیلتر کردن</string>
     <string name="do_sort">مرتب سازی</string>
     <string name="filter_now">فیلتر کن</string>
+    <string name="report_type">نوع گزارش</string>
 
 </resources>

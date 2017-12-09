@@ -31,11 +31,11 @@
 
 
             <com.veevapp.customer.view.customwidget.SelectableFieldView
-                android:id="@+id/sfv_categories"
+                android:id="@+id/sfv_reportType"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:text="نوع گزارش" />
+                android:text="@string/report_type" />
 
             <com.veevapp.customer.view.customwidget.AppEditText
                 android:layout_width="match_parent"
