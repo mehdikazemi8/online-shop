@@ -36,7 +36,7 @@
             android:layout_height="wrap_content">
 
             <com.veevapp.customer.view.customwidget.AppTextView
-                android:id="@+id/tv_phoneNumber"
+                android:id="@+id/tv_profilePhoneNumber"
                 style="@style/register_views"
                 android:gravity="right"
                 android:text="@string/template_mobile"

@@ -31,7 +31,7 @@ public class ProfileController extends BaseBackStackController implements Profil
     @BindView(R.id.tv_name)
     AppTextView tvName;
 
-    @BindView(R.id.tv_phoneNumber)
+    @BindView(R.id.tv_profilePhoneNumber)
     AppTextView tvPhoneNumber;
 
     @OnClick(R.id.btn_logout)
