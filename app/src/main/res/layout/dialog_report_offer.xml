@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+            <com.veevapp.customer.view.customwidget.AppTextView
+                android:id="@+id/tv_title"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="right|center_vertical"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:text="عنوان"
+                android:textColor="@color/white"
+                android:fontFamily="@font/iran_sans_bold"
+                android:background="@color/colorPrimary"
+                />
+
+
+            <com.veevapp.customer.view.customwidget.SelectableFieldView
+                android:id="@+id/sfv_categories"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="نوع گزارش" />
+
+            <com.veevapp.customer.view.customwidget.AppEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/et_description"
+                android:hint="توضیحات شما"
+                android:lines="10"
+                android:minLines="1"
+                android:maxLines="10"
+                android:singleLine="false"
+                android:background="@drawable/rounded_edittext"
+                android:padding="@dimen/space_small"
+                android:textSize="@dimen/text_size_normal"
+                android:layout_margin="@dimen/space_small"
+                android:gravity="center"
+                android:fontFamily="@font/iransans"
+                />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">r
+                <com.veevapp.customer.view.customwidget.AppButton
+                    android:id="@+id/button_submit"
+                    android:text="@string/submit_report"
+                    android:layout_centerInParent="true"
+                    style="@style/primary_button"
+                    />
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</android.support.constraint.ConstraintLayout>

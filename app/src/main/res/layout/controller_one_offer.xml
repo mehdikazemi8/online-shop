@@ -47,6 +47,12 @@
             android:layout_marginBottom="8dp"
             />
 
+        <com.veevapp.customer.view.customwidget.AppButton
+            android:id="@+id/btn_report"
+            style="@style/primary_button"
+            android:text="گزارش تخلف"
+            />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"

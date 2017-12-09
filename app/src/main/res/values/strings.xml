@@ -20,6 +20,7 @@
 
     <string name="submit">ثبت</string>
     <string name="submit_request">ثبت درخواست</string>
+    <string name="submit_report">ثبت تخلف</string>
     <string name="write_external_storage">برای ذخیره ی عکس نیاز به این دسترسی هست!</string>
     <string name="submit_first_request">ثبت اولین درخواست</string>
     <string name="request_product_name">اسم محصولی که مورد نیاز هست</string>
