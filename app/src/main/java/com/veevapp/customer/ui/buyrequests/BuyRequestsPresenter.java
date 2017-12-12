@@ -22,13 +22,12 @@ public class BuyRequestsPresenter implements BuyRequestsContract.Presenter {
     }
 
     private void callGetBuyRequests() {
+        if(!buyRequestsView.isActive())return;
         buyRequestsView.showLoading();
         dataRepository.getBuyRequests(new DataSource.GetBuyRequestsCallback() {
             @Override
             public void onResponse(List<BuyRequest> buyRequestList) {
-                if(!buyRequestsView.isActive()) {
-                    return;
-                }
+                if(!buyRequestsView.isActive())return;
                 buyRequestsView.hideLoading();
 
                 if(buyRequestList.size() == 0) {
@@ -40,18 +39,14 @@ public class BuyRequestsPresenter implements BuyRequestsContract.Presenter {
 
             @Override
             public void onFailure() {
-                if(!buyRequestsView.isActive()) {
-                    return;
-                }
+                if(!buyRequestsView.isActive())return;
                 buyRequestsView.hideLoading();
 
             }
 
             @Override
             public void onNetworkFailure() {
-                if(!buyRequestsView.isActive()) {
-                    return;
-                }
+                if(!buyRequestsView.isActive())return;
                 buyRequestsView.hideLoading();
 
             }
