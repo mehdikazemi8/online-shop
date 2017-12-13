@@ -11,8 +11,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.bluelinelabs.conductor.RouterTransaction;
-import com.veevapp.customer.controller.base.BaseController;
 import com.veevapp.customer.R;
+import com.veevapp.customer.controller.base.BaseController;
 import com.veevapp.customer.data.DataRepository;
 import com.veevapp.customer.data.local.PreferenceManager;
 import com.veevapp.customer.ui.main.MainController;
@@ -101,13 +101,14 @@ public class ConfirmCodeController extends BaseController implements ConfirmCode
     }
 
     @Override
+    public void showRegisterUI(String mobile) {
+        getRouter().setRoot(RouterTransaction.with(RegisterController.newInstance(mobile)));
+    }
+
+    @Override
     public void showMainPageUI() {
         MainController mainController = MainController.newInstance();
         getRouter().setRoot(RouterTransaction.with(mainController));
     }
 
-    @Override
-    public void showRegisterUI() {
-        getRouter().setRoot(RouterTransaction.with(RegisterController.newInstance()));
-    }
 }

@@ -2,19 +2,21 @@ package com.veevapp.customer.ui.register;
 
 import android.app.ProgressDialog;
 import android.support.annotation.NonNull;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 
 import com.bluelinelabs.conductor.RouterTransaction;
 import com.bluelinelabs.conductor.changehandler.FadeChangeHandler;
 import com.veevapp.customer.R;
 import com.veevapp.customer.controller.base.HeaderController;
 import com.veevapp.customer.data.DataRepository;
+import com.veevapp.customer.data.local.PreferenceManager;
 import com.veevapp.customer.data.remote.request.RegisterRequest;
 import com.veevapp.customer.ui.main.MainController;
+import com.veevapp.customer.view.customwidget.AppEditText;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -24,14 +26,16 @@ public class RegisterController extends HeaderController implements RegisterCont
     private RegisterContract.Presenter presenter;
     private ProgressDialog progressDialog = null;
 
-    @BindView(R.id.name)
-    EditText name;
-    @BindView(R.id.family)
-    EditText family;
+    @BindView(R.id.et_firstName)
+    AppEditText etFirstName;
+    @BindView(R.id.et_lastName)
+    AppEditText etLastName;
     @BindView(R.id.mobile_number)
-    EditText mobileNumber;
+    AppEditText mobileNumber;
     @BindView(R.id.telegram_id)
-    EditText telegramID;
+    AppEditText telegramID;
+
+    String mobile;
 
     @Override
     public void showProgressBar() {
@@ -58,17 +62,31 @@ public class RegisterController extends HeaderController implements RegisterCont
 
     @OnClick(R.id.button_next_step)
     public void nextStepOnClick() {
+        String strFname = etFirstName.getText().toString().trim();
+        if(TextUtils.isEmpty(strFname)){
+            etFirstName.setError(getActivity().getString(R.string.please_fill_this_field));
+            return;
+        }
+
+
+        String strLname = etLastName.getText().toString().trim();
+        if(TextUtils.isEmpty(strLname)){
+            etLastName.setError(getActivity().getString(R.string.please_fill_this_field));
+            return;
+        }
+
         presenter.registerCustomer(
                 new RegisterRequest(
-                        name.getText().toString().trim(),
-                        family.getText().toString().trim(),
+                        strFname, strLname,
                         mobileNumber.getText().toString().trim()
                 )
         );
     }
 
-    public static RegisterController newInstance() {
-        return new RegisterController();
+    public static RegisterController newInstance(String mobile) {
+        RegisterController controller = new RegisterController();
+        controller.mobile = mobile;
+        return controller;
     }
 
     public RegisterController() {
@@ -87,7 +105,9 @@ public class RegisterController extends HeaderController implements RegisterCont
         headerTitle.setText(getResources().getString(R.string.app_name));
         headerBackButton.setVisibility(View.INVISIBLE);
 
-        presenter = new RegisterPresenter(this, DataRepository.getInstance());
+        mobileNumber.setText(mobile);
+
+        presenter = new RegisterPresenter(this, DataRepository.getInstance(), PreferenceManager.getInstance(getApplicationContext()));
         presenter.start();
     }
 

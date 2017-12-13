@@ -18,7 +18,7 @@ public class ConfirmCodeContract {
 
         void showNetworkFailureError();
 
-        void showRegisterUI();
+        void showRegisterUI(String mobile);
 
         void showMainPageUI();
     }

@@ -35,14 +35,6 @@ public class ConfirmCodePresenter implements ConfirmCodeContract.Presenter {
 
     }
 
-    private void decideGetInfoOrSubmitInfo() {
-        if (mustGetSellerInfo) {
-            getUserInfo();
-        } else {
-            confirmCodeView.showRegisterUI();
-        }
-    }
-
     private void getUserInfo() {
         dataRepository.getCustomerInfo(new DataSource.GetCustomerInfoCallback() {
             @Override
@@ -52,7 +44,7 @@ public class ConfirmCodePresenter implements ConfirmCodeContract.Presenter {
                 if (customer.sentInfo()) {
                     confirmCodeView.showMainPageUI();
                 } else {
-                    confirmCodeView.showRegisterUI();
+                    confirmCodeView.showRegisterUI(preferenceManager.getMobile());
                 }
             }
 
@@ -88,6 +80,7 @@ public class ConfirmCodePresenter implements ConfirmCodeContract.Presenter {
                         confirmCodeView.hideProgressDialog();
                         preferenceManager.putTokenResponse(tokenResponse);
                         dataRepository.prepareDataSource();
+                        preferenceManager.putMobile(mobile);
 //                        decideGetInfoOrSubmitInfo();
                         getUserInfo();
                     }

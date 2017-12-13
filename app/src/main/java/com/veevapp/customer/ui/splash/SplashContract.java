@@ -11,7 +11,7 @@ public class SplashContract {
 
         void showMainPageUI();
 
-        void showRegisterUI();
+        void showRegisterUI(String mobile);
     }
 
     interface Presenter extends BasePresenter {

@@ -22,7 +22,8 @@ public class PreferenceManager {
         TOKEN,
         CUSTOMER_INFO,
         FCM_ID,
-        CATEGORIES
+        CATEGORIES,
+        MOBILE
     }
 
     public static PreferenceManager getInstance(Context context) {
@@ -218,6 +219,14 @@ public class PreferenceManager {
     }
 
     //*************************************************************
+
+    public void putMobile(String mobile) {
+        put(Key.MOBILE, mobile);
+    }
+
+    public String getMobile(){
+        return getString(Key.MOBILE);
+    }
 
 }
 

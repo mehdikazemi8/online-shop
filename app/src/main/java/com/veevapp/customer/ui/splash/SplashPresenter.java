@@ -97,7 +97,7 @@ public class SplashPresenter implements SplashContract.Presenter {
                 if (customer.sentInfo()) {
                     splashView.showMainPageUI();
                 } else {
-                    splashView.showRegisterUI();
+                    splashView.showRegisterUI(preferenceManager.getMobile());
                 }
             }
 

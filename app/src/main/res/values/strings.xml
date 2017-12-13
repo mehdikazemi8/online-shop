@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">VeeVapp</string>
+    <string name="app_name">VeeVapp Customer</string>
 
     <string name="try_again_later">مشکلی پیش اومده، لطفا دوباره امتحان کنید.</string>
 
@@ -37,7 +37,7 @@
     <string name="template_product_name">نام محصول : %s</string>
     <string name="telegram_id">آی دی تلگرام</string>
     <string name="next_step">مرحله بعد</string>
-    <string name="name">اسم</string>
+    <string name="name">نام</string>
     <string name="family">نام خانوادگی</string>
     <string name="please_enter_confirmation_code">لطفا کد چهار رقمی ارسال شده را وارد کنید</string>
     <string name="confirmation_code">کد چهار رقمی</string>
@@ -95,5 +95,7 @@
     <string name="filter_now">فیلتر کن</string>
     <string name="report_type">نوع گزارش</string>
     <string name="report">گزارش تخلف</string>
+
+    <string name="please_fill_this_field">لطفا این فیلد را پر کنید</string>
 
 </resources>

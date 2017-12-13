@@ -6,28 +6,28 @@
 
     <include layout="@layout/template_header" />
 
-    <EditText
-        android:id="@+id/name"
+    <com.veevapp.customer.view.customwidget.AppEditText
+        android:id="@+id/et_firstName"
         style="@style/primary_edittext"
         android:hint="@string/name"
         android:imeOptions="actionNext"
-        android:text="esm" />
+        />
 
-    <EditText
-        android:id="@+id/family"
+    <com.veevapp.customer.view.customwidget.AppEditText
+        android:id="@+id/et_lastName"
         style="@style/primary_edittext"
         android:hint="@string/family"
         android:imeOptions="actionDone"
-        android:text="famil" />
+        />
 
-    <EditText
+    <com.veevapp.customer.view.customwidget.AppEditText
         android:id="@+id/mobile_number"
         style="@style/primary_edittext"
         android:enabled="false"
         android:inputType="phone"
-        android:text="09379706209" />
+        />
 
-    <EditText
+    <com.veevapp.customer.view.customwidget.AppEditText
         android:id="@+id/telegram_id"
         style="@style/primary_edittext"
         android:hint="@string/telegram_id"

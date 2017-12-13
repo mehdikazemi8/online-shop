@@ -54,11 +54,12 @@ public class SplashController extends BaseController implements SplashContract.V
     }
 
     @Override
-    public void showRegisterUI() {
+    public void showRegisterUI(String mobile) {
         getRouter().setRoot(
-                RouterTransaction.with(RegisterController.newInstance())
+                RouterTransaction.with(RegisterController.newInstance(mobile))
                         .pushChangeHandler(new FadeChangeHandler())
                         .popChangeHandler(new FadeChangeHandler())
         );
     }
+
 }
