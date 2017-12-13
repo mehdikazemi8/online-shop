@@ -16,7 +16,7 @@ import com.veevapp.customer.BaseController;
 import com.veevapp.customer.R;
 import com.veevapp.customer.controller.base.BaseBackStackController;
 import com.veevapp.customer.controller.base.HeaderController;
-import com.veevapp.customer.customview.NonSwipeableViewPager;
+import com.veevapp.customer.view.customwidget.NonSwipeableViewPager;
 import com.veevapp.customer.data.DataRepository;
 import com.veevapp.customer.data.local.PreferenceManager;
 import com.veevapp.customer.ui.addbuyrequest.AddBuyRequestController;

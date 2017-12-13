@@ -10,7 +10,7 @@
 
     <include layout="@layout/template_header" />
 
-    <com.veevapp.customer.customview.NonSwipeableViewPager
+    <com.veevapp.customer.view.customwidget.NonSwipeableViewPager
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="0dp"

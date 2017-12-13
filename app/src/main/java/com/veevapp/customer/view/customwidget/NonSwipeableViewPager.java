@@ -1,4 +1,4 @@
-package com.veevapp.customer.customview;
+package com.veevapp.customer.view.customwidget;
 
 import android.content.Context;
 import android.support.v4.view.ViewPager;
