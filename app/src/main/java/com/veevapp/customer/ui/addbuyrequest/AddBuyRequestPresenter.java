@@ -40,6 +40,7 @@ public class AddBuyRequestPresenter implements AddBuyRequestContract.Presenter {
         dataRepository.getAllCategories(new DataSource.GetCategoriesCallback() {
             @Override
             public void onSuccess(List<Category> categoryList) {
+                if(!addBuyRequestView.isActive())return;
                 addBuyRequestView.showCategories(categoryList);
             }
 
@@ -73,9 +74,7 @@ public class AddBuyRequestPresenter implements AddBuyRequestContract.Presenter {
         dataRepository.addBuyRequest(request, getPhotoPart(outputUri), new DataSource.AddBuyRequestCallback() {
             @Override
             public void onSuccess(BuyRequest buyRequest) {
-                if (!addBuyRequestView.isActive()) {
-                    return;
-                }
+                if(!addBuyRequestView.isActive())return;
                 addBuyRequestView.hideProgressBar();
 
                 Log.d("TAG", "buy request " + request.serialize());
@@ -85,17 +84,13 @@ public class AddBuyRequestPresenter implements AddBuyRequestContract.Presenter {
 
             @Override
             public void onFailure() {
-                if (!addBuyRequestView.isActive()) {
-                    return;
-                }
+                if(!addBuyRequestView.isActive())return;
                 addBuyRequestView.hideProgressBar();
             }
 
             @Override
             public void onNetworkFailure() {
-                if (!addBuyRequestView.isActive()) {
-                    return;
-                }
+                if(!addBuyRequestView.isActive())return;
                 addBuyRequestView.hideProgressBar();
 
             }
@@ -107,6 +102,7 @@ public class AddBuyRequestPresenter implements AddBuyRequestContract.Presenter {
         dataRepository.getAllSubCategories(categoryID, new DataSource.GetSubCategoriesCallback() {
             @Override
             public void onSuccess(List<SubCategory> subCategoryList) {
+                if(!addBuyRequestView.isActive())return;
                 addBuyRequestView.showSubCategories(subCategoryList);
             }
 

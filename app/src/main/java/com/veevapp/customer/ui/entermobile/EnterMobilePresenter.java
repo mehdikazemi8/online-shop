@@ -42,19 +42,15 @@ public class EnterMobilePresenter implements EnterMobileContract.Presenter {
         dataRepository.submitMobileNumber(mobileNumber, new DataSource.SubmitMobileNumberCallback() {
             @Override
             public void onMustLogin(String confirmationCode) {
-                if (enterMobileView.isActive()) {
-                    enterMobileView.hideProgressDialog();
-                }
-
+                if(!enterMobileView.isActive())return;
+                enterMobileView.hideProgressDialog();
                 enterMobileView.showConfirmCodeUI(true, confirmationCode);
             }
 
             @Override
             public void onMustRegister(String confirmationCode) {
-                if (enterMobileView.isActive()) {
-                    enterMobileView.hideProgressDialog();
-                }
-
+                if(!enterMobileView.isActive())return;
+                enterMobileView.hideProgressDialog();
                 enterMobileView.showConfirmCodeUI(false, confirmationCode);
             }
 
@@ -65,9 +61,8 @@ public class EnterMobilePresenter implements EnterMobileContract.Presenter {
 
             @Override
             public void onNetworkFailure() {
-                if (enterMobileView.isActive()) {
-                    enterMobileView.hideProgressDialog();
-                }
+                if(!enterMobileView.isActive())return;
+                enterMobileView.hideProgressDialog();
             }
         });
     }

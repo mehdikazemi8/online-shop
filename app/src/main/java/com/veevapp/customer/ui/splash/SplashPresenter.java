@@ -37,6 +37,7 @@ public class SplashPresenter implements SplashContract.Presenter {
         dataRepository.getAllCategories(new DataSource.GetCategoriesCallback() {
             @Override
             public void onSuccess(List<Category> categoryList) {
+                if(!splashView.isActive())return;
                 preferenceManager.putCategories(new CategoriesResponse(categoryList));
                 syncSubCategories(categoryList);
             }
@@ -58,9 +59,9 @@ public class SplashPresenter implements SplashContract.Presenter {
             dataRepository.getAllSubCategories(category.getId(), new DataSource.GetSubCategoriesCallback() {
                 @Override
                 public void onSuccess(List<SubCategory> subCategoryList) {
+                    if(!splashView.isActive())return;
 
                     preferenceManager.putSubCategory(category.getId(), new SubCategoriesResponse(subCategoryList));
-
                     successSubCategoryCount++;
                     if (successSubCategoryCount == categoryList.size()) {
                         syncSellerInfo();
@@ -90,6 +91,8 @@ public class SplashPresenter implements SplashContract.Presenter {
 
             @Override
             public void onResponse(Customer customer) {
+                if(!splashView.isActive())return;
+
                 preferenceManager.putCustomerInfo(customer);
                 if (customer.sentInfo()) {
                     splashView.showMainPageUI();

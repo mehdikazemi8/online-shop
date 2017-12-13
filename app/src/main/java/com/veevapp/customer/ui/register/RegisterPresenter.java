@@ -27,34 +27,25 @@ public class RegisterPresenter implements RegisterContract.Presenter {
         dataRepository.registerCustomer(registerRequest, new DataSource.RegisterCustomerCallback() {
             @Override
             public void onSuccess() {
-                if (!registerView.isActive()) {
-                    return;
-                }
+                if (!registerView.isActive()) return;
                 registerView.hideProgressBar();
-
                 registerView.showMainPageUI();
             }
 
             @Override
             public void onFailure() {
-                if (!registerView.isActive()) {
-                    return;
-                }
+                if (!registerView.isActive()) return;
 
                 // todo remove
                 registerView.showMainPageUI();
-
                 registerView.hideProgressBar();
 
             }
 
             @Override
             public void onNetworkFailure() {
-                if (!registerView.isActive()) {
-                    return;
-                }
+                if (!registerView.isActive()) return;
                 registerView.hideProgressBar();
-
 
                 // todo remove
                 registerView.showMainPageUI();

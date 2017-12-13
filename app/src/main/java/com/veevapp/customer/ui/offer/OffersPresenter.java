@@ -27,27 +27,20 @@ public class OffersPresenter implements OffersContract.Presenter {
         dataRepository.getOffersOfOneBuyRequest(buyRequest.getId(), new DataSource.GetOffersCallback() {
             @Override
             public void onResponse(List<BuyRequestOffer> offerList) {
-                if(!offersView.isActive()) {
-                    return;
-                }
+                if(!offersView.isActive()) return;
                 offersView.hideLoading();
-
                 offersView.showOffers(offerList);
             }
 
             @Override
             public void onFailure() {
-                if(!offersView.isActive()) {
-                    return;
-                }
+                if(!offersView.isActive()) return;
                 offersView.hideLoading();
             }
 
             @Override
             public void onNetworkFailure() {
-                if(!offersView.isActive()) {
-                    return;
-                }
+                if(!offersView.isActive()) return;
                 offersView.hideLoading();
             }
         });

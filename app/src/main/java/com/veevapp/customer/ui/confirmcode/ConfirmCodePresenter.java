@@ -45,9 +45,9 @@ public class ConfirmCodePresenter implements ConfirmCodeContract.Presenter {
 
     private void getUserInfo() {
         dataRepository.getCustomerInfo(new DataSource.GetCustomerInfoCallback() {
-
             @Override
             public void onResponse(Customer customer) {
+                if(!confirmCodeView.isActive())return;
                 preferenceManager.putCustomerInfo(customer);
                 if (customer.sentInfo()) {
                     confirmCodeView.showMainPageUI();
@@ -83,10 +83,9 @@ public class ConfirmCodePresenter implements ConfirmCodeContract.Presenter {
                 new DataSource.ConfirmationCodeCallback() {
                     @Override
                     public void onSuccess(TokenResponse tokenResponse) {
-                        if (confirmCodeView.isActive()) {
-                            confirmCodeView.hideProgressDialog();
-                        }
+                        if(!confirmCodeView.isActive())return;
 
+                        confirmCodeView.hideProgressDialog();
                         preferenceManager.putTokenResponse(tokenResponse);
                         dataRepository.prepareDataSource();
 //                        decideGetInfoOrSubmitInfo();
@@ -95,17 +94,15 @@ public class ConfirmCodePresenter implements ConfirmCodeContract.Presenter {
 
                     @Override
                     public void onFailure() {
-                        if (confirmCodeView.isActive()) {
-                            confirmCodeView.hideProgressDialog();
-                        }
+                        if(!confirmCodeView.isActive())return;
+                        confirmCodeView.hideProgressDialog();
                         confirmCodeView.showFailureError();
                     }
 
                     @Override
                     public void onNetworkFailure() {
-                        if (confirmCodeView.isActive()) {
-                            confirmCodeView.hideProgressDialog();
-                        }
+                        if(!confirmCodeView.isActive())return;
+                        confirmCodeView.hideProgressDialog();
                         confirmCodeView.showNetworkFailureError();
                     }
                 }

@@ -30,7 +30,6 @@ public class MainPresenter implements MainContract.Presenter {
                 @Override
                 public void onSuccess() {
                     Log.d("TAG", "Refreshed token hhhh main presenter: " + fcmRequest.fcmID());
-//                    fcmRequest.sendToServer(false);
                     preferenceManager.putFcmID(FCMRequest.builder().fcmID(fcmRequest.fcmID()).sendToServer(false).build());
                 }
 

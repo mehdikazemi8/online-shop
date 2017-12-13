@@ -26,6 +26,7 @@ public class SpecialOffersPresenter implements SpecialOffersContract.Presenter {
         dataRepository.getSliders(new DataSource.GetSlidersCallback() {
             @Override
             public void onResponse(List<Slider> sliderList) {
+                if(!specialView.isActive())return;
                 specialView.showSliders(sliderList);
             }
 
@@ -58,17 +59,20 @@ public class SpecialOffersPresenter implements SpecialOffersContract.Presenter {
         dataRepository.getAvailableSpecialOffers(mSpecialOfferRequest, new DataSource.GetAvailableSpecialOffers() {
             @Override
             public void onResponse(List<SpecialOffer> specialOfferList) {
+                if(!specialView.isActive())return;
                 specialView.showSpecialOffers(specialOfferList);
                 specialView.hideLoading();
             }
 
             @Override
             public void onFailure() {
+                if(!specialView.isActive())return;
                 specialView.hideLoading();
             }
 
             @Override
             public void onNetworkFailure() {
+                if(!specialView.isActive())return;
                 specialView.hideLoading();
             }
         });
