@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 import com.bluelinelabs.conductor.RouterTransaction;
 import com.bluelinelabs.conductor.changehandler.FadeChangeHandler;
-import com.veevapp.customer.BaseController;
+import com.veevapp.customer.controller.base.BaseController;
 import com.veevapp.customer.R;
 import com.veevapp.customer.data.DataRepository;
 import com.veevapp.customer.ui.confirmcode.ConfirmCodeController;
@@ -44,7 +44,6 @@ public class EnterMobileController extends BaseController implements EnterMobile
     @Override
     protected void onAttach(@NonNull View view) {
         super.onAttach(view);
-        setActive(true);
         presenter = new EnterMobilePresenter(DataRepository.getInstance(), this);
         presenter.start();
     }

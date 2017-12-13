@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.bluelinelabs.conductor.Router;
 import com.bluelinelabs.conductor.RouterTransaction;
 import com.bluelinelabs.conductor.support.RouterPagerAdapter;
-import com.veevapp.customer.BaseController;
+import com.veevapp.customer.controller.base.BaseController;
 import com.veevapp.customer.R;
 import com.veevapp.customer.controller.base.BaseBackStackController;
 import com.veevapp.customer.controller.base.HeaderController;
@@ -136,7 +136,6 @@ public class MainController extends HeaderController implements MainContract.Vie
 
         initTabLayout();
 
-        setActive(true);
         presenter = new MainPresenter(PreferenceManager.getInstance(getActivity()), DataRepository.getInstance(), this);
         presenter.start();
     }

@@ -60,7 +60,6 @@ public class ProfileController extends BaseBackStackController implements Profil
 
         init();
 
-        setActive(true);
         presenter = new ProfilePresenter(DataRepository.getInstance(), PreferenceManager.getInstance(getActivity()), this);
         presenter.start();
     }

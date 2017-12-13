@@ -85,7 +85,6 @@ public class BuyRequestsController extends BaseBackStackController implements Bu
         super.onViewBound(view);
 
         init();
-        setActive(true);
 
         checkNewOffer(getActivity().getIntent());
 

@@ -207,7 +207,6 @@ public class SingleSpecialOfferController
 
         init();
 
-        setActive(true);
 
         presenter = new SingleSpecialOfferPresenter();
         presenter.start();

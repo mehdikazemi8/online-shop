@@ -4,20 +4,17 @@ import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.bluelinelabs.conductor.RouterTransaction;
 import com.bluelinelabs.conductor.changehandler.FadeChangeHandler;
 import com.bluelinelabs.conductor.changehandler.VerticalChangeHandler;
-import com.veevapp.customer.BaseController;
+import com.veevapp.customer.controller.base.BaseController;
 import com.veevapp.customer.R;
 import com.veevapp.customer.data.DataRepository;
 import com.veevapp.customer.data.local.PreferenceManager;
 import com.veevapp.customer.ui.entermobile.EnterMobileController;
 import com.veevapp.customer.ui.main.MainController;
 import com.veevapp.customer.ui.register.RegisterController;
-
-import butterknife.BindView;
 
 public class SplashController extends BaseController implements SplashContract.View {
 
@@ -31,7 +28,6 @@ public class SplashController extends BaseController implements SplashContract.V
     @Override
     protected void onAttach(@NonNull View view) {
         super.onAttach(view);
-        setActive(true);
         presenter = new SplashPresenter(DataRepository.getInstance(), PreferenceManager.getInstance(getActivity()), this);
         presenter.start();
     }

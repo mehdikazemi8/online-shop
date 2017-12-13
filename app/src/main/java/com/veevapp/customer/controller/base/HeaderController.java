@@ -2,7 +2,6 @@ package com.veevapp.customer.controller.base;
 
 import android.widget.TextView;
 
-import com.veevapp.customer.BaseController;
 import com.veevapp.customer.R;
 import com.veevapp.customer.view.customwidget.AppImageView;
 

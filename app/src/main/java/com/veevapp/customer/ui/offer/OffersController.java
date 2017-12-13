@@ -73,8 +73,6 @@ public class OffersController extends HeaderController implements OffersContract
 
         init();
 
-        setActive(true);
-
         presenter = new OffersPresenter(buyRequest, DataRepository.getInstance(), this);
         presenter.start();
     }

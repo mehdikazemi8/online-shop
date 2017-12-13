@@ -187,8 +187,6 @@ public class SpecialOffersController
 
         init();
 
-        setActive(true);
-
         presenter = new SpecialOffersPresenter(DataRepository.getInstance(), this);
         presenter.start();
 

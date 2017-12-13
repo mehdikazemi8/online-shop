@@ -5,7 +5,6 @@ import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -88,7 +87,6 @@ public class RegisterController extends HeaderController implements RegisterCont
         headerTitle.setText(getResources().getString(R.string.app_name));
         headerBackButton.setVisibility(View.INVISIBLE);
 
-        setActive(true);
         presenter = new RegisterPresenter(this, DataRepository.getInstance());
         presenter.start();
     }

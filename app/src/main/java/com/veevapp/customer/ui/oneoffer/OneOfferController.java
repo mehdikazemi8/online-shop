@@ -172,7 +172,6 @@ public class OneOfferController extends HeaderController implements OneOfferCont
 
         init();
 
-        setActive(true);
 
         presenter = new OneOfferPresenter(DataRepository.getInstance(), this, offerID);
         presenter.start();

@@ -11,7 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.bluelinelabs.conductor.RouterTransaction;
-import com.veevapp.customer.BaseController;
+import com.veevapp.customer.controller.base.BaseController;
 import com.veevapp.customer.R;
 import com.veevapp.customer.data.DataRepository;
 import com.veevapp.customer.data.local.PreferenceManager;
@@ -58,7 +58,6 @@ public class ConfirmCodeController extends BaseController implements ConfirmCode
     protected void onAttach(@NonNull View view) {
         super.onAttach(view);
         presenter = new ConfirmCodePresenter(PreferenceManager.getInstance(getActivity()), DataRepository.getInstance(), this, bundle.getBoolean(MUST_GET_SELLER_INFO, false), mobile);
-        setActive(true);
         presenter.start();
     }
 

@@ -218,7 +218,6 @@ public class AddBuyRequestController extends BaseBackStackController implements 
     protected void onViewBound(@NonNull View view) {
         super.onViewBound(view);
 
-        setActive(true);
         presenter = new AddBuyRequestPresenter(DataRepository.getInstance(), this);
         presenter.start();
 
