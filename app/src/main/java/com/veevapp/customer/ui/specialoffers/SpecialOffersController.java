@@ -3,7 +3,6 @@ package com.veevapp.customer.ui.specialoffers;
 import android.app.Activity;
 import android.app.Dialog;
 import android.support.annotation.NonNull;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.LinearSnapHelper;
 import android.support.v7.widget.RecyclerView;
@@ -39,6 +38,7 @@ import com.veevapp.customer.util.listener.OnItemSelectedListener;
 import com.veevapp.customer.view.customwidget.AppTextView;
 import com.veevapp.customer.view.decoration.SpecialOfferDecoration;
 import com.veevapp.customer.view.dialog.DialogSelectListRadio;
+import com.veevapp.customer.view.layoutmanager.AppGridLayoutManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -84,7 +84,7 @@ public class SpecialOffersController
 
     private void init() {
         specialOfferViewAdapter = new SpecialOfferViewAdapter(onItemSelectedListener);
-        rvSpecialOffers.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        rvSpecialOffers.setLayoutManager(new AppGridLayoutManager(getActivity(), 2));
         rvSpecialOffers.setAdapter(specialOfferViewAdapter);
         rvSpecialOffers.addItemDecoration(new SpecialOfferDecoration(getActivity()));
         rvSpecialOffers.setNestedScrollingEnabled(false);
