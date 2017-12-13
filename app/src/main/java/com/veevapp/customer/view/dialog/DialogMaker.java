@@ -1,4 +1,4 @@
-package com.veevapp.customer.view;
+package com.veevapp.customer.view.dialog;
 
 import android.app.AlertDialog;
 import android.app.Dialog;

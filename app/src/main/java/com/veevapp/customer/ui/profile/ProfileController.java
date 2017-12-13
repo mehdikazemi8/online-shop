@@ -13,7 +13,7 @@ import com.veevapp.customer.data.DataRepository;
 import com.veevapp.customer.data.local.PreferenceManager;
 import com.veevapp.customer.data.models.Customer;
 import com.veevapp.customer.ui.entermobile.EnterMobileController;
-import com.veevapp.customer.view.DialogMaker;
+import com.veevapp.customer.view.dialog.DialogMaker;
 import com.veevapp.customer.view.customwidget.AppTextView;
 
 import butterknife.BindView;

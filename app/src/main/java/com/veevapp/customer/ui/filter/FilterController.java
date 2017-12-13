@@ -13,7 +13,7 @@ import com.veevapp.customer.data.local.PreferenceManager;
 import com.veevapp.customer.data.models.Category;
 import com.veevapp.customer.data.models.SubCategory;
 import com.veevapp.customer.data.remote.request.SpecialOfferRequest;
-import com.veevapp.customer.view.DialogMaker;
+import com.veevapp.customer.view.dialog.DialogMaker;
 import com.veevapp.customer.view.customwidget.AppEditText;
 import com.veevapp.customer.view.customwidget.SelectableFieldView;
 

@@ -32,7 +32,7 @@ import com.veevapp.customer.data.models.SubCategory;
 import com.veevapp.customer.rx.bus.RxBus;
 import com.veevapp.customer.rx.bus.events.AddedBuyRequestEvent;
 import com.veevapp.customer.util.GlobalToast;
-import com.veevapp.customer.view.DialogMaker;
+import com.veevapp.customer.view.dialog.DialogMaker;
 import com.veevapp.customer.view.customwidget.AppEditText;
 import com.veevapp.customer.view.customwidget.AppTextView;
 import com.veevapp.customer.view.customwidget.SelectableFieldView;

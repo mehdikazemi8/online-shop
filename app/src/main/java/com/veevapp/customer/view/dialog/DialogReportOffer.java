@@ -19,7 +19,6 @@ import com.veevapp.customer.data.models.ReportTypeItem;
 import com.veevapp.customer.data.remote.request.ReportOfferRequest;
 import com.veevapp.customer.data.remote.response.SuccessMessageResponse;
 import com.veevapp.customer.util.ReportHandler;
-import com.veevapp.customer.view.DialogMaker;
 import com.veevapp.customer.view.customwidget.AppEditText;
 import com.veevapp.customer.view.customwidget.SelectableFieldView;
 
