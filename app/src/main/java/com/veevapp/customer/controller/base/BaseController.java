@@ -82,4 +82,8 @@ public abstract class BaseController extends Controller {
         return mActive;
     }
 
+    public boolean canHandleBackStack(){
+        return false;
+    }
+
 }

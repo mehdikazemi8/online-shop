@@ -12,17 +12,16 @@ import android.widget.TextView;
 import com.bluelinelabs.conductor.Router;
 import com.bluelinelabs.conductor.RouterTransaction;
 import com.bluelinelabs.conductor.support.RouterPagerAdapter;
-import com.veevapp.customer.controller.base.BaseController;
 import com.veevapp.customer.R;
-import com.veevapp.customer.controller.base.BaseBackStackController;
+import com.veevapp.customer.controller.base.BaseController;
 import com.veevapp.customer.controller.base.HeaderController;
-import com.veevapp.customer.view.customwidget.NonSwipeableViewPager;
 import com.veevapp.customer.data.DataRepository;
 import com.veevapp.customer.data.local.PreferenceManager;
 import com.veevapp.customer.ui.addbuyrequest.AddBuyRequestController;
 import com.veevapp.customer.ui.buyrequests.BuyRequestsController;
 import com.veevapp.customer.ui.profile.ProfileController;
 import com.veevapp.customer.ui.specialoffers.SpecialOffersController;
+import com.veevapp.customer.view.customwidget.NonSwipeableViewPager;
 
 import butterknife.BindColor;
 import butterknife.BindView;
@@ -58,7 +57,7 @@ public class MainController extends HeaderController implements MainContract.Vie
 
     private MainContract.Presenter presenter;
     private final RouterPagerAdapter pagerAdapter;
-    private BaseBackStackController[] controllers = new BaseBackStackController[NUMBER_OF_TABS];
+    private BaseController[] controllers = new BaseController[NUMBER_OF_TABS];
 
     public MainController() {
         pagerAdapter = new RouterPagerAdapter(this) {

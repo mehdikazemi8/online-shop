@@ -20,7 +20,7 @@ import com.bluelinelabs.conductor.changehandler.FadeChangeHandler;
 import com.bluelinelabs.conductor.changehandler.HorizontalChangeHandler;
 import com.veevapp.customer.R;
 import com.veevapp.customer.changehandler.ArcFadeMoveChangeHandlerCompat;
-import com.veevapp.customer.controller.base.BaseBackStackController;
+import com.veevapp.customer.controller.base.BaseController;
 import com.veevapp.customer.data.DataRepository;
 import com.veevapp.customer.data.local.PreferenceManager;
 import com.veevapp.customer.data.models.Category;
@@ -47,7 +47,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 public class SpecialOffersController
-        extends BaseBackStackController
+        extends BaseController
         implements SpecialOffersContract.View, AppTickHandler.OnTickListener {
 
     @BindView(R.id.special_offers)
@@ -191,11 +191,6 @@ public class SpecialOffersController
         presenter.start();
 
         AppTickHandler.getInstance().addListener(this);
-    }
-
-    @Override
-    public boolean canHandleBackStack() {
-        return false;
     }
 
     @Override

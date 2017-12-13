@@ -24,7 +24,7 @@ import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
 import com.soundcloud.android.crop.Crop;
 import com.veevapp.customer.R;
-import com.veevapp.customer.controller.base.BaseBackStackController;
+import com.veevapp.customer.controller.base.BaseController;
 import com.veevapp.customer.data.DataRepository;
 import com.veevapp.customer.data.models.Category;
 import com.veevapp.customer.data.models.ProductColor;
@@ -47,7 +47,7 @@ import pl.aprilapps.easyphotopicker.EasyImage;
 
 import static android.app.Activity.RESULT_OK;
 
-public class AddBuyRequestController extends BaseBackStackController implements AddBuyRequestContract.View {
+public class AddBuyRequestController extends BaseController implements AddBuyRequestContract.View {
 
     @BindView(R.id.sfv_categories)
     SelectableFieldView sfvCategories;
@@ -213,7 +213,6 @@ public class AddBuyRequestController extends BaseBackStackController implements 
         });
     }
 
-
     @Override
     protected void onViewBound(@NonNull View view) {
         super.onViewBound(view);
@@ -223,11 +222,6 @@ public class AddBuyRequestController extends BaseBackStackController implements 
 
         registerForActivityResult(CAPTURE_PICTURE_CODE);
         registerForActivityResult(Crop.REQUEST_CROP);
-    }
-
-    @Override
-    public boolean canHandleBackStack() {
-        return false;
     }
 
     @Override

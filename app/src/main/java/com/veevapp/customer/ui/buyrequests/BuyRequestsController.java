@@ -14,7 +14,7 @@ import android.widget.ProgressBar;
 import com.bluelinelabs.conductor.RouterTransaction;
 import com.bluelinelabs.conductor.changehandler.FadeChangeHandler;
 import com.veevapp.customer.R;
-import com.veevapp.customer.controller.base.BaseBackStackController;
+import com.veevapp.customer.controller.base.BaseController;
 import com.veevapp.customer.data.DataRepository;
 import com.veevapp.customer.data.models.BuyRequest;
 import com.veevapp.customer.rx.bus.RxBus;
@@ -34,7 +34,7 @@ import butterknife.OnClick;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
-public class BuyRequestsController extends BaseBackStackController implements BuyRequestsContract.View {
+public class BuyRequestsController extends BaseController implements BuyRequestsContract.View {
 
     @BindView(R.id.progress_bar)
     ProgressBar progressBar;
@@ -129,11 +129,6 @@ public class BuyRequestsController extends BaseBackStackController implements Bu
     @Override
     protected View inflateView(@NonNull LayoutInflater inflater, @NonNull ViewGroup container) {
         return inflater.inflate(R.layout.controller_buy_requests, container, false);
-    }
-
-    @Override
-    public boolean canHandleBackStack() {
-        return false;
     }
 
     @Override

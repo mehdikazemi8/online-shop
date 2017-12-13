@@ -8,18 +8,18 @@ import android.view.ViewGroup;
 import com.bluelinelabs.conductor.RouterTransaction;
 import com.bluelinelabs.conductor.changehandler.FadeChangeHandler;
 import com.veevapp.customer.R;
-import com.veevapp.customer.controller.base.BaseBackStackController;
+import com.veevapp.customer.controller.base.BaseController;
 import com.veevapp.customer.data.DataRepository;
 import com.veevapp.customer.data.local.PreferenceManager;
 import com.veevapp.customer.data.models.Customer;
 import com.veevapp.customer.ui.entermobile.EnterMobileController;
-import com.veevapp.customer.view.dialog.DialogMaker;
 import com.veevapp.customer.view.customwidget.AppTextView;
+import com.veevapp.customer.view.dialog.DialogMaker;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class ProfileController extends BaseBackStackController implements ProfileContract.View {
+public class ProfileController extends BaseController implements ProfileContract.View {
 
     public static ProfileController newInstance() {
         return new ProfileController();
@@ -62,11 +62,6 @@ public class ProfileController extends BaseBackStackController implements Profil
 
         presenter = new ProfilePresenter(DataRepository.getInstance(), PreferenceManager.getInstance(getActivity()), this);
         presenter.start();
-    }
-
-    @Override
-    public boolean canHandleBackStack() {
-        return false;
     }
 
     @Override
