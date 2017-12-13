@@ -92,14 +92,15 @@ public class BuyRequestsController extends BaseBackStackController implements Bu
         presenter.start();
 
 
-        RxBus.getInstance().toObservable()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(o -> {
-                    if(o instanceof AddedBuyRequestEvent){
-                        presenter.start();
-                    }
-                });
+        getCompositeDisposable().add(
+                RxBus.getInstance().toObservable()
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(o -> {
+                            if(o instanceof AddedBuyRequestEvent){
+                                presenter.start();
+                            }
+                        }));
     }
 
     void checkNewOffer(Intent intent) {
