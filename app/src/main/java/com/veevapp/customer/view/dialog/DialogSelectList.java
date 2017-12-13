@@ -1,6 +1,5 @@
 package com.veevapp.customer.view.dialog;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -25,7 +24,7 @@ import butterknife.ButterKnife;
  * Created by iman.
  * iman.neofight@gmail.com
  */
-public class DialogSelectList extends Dialog {
+public class DialogSelectList extends AppDialog {
 
     private String title;
     private String[] items;
@@ -35,8 +34,6 @@ public class DialogSelectList extends Dialog {
 
         this.title = title;
         this.items = items;
-
-        init(context, title, items);
     }
 
     @Override

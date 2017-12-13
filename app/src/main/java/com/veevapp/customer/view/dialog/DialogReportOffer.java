@@ -1,6 +1,5 @@
 package com.veevapp.customer.view.dialog;
 
-import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
@@ -32,7 +31,7 @@ import butterknife.OnClick;
  * Created by iman.
  * iman.neofight@gmail.com
  */
-public class DialogReportOffer extends Dialog{
+public class DialogReportOffer extends AppDialog{
 
     Context mContext;
 
