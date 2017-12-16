@@ -108,6 +108,7 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/sdv_text_size"
                 android:fontFamily="@font/iransans"
+                android:layout_marginRight="@dimen/sdv_icons_margin"
                 />
 
             <com.veevapp.customer.view.customwidget.AppImageView
@@ -147,6 +148,7 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/sdv_text_size"
                 android:fontFamily="@font/iransans"
+                android:layout_marginRight="@dimen/sdv_icons_margin"
                 />
 
             <com.veevapp.customer.view.customwidget.AppImageView
@@ -186,6 +188,7 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/sdv_text_size"
                 android:fontFamily="@font/iransans"
+                android:layout_marginRight="@dimen/sdv_icons_margin"
                 />
 
             <com.veevapp.customer.view.customwidget.AppImageView
