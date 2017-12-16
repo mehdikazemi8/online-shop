@@ -26,7 +26,6 @@ import com.veevapp.customer.ui.showlocation.ShowLocationController;
 import com.veevapp.customer.util.GlobalToast;
 import com.veevapp.customer.util.TextSpannableHandler;
 import com.veevapp.customer.util.imageloader.ImageHandler;
-import com.veevapp.customer.view.customwidget.AppButton;
 import com.veevapp.customer.view.dialog.DialogReportOffer;
 
 import java.util.List;
@@ -57,8 +56,6 @@ public class OneOfferController extends HeaderController implements OneOfferCont
     TextView tvShopAddress;
     @BindView(R.id.tv_telegram)
     TextView tvTelegram;
-    @BindView(R.id.btn_report)
-    AppButton btnReport;
 
     @OnClick(R.id.tv_telegram)
     public void telegramOnClick() {
@@ -89,7 +86,7 @@ public class OneOfferController extends HeaderController implements OneOfferCont
         );
     }
 
-    @OnClick(R.id.btn_report)
+    @OnClick(R.id.tv_report)
     void onReportClicked(){
         new DialogReportOffer(getActivity(),offer,DataRepository.getInstance()).show();
     }

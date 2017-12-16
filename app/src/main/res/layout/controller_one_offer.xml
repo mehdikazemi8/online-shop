@@ -44,13 +44,20 @@
             android:fontFamily="@font/iransans"
             android:textColor="@color/black"
             android:gravity="right|center"
-            android:layout_marginBottom="8dp"
             />
 
-        <com.veevapp.customer.view.customwidget.AppButton
-            android:id="@+id/btn_report"
-            style="@style/primary_button"
+        <com.veevapp.customer.view.customwidget.AppTextView
+            android:id="@+id/tv_report"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="@string/report"
+            android:gravity="right|center"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:fontFamily="@font/iransans"
+            android:textColor="@color/blue_link"
+            android:textSize="11sp"
+            android:background="?attr/selectableItemBackground"
             />
 
         <View
