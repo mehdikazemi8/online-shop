@@ -6,15 +6,11 @@ import android.content.Intent;
 import android.graphics.Paint;
 import android.net.Uri;
 import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewCompat;
-import android.text.SpannableString;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,11 +25,9 @@ import com.veevapp.customer.ui.showlocation.ShowLocationController;
 import com.veevapp.customer.util.AppHandler;
 import com.veevapp.customer.util.AppTickHandler;
 import com.veevapp.customer.util.GlobalToast;
-import com.veevapp.customer.util.TextSpannableHandler;
 import com.veevapp.customer.util.imageloader.ImageHandler;
 import com.veevapp.customer.view.customwidget.AppTextView;
-
-import java.util.List;
+import com.veevapp.customer.view.customwidget.ShopDetailView;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -53,20 +47,8 @@ public class SingleSpecialOfferController
     @BindView(R.id.tv_timer)
     AppTextView tvTimer;
 
-    @BindView(R.id.iv_shopImage)
-    ImageView ivShopImage;
-    @BindView(R.id.tv_shopName)
-    TextView tvShopName;
-    @BindView(R.id.rb_shopRate)
-    RatingBar rbShopRate;
-    @BindView(R.id.tv_sellerName)
-    TextView tvSellerName;
-    @BindView(R.id.tv_phoneNumber)
-    TextView tvPhoneNumber;
-    @BindView(R.id.tv_shopAddress)
-    TextView tvShopAddress;
-    @BindView(R.id.tv_telegram)
-    TextView tvTelegram;
+    @BindView(R.id.shop_detalView)
+    ShopDetailView shopDetailView;
 
     @OnClick(R.id.share_button_container)
     public void shareSpecialOffer() {
@@ -122,45 +104,10 @@ public class SingleSpecialOfferController
 
         Seller seller = specialOffer.getSeller();
         if (seller != null) {
-
-            String sellerName;
-            if (!TextUtils.isEmpty(seller.getName()) && !TextUtils.isEmpty(seller.getFamily()))
-                sellerName = seller.getName() + seller.getFamily();
-            else
-                sellerName = "-";
-            tvSellerName.setText(getActivity().getString(R.string.seller_name) + " : " + sellerName);
-
-
-            String shopName = !TextUtils.isEmpty(seller.getShopName()) ? seller.getShopName() : "-";
-            tvShopName.setText(shopName);
-
-
-            rbShopRate.setRating(seller.getRate());
-
-
-            String phoneNumber = !TextUtils.isEmpty(seller.getSellerMobileNumber()) ? seller.getSellerMobileNumber() : "-";
-            tvPhoneNumber.setText(getActivity().getString(R.string.phone_number) + " : " + phoneNumber);
-
-            String shopAddress = !TextUtils.isEmpty(seller.getShopAddress()) ? seller.getShopAddress() : "-";
-            tvShopAddress.setText(getActivity().getString(R.string.shop_address) + " : " + shopAddress);
-
-
-            List<Double> latLngs = seller.getLocation();
-            if (latLngs != null && latLngs.size() == 2) {
-                tvShopAddress.setText(tvShopAddress.getText() + " " + getActivity().getString(R.string.show_on_map));
-                SpannableString ss = new SpannableString(tvShopAddress.getText());
-                TextSpannableHandler.setColor(ss, getActivity().getString(R.string.show_on_map),
-                        ContextCompat.getColor(getActivity(), R.color.blue_link));
-                tvShopAddress.setText(ss);
-            }
-
-            String telegram = !TextUtils.isEmpty(seller.getTelegram()) ? seller.getTelegram() : "-";
-            tvTelegram.setText(getActivity().getString(R.string.telegram_id) + " : " + telegram);
-
-            ImageHandler.getInstance(getActivity())
-                    .loadImage(seller.getSellerPhotoUrl(), ivShopImage, true,
-                            true, true, 0);
-
+            shopDetailView.refresh(seller);
+            shopDetailView.llPhone.setOnClickListener(v->mobileNumberOnClick());
+            shopDetailView.llTelegram.setOnClickListener(v->telegramOnClick());
+            shopDetailView.llMap.setOnClickListener(v->onAddressClicked());
         }
     }
 
@@ -172,7 +119,6 @@ public class SingleSpecialOfferController
         }
     }
 
-    @OnClick(R.id.tv_telegram)
     public void telegramOnClick() {
         try {
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("tg://resolve?domain=" + specialOffer.getSeller().getTelegram()));
@@ -183,14 +129,12 @@ public class SingleSpecialOfferController
         }
     }
 
-    @OnClick(R.id.tv_phoneNumber)
     public void mobileNumberOnClick() {
         Intent intent = new Intent(Intent.ACTION_DIAL);
         intent.setData(Uri.parse("tel:" + specialOffer.getSeller().getSellerMobileNumber()));
         startActivity(intent);
     }
 
-    @OnClick(R.id.tv_shopAddress)
     void onAddressClicked() {
         double lat = specialOffer.getSeller().getLocation().get(0);
         double lon = specialOffer.getSeller().getLocation().get(1);
