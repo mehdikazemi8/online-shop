@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -59,48 +60,32 @@
             android:fontFamily="@font/iransans"
             />
 
-        <LinearLayout
+
+        <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/iv_photo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp" />
+            <com.veevapp.customer.view.customwidget.AddImage
+                android:id="@+id/add_image"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/text_size_normal"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginLeft="@dimen/space_xxlarge"
+                android:layout_marginRight="@dimen/space_xxlarge"
+                app:layout_constraintDimensionRatio="1:1"
+                />
 
-            <LinearLayout
-                android:id="@+id/ll_addPhoto"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal">
-
-                <com.veevapp.customer.view.customwidget.AppTextView
-                    android:id="@+id/tv_addPhoto"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:fontFamily="@font/iransans"
-                    android:padding="@dimen/space_normal"
-                    android:text="@string/add_product_photo" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:fontFamily="@font/icons"
-                    android:text="@string/icon.add.circle" />
-            </LinearLayout>
-
-        </LinearLayout>
+        </android.support.constraint.ConstraintLayout>
 
         <Button
             android:id="@+id/button_submit"
             style="@style/primary_button"
             android:layout_gravity="center_horizontal"
-            android:text="@string/submit_request" />
+            android:text="@string/submit_request"
+            android:layout_marginTop="@dimen/space_large"
+            />
 
     </LinearLayout>
 

@@ -11,7 +11,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.annimon.stream.Stream;
@@ -32,10 +31,10 @@ import com.veevapp.customer.data.models.SubCategory;
 import com.veevapp.customer.rx.bus.RxBus;
 import com.veevapp.customer.rx.bus.events.AddedBuyRequestEvent;
 import com.veevapp.customer.util.GlobalToast;
-import com.veevapp.customer.view.dialog.DialogMaker;
+import com.veevapp.customer.view.customwidget.AddImage;
 import com.veevapp.customer.view.customwidget.AppEditText;
-import com.veevapp.customer.view.customwidget.AppTextView;
 import com.veevapp.customer.view.customwidget.SelectableFieldView;
+import com.veevapp.customer.view.dialog.DialogMaker;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -67,11 +66,8 @@ public class AddBuyRequestController extends BaseController implements AddBuyReq
     @BindView(R.id.et_description)
     AppEditText etDescription;
 
-    @BindView(R.id.iv_photo)
-    ImageView ivPhoto;
-
-    @BindView(R.id.tv_addPhoto)
-    AppTextView tvAddPhoto;
+    @BindView(R.id.add_image)
+    AddImage addImage;
 
 
 
@@ -89,7 +85,7 @@ public class AddBuyRequestController extends BaseController implements AddBuyReq
         return new AddBuyRequestController();
     }
 
-    @OnClick(R.id.ll_addPhoto)
+    @OnClick(R.id.add_image)
     public void addPhotoOnClick() {
         requestPermission();
     }
@@ -222,6 +218,10 @@ public class AddBuyRequestController extends BaseController implements AddBuyReq
 
         registerForActivityResult(CAPTURE_PICTURE_CODE);
         registerForActivityResult(Crop.REQUEST_CROP);
+
+
+        addImage.tvSubText.setVisibility(View.VISIBLE);
+        addImage.tvSubText.setText("(اختیاری)");
     }
 
     @Override
@@ -305,7 +305,8 @@ public class AddBuyRequestController extends BaseController implements AddBuyReq
         sfvColors.setSelectedObject(null);
         base64Photo = "";
 
-        Glide.with(getActivity()).load("").into(ivPhoto);
+        addImage.setType(AddImage.TYPE_ADD_IMAGE);
+        Glide.with(getActivity()).load("").into(addImage.ivShowingImage);
 
         refreshSelectedColor();
         refreshSelectedSubCategory();
@@ -319,13 +320,10 @@ public class AddBuyRequestController extends BaseController implements AddBuyReq
 
     @Override
     public void showCroppedImage(Uri photoUri, String base64Photo) {
-        Glide.with(getActivity()).load(photoUri).into(ivPhoto);
+        addImage.setType(AddImage.TYPE_SHOW_IMAGE);
+        Glide.with(getActivity()).load(photoUri).into(addImage.ivShowingImage);
         this.base64Photo = base64Photo;
         Log.d("TAG", "abcd " + photoUri);
-
-        if(photoUri!=null && base64Photo!=null){
-            tvAddPhoto.setText(getActivity().getString(R.string.change_product_photo));
-        }
     }
 
     @Override

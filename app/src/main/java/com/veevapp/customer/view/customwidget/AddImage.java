@@ -33,6 +33,10 @@ public class AddImage extends RelativeLayout{
     @BindView(R.id.iv_showingImage)
     public AppImageView ivShowingImage;
 
+    @BindView(R.id.tv_subText)
+    public AppTextView tvSubText;
+
+
     public AddImage(Context context) {
         super(context);
         init(context);

@@ -20,7 +20,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/tv_select"
+            app:layout_constraintBottom_toTopOf="@+id/ll_texts"
             app:srcCompat="@drawable/ic_add_black_24dp"
             app:tint="@color/white"
             app:layout_constraintDimensionRatio="1:1"
@@ -29,21 +29,40 @@
             android:layout_marginRight="@dimen/space_small"
             />
 
-        <com.veevapp.customer.view.customwidget.AppTextView
-            android:id="@+id/tv_select"
+        <LinearLayout
+            android:id="@+id/ll_texts"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/text_view_style"
-            android:text="انتخاب عکس"
-            android:textColor="@color/white"
+            android:orientation="vertical"
             app:layout_constraintLeft_toLeftOf="@id/iv_add"
             app:layout_constraintRight_toRightOf="@id/iv_add"
             app:layout_constraintTop_toBottomOf="@id/iv_add"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:textStyle="bold"
             android:layout_marginBottom="@dimen/space_small"
-            android:textSize="16sp"
-            />
+            android:gravity="center"
+            >
+            <com.veevapp.customer.view.customwidget.AppTextView
+                android:id="@+id/tv_select"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/text_view_style"
+                android:text="انتخاب عکس"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                />
+
+            <com.veevapp.customer.view.customwidget.AppTextView
+                android:id="@+id/tv_subText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/text_view_style"
+                android:text="(اختیاری)"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:visibility="gone"
+                />
+        </LinearLayout>
 
     </android.support.constraint.ConstraintLayout>
 
