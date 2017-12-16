@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:id="@+id/ll_top"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="vertical"
+        android:layout_margin="@dimen/space_normal"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="right|center"
+            android:layout_marginBottom="6dp"
+            >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="right"
+                >
+
+                <TextView
+                    android:id="@+id/tv_shopName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="فروشگاه علی"
+                    android:fontFamily="@font/iransans"
+                    />
+
+                <RatingBar
+                    android:id="@+id/rb_shopRate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    style="@style/Widget.AppCompat.RatingBar.Indicator"
+                    android:layout_marginBottom="4dp"
+                    android:max="5"
+                    />
+
+            </LinearLayout>
+
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/iv_shopImage"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="8dp"
+                app:srcCompat="@drawable/loading_circle"
+                />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_sellerName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/seller_name"
+            android:fontFamily="@font/iransans"
+            android:textColor="@color/black"
+            android:gravity="right|center"
+            android:layout_marginBottom="8dp"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_box"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/group_box_bg"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ll_top"
+        android:layout_margin="@dimen/sdv_margin"
+        >
+
+        <LinearLayout
+            android:id="@+id/ll_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="@dimen/sdv_icons_margin"
+            android:background="?attr/selectableItemBackground"
+            >
+
+            <com.veevapp.customer.view.customwidget.AppTextView
+                android:id="@+id/tv_shopPhone"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:lines="1"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sdv_text_size"
+                android:fontFamily="@font/iransans"
+                />
+
+            <com.veevapp.customer.view.customwidget.AppImageView
+                android:layout_width="@dimen/sdv_icons_size"
+                android:layout_height="@dimen/sdv_icons_size"
+                app:srcCompat="@drawable/ic_phonecall"
+                android:layout_margin="@dimen/sdv_icons_margin"
+                />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/black"
+            />
+
+        <LinearLayout
+            android:id="@+id/ll_telegram"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="@dimen/sdv_icons_margin"
+            android:background="?attr/selectableItemBackground"
+            >
+
+            <com.veevapp.customer.view.customwidget.AppTextView
+                android:id="@+id/tv_shopTelegram"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:lines="1"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sdv_text_size"
+                android:fontFamily="@font/iransans"
+                />
+
+            <com.veevapp.customer.view.customwidget.AppImageView
+                android:layout_width="@dimen/sdv_icons_size"
+                android:layout_height="@dimen/sdv_icons_size"
+                app:srcCompat="@drawable/ic_telegram"
+                android:layout_margin="@dimen/sdv_icons_margin"
+                />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/black"
+            />
+
+        <LinearLayout
+            android:id="@+id/ll_map"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="@dimen/sdv_icons_margin"
+            android:background="?attr/selectableItemBackground"
+            >
+
+            <com.veevapp.customer.view.customwidget.AppTextView
+                android:id="@+id/tv_shopAddress"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:lines="1"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sdv_text_size"
+                android:fontFamily="@font/iransans"
+                />
+
+            <com.veevapp.customer.view.customwidget.AppImageView
+                android:layout_width="@dimen/sdv_icons_size"
+                android:layout_height="@dimen/sdv_icons_size"
+                app:srcCompat="@drawable/ic_map"
+                android:layout_margin="@dimen/sdv_icons_margin"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <com.veevapp.customer.view.customwidget.AppTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="اطلاعات تماس"
+        style="@style/text_view_style"
+        app:layout_constraintLeft_toLeftOf="@id/ll_box"
+        app:layout_constraintRight_toRightOf="@id/ll_box"
+        app:layout_constraintTop_toTopOf="@id/ll_box"
+        app:layout_constraintBottom_toTopOf="@id/ll_box"
+        android:background="@color/white"
+        android:paddingLeft="@dimen/space_small"
+        android:paddingRight="@dimen/space_small"
+        />
+
+</android.support.constraint.ConstraintLayout>

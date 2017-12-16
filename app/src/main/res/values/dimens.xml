@@ -54,4 +54,11 @@
     <!--filers section-->
 
 
+    <!--ShopDetailView-->
+    <dimen name="sdv_margin">@dimen/space_normal</dimen>
+    <dimen name="sdv_icons_size">32dp</dimen>
+    <dimen name="sdv_icons_margin">6dp</dimen>
+    <dimen name="sdv_text_size">14sp</dimen>
+    <!--ShopDetailView-->
+
 </resources>

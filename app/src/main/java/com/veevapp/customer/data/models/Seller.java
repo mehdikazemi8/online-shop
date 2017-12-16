@@ -7,7 +7,7 @@ public class Seller extends BaseModel {
 
     private String name;
     private String family;
-    private String sellerMobileNumber;
+    private String mobile;
     private String telegram;
     private String sellerPhotoUrl;
     private Boolean sentInfo;
@@ -96,11 +96,11 @@ public class Seller extends BaseModel {
     }
 
     public String getSellerMobileNumber() {
-        return sellerMobileNumber;
+        return mobile;
     }
 
     public void setSellerMobileNumber(String sellerMobileNumber) {
-        this.sellerMobileNumber = sellerMobileNumber;
+        this.mobile = sellerMobileNumber;
     }
 
     public String getTelegram() {

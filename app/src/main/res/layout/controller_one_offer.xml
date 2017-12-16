@@ -67,103 +67,15 @@
             android:layout_marginBottom="8dp"
             />
 
-        <LinearLayout
+
+
+        <com.veevapp.customer.view.customwidget.ShopDetailView
+            android:id="@+id/shop_detalView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="right|center"
-            android:layout_marginBottom="6dp"
-            >
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="right"
-                >
-
-                <TextView
-                    android:id="@+id/tv_shopName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="فروشگاه علی"
-                    android:fontFamily="@font/iransans"
-                    />
-
-                <RatingBar
-                    android:id="@+id/rb_shopRate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    style="@style/Widget.AppCompat.RatingBar.Indicator"
-                    android:layout_marginBottom="4dp"
-                    android:max="5"
-                    />
-
-            </LinearLayout>
-
-            <android.support.v7.widget.AppCompatImageView
-                android:id="@+id/iv_shopImage"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_gravity="center"
-                android:layout_marginLeft="8dp"
-                app:srcCompat="@drawable/loading_circle"
-                />
-
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/tv_sellerName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/seller_name"
-            android:fontFamily="@font/iransans"
-            android:textColor="@color/black"
-            android:gravity="right|center"
-            android:layout_marginBottom="8dp"
             />
 
-        <TextView
-            android:id="@+id/tv_phoneNumber"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/phone_number"
-            android:fontFamily="@font/iransans"
-            android:textColor="@color/black"
-            android:gravity="right|center"
-            android:layout_marginBottom="8dp"
-            />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="right|center_vertical"
-            android:layout_marginBottom="8dp"
-            >
-            <TextView
-                android:id="@+id/tv_shopAddress"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/shop_address"
-                android:fontFamily="@font/iransans"
-                android:textColor="@color/black"
-                android:gravity="right|center"
-                />
-        </LinearLayout>
-
-
-        <TextView
-            android:id="@+id/tv_telegram"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/telegram"
-            android:fontFamily="@font/iransans"
-            android:textColor="@color/black"
-            android:gravity="right|center"
-            android:layout_marginBottom="8dp"
-            />
 
 
     </LinearLayout>
