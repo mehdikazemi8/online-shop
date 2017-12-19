@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
@@ -7,12 +7,19 @@
     android:focusable="true"
     android:orientation="vertical">
 
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/splash_animation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/splash_animation" />
+
     <ImageView
         android:id="@+id/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:scaleType="centerInside"
-        android:src="@drawable/logo" />
+        android:src="@drawable/logo"
+        android:visibility="gone" />
 
-</LinearLayout>
+</android.support.constraint.ConstraintLayout>
